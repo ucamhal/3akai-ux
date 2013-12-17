@@ -86,6 +86,25 @@ require(['jquery','oae.core'], function($, oae) {
             ]
         },
         {
+            'id': 'profile',
+            'title': oae.api.i18n.translate('__MSG__MY_PROFILE__'),
+            'icon': 'icon-user',
+            'layout': [
+                {
+                    'width': 'col-md-12',
+                    'widgets': [
+                        {
+                            'id': 'profile',
+                            'settings': {
+                                'principalId': oae.data.me.id,
+                                'canManage': true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             'id': 'library',
             'title': oae.api.i18n.translate('__MSG__MY_LIBRARY__'),
             'icon': 'icon-briefcase',

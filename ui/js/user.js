@@ -102,8 +102,26 @@ require(['jquery', 'oae.core'], function($, oae) {
         // Add the rest of the navigation
         lhNavigation.push(
             {
-                'id': 'library',
+                'id': 'profile',
                 'default': true,
+                'title': oae.api.i18n.translate('__MSG__PROFILE__'),
+                'icon': 'icon-user',
+                'layout': [
+                    {
+                        'width': 'col-md-12',
+                        'widgets': [
+                            {
+                                'id': 'profile',
+                                'settings': {
+                                    'principalId': userProfile.id
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                'id': 'library',
                 'title': oae.api.i18n.translate('__MSG__LIBRARY__'),
                 'icon': 'icon-briefcase',
                 'layout': [
