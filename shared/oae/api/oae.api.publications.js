@@ -25,7 +25,7 @@ define(['exports', 'jquery'], function(exports, $) {
      * @param  {Object}         callback.err        Error object containing error code and error message
      * @param  {Object}         callback.response   The list of publications
      */
-    var getUserPublications = exports.getUserPublications = function(userId, start, limit, callback) {
+    var getUserPublications = exports.getUserPublications = function (userId, start, limit, callback) {
         if (!userId) {
             throw new Error('A valid user id should be provided');
         }
@@ -36,7 +36,7 @@ define(['exports', 'jquery'], function(exports, $) {
         };
 
         $.ajax({
-            'url': '/api/publications/library/' + userId,
+            'url': getUserPublicationsURL(userId),
             'data': data,
             'success': function(data) {
                 callback(null, data);
@@ -46,4 +46,16 @@ define(['exports', 'jquery'], function(exports, $) {
             }
         });
     };
+
+    /**
+     * Get a URL pointing to the REST endpoint for the publications of the specified user.
+     *
+     * This can be used for APIs expecting to perform HTTP requests to REST endpoints directly.
+     *
+     * @param   {String}  userId   The userId whose publications you wish to fetch
+     * @return  {String}           A URL string suitable for passing to $.ajax or similar
+     */
+    var getUserPublicationsURL = exports.getUserPublicationsURL = function (userId) {
+        return '/api/publications/library/' + encodeURIComponent(userId);
+    }
 });
