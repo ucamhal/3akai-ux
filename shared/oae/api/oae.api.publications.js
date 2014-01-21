@@ -18,12 +18,12 @@ define(['exports', 'jquery'], function(exports, $) {
     /**
      * Get the publications authored by a user.
      *
-     * @param  {String}         userId              The userId whose publications you wish to fetch
-     * @param  {String}         [start]             The token used for paging. If the first page of results is required, `null` should be passed in as the token. For any subsequent pages, the `nextToken` provided in the feed from the previous page should be used
-     * @param  {Number}         [limit]             Maximum number of publications to return
-     * @param  {Function}       callback            Standard callback method takes arguments `err` and `resp`
-     * @param  {Object}         callback.err        Error object containing error code and error message
-     * @param  {Object}         callback.response   The list of publications
+     * @param  {String}         userId                  The userId whose publications you wish to fetch
+     * @param  {String}         [start]                 The token used for paging. If the first page of results is required, `null` should be passed in as the token. For any subsequent pages, the `nextToken` provided in the feed from the previous page should be used
+     * @param  {Number}         [limit]                 Maximum number of publications to return
+     * @param  {Function}       callback                Standard callback method takes arguments `err` and `resp`
+     * @param  {Object}         callback.err            Error object containing error code and error message
+     * @param  {Object}         callback.publications   The list of publications
      */
     var getUserPublications = exports.getUserPublications = function (userId, start, limit, callback) {
         if (!userId) {
