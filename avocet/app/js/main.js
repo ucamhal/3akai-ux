@@ -8,20 +8,20 @@ require.config({
         'jquery.ui.widget': '/avocet/components/blueimp-file-upload/js/vendor/jquery.ui.widget',
 
         'oa-fileupload': '/avocet/js/fileupload',
-        'oa-form': '/avocet/js/form'
+        'oa-details-form': '/avocet/js/details-form'
     }
 });
 
 define([
     'jquery',
     'oa-fileupload',
-    'oa-form'
-], function($, Fileupload, Form) {
+    'oa-details-form'
+], function($, Fileupload, DetailsForm) {
     'use strict';
 
     var widgets = {
         'fileupload': Fileupload,
-        'form': Form
+        'details-form': DetailsForm
     };
 
     $(function() {
