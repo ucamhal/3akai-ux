@@ -2,9 +2,9 @@
   "name": "avocet",
   "private": "true",
   "dependencies": {
-    "bootstrap": "~3.1.1",
-    "requirejs": "~2.1.11",
-    "requirejs-text": "~2.0.10",
-    "blueimp-file-upload": "~9.5.6"
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "requirejs": "latest",
+    "requirejs-text": "latest"
   }
 }
