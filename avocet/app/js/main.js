@@ -56,7 +56,7 @@ require.config({
 
         // OA (avocet)
         'oa.fileupload': '/avocet/js/fileupload',
-        'oa.form': '/avocet/js/form',
+        'oa.details-form': '/avocet/js/details-form',
         'oa.logout': '/avocet/js/logout'
     },
     'shim': {
@@ -74,7 +74,7 @@ define([
 
     var widgets = {
         'fileupload': 'oa.fileupload',
-        'form': 'oa.form',
+        'details-form': 'oa.details-form',
         'logout': 'oa.logout'
     };
 
