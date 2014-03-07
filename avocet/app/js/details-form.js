@@ -4,7 +4,7 @@ define([
 ], function(_, template) {
     'use strict';
 
-    var DetailsForm = function() {
+    var DetailsForm = function(element, options) {
         this.$el = $(element);
         this.data = _.extend({}, DetailsForm.DEFAULTS, options);
         this.template = _.template(template);

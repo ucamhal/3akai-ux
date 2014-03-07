@@ -17,8 +17,8 @@
       </div>
       <div class="col-sm-6">
         <p>
-          Not the right file?<br>
-          <a href="#" data-page="index" class="btn btn-default">Start over</a>
+          Not the right document?<br>
+          <a href="#" data-page="index" class="btn btn-default">Replace this file</a>
         </p>
       </div>
     </div>
@@ -30,23 +30,11 @@
         <h3 class="panel-title">Basic information</h3>
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Title</label>
+          <label class="col-sm-2 control-label" for="oa-detail-form-title">Title</label>
           <div class="col-sm-10">
-            <textarea class="form-control input-block-level" name="xxx" rows="3"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="xxx">Are you the author?</label>
-          <div class="col-sm-10">
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="true">Yes
-            </label>
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="false">No
-            </label>
+            <textarea id="oa-detail-form-title" class="form-control input-block-level" name="xxx" rows="3"></textarea>
           </div>
         </div>
 
@@ -68,7 +56,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Journal and funders</h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="inputPassword">Journal</label>
           <div class="col-sm-10">
@@ -120,70 +108,18 @@
               <label>
                 <input type="checkbox" value="xxx">
                 Other
+                </label>
                 <input class="form-control" type="text" name="xxx" placeholder="">
-              </label>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="panel-heading">
-        <h3 class="panel-title">Embargo</h3>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Acceptance date</label>
-          <div class="col-sm-7">
-            <input class="form-control" type="text" name="xxx" placeholder="DD/MM/YYYY">
-          </div>
-          <div class="col-sm-3">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Not Sure
-              </label>
-            </div>
-            <a href="http://devnull-as-a-service.com/dev/null">Find out more info!</a>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Embargoed?</label>
-          <div class="col-sm-7">
-
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="true">Yes
-            </label>
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="false">No
-            </label>
-
-          </div>
-          <div class="col-sm-3">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Not Sure
-              </label>
-            </div>
-            <a href="http://devnull-as-a-service.com/dev/null">Find out more info!</a>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Embargoed until</label>
-          <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="DD/MM/YYYY">
-          </div>
-        </div>
-      </div>
-
 
       <div class="panel-heading">
         <h3 class="panel-title">Please confirm your contact details</h3>
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="inputPassword">Email</label>
           <div class="col-sm-10">
@@ -216,16 +152,75 @@
       <div class="panel-heading">
         <h3 class="panel-title">A note on APC</h3>
       </div>
-
-      <div class="panel-body">
+      <div class="panel-body oa-panel-body">
         <p>Sometimes you might need to pay an APC. If so we'll let you know.</p>
       </div>
 
-      <div class="panel-heading">
-        <h3 class="panel-title">We will contact you in 5 days</h3>
+      <div class="panel-body oa-panel-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="inputPassword">Copyright Information:</label>
+
+          <div class="col-sm-10">
+            <div class="radio">
+              <label>
+                <input type="radio" name="copyright" value="xxx">
+                I would like the University to manage rights on my behalf.<br>
+                <small>This means you have the copyright but the University has the right to vitae eros in ante sollicitudin.</small>
+              </label>
+            </div>
+
+            <div class="radio">
+              <label>
+                <input type="radio" name="copyright" value="xxx">
+                I would like to retain copyright &amp; use a Scholars' Copyright Addendum.<br>
+                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
+              </label>
+            </div>
+
+            <div class="radio">
+              <label>
+                <input type="radio" name="copyright" value="xxx">
+                I am going to give rights to the publisher.<br>
+                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
+              </label>
+            </div>
+
+            <div class="radio">
+              <label>
+                <input type="radio" name="copyright" value="xxx">
+                I have already given rights to the publisher.<br>
+                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
+              </label>
+            </div>
+
+            <div class="radio">
+              <label>
+                <input type="radio" name="copyright" value="xxx">
+                I don't understand or don't know.<br>
+                <small>This means you don't understand or don't know what's going on.</small>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body oa-panel-body">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="xxx">
+                I accept the <a href="#">Terms &amp; Conditions</a> of the University Repository.
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-heading">
+        <h3 class="panel-title">We will get back to you in 5 days</h3>
+      </div>
+      <div class="panel-body panel-body oa-panel-body">
         <p>Duis in accumsan sapien, mattis tempor arcu. Sed nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus. Nulla dignissim risus sed massa gravida molestie. Morbi in volutpat mauris.</p>
       </div>
 
