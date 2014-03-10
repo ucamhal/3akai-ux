@@ -52,6 +52,7 @@ define([
                 this.initializeFileupload();
                 return;
             }
+            window.location = '/details-form';
         },
         'onFileDrop': function(event, data) {
             // Disable file drag and dropping when the widget is uploading

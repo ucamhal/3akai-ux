@@ -57,12 +57,35 @@ require.config({
         // OA (avocet)
         'oa.fileupload': '/avocet/js/fileupload',
         'oa.details-form': '/avocet/js/details-form',
-        'oa.logout': '/avocet/js/logout'
+        'oa.logout': '/avocet/js/logout',
+        'oa.multi-add': '/avocet/js/multi-add'
     },
     'shim': {
-        'jquery.fileupload': {
-            'deps': ['jquery-ui']
-        }
+        'jquery.autosuggest': ['jquery'],
+        'jquery.browse-focus': ['jquery'],
+        'jquery.clip': ['jquery'],
+        'jquery.dnd-upload': ['jquery'],
+        'jquery.encoder': ['jquery'],
+        'jquery.fileSize': ['jquery'],
+        'jquery.fileupload': ['jquery', 'jquery-ui'],
+        'jquery.form': ['jquery'],
+        'jquery.iframe-transport': ['jquery'],
+        'jquery.infinitescroll': ['jquery'],
+        'jquery.jeditable-focus': ['jquery'],
+        'jquery.list-options': ['jquery'],
+        'jquery.parseurl': ['jquery'],
+        'jquery.properties-parser': ['jquery'],
+        'jquery.serializeObject': ['jquery'],
+        'jquery.timeago': ['jquery'],
+        'jquery-ui': ['jquery'],
+        'jquery.update-picture': ['jquery'],
+        'jquery.validate': ['jquery'],
+
+        'bootstrap': ['jquery'],
+        'bootstrap.clickover': ['bootstrap'],
+        'bootstrap.notify': ['bootstrap'],
+        'bootstrap.focus': ['bootstrap'],
+        'bootstrap.modal': ['bootstrap']
     }
 });
 

@@ -1,30 +1,13 @@
-<div class="container">
-  <header class="page-header">
+<div class="container oa-details-form">
+  <header class="page-header oa-page-header">
     <h2>Can we have some more details?</h2>
   </header>
 
-  <section class="well oa-details-form-heading">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="oa-details-form-heading-icon pull-left">
-          <span class="oa-article-icon glyphicon glyphicon-file"></span>
-        </div>
-        <dl>
-          <dt>MyArticle.pdf</dt>
-          <dd>5MB</dd>
-          <dd><button class="btn btn-primary">Preview</button></dd>
-        </dl>
-      </div>
-      <div class="col-sm-6">
-        <p>
-          Not the right document?<br>
-          <a href="#" data-page="index" class="btn btn-default">Replace this file</a>
-        </p>
-      </div>
-    </div>
+  <section class="well">
+    <h3 class="oa-details-form-file-heading"><span class="glyphicon glyphicon-file"></span> <%= fileName %> <small><%= fileSize %></small></h3>
   </section>
 
-  <form class="form-horizontal oa-details-form panel-group" role="form">
+  <form class="form-horizontal panel-group" role="form">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Basic information</h3>
@@ -32,23 +15,23 @@
 
       <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="oa-detail-form-title">Title</label>
+          <label class="col-sm-2 control-label" for="input-title">Title</label>
           <div class="col-sm-10">
-            <textarea id="oa-detail-form-title" class="form-control input-block-level" name="xxx" rows="3"></textarea>
+            <input id="input-title" class="form-control" name="title" type="text" placeholder="The title of your document" value="<%= fields.title %>" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Authors</label>
+          <label class="col-sm-2 control-label" for="input-authors">Corresponding author</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="Separate authors with commas">
+            <input id="input-authors" class="form-control" name="author" type="text" placeholder="e.g. 'Charles Darwin'" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Department</label>
+          <label class="col-sm-2 control-label" for="input-department">Department</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="Start typing&hellip;">
+            <input id="input-department" class="form-control" type="text" name="department" placeholder="Start typing&hellip;" value="<%= fields.department %>" required>
           </div>
         </div>
       </div>
@@ -58,61 +41,13 @@
       </div>
       <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Journal</label>
+          <label class="col-sm-2 control-label" for="input-journal">Journal</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="Start typing&hellip;">
+            <input id="input-journal" class="form-control" type="text" name="journal" placeholder="Start typing&hellip;" value="<%= fields.journal %>" required>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Funders</label>
-          <div class="col-sm-3">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Proin consectetur sagittis
-              </label>
-            </div>
-
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Mi vitae volutpat ipsum
-              </label>
-            </div>
-
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Cras nec neque egestas
-              </label>
-            </div>
-          </div>
-
-          <div class="col-sm-3">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Fusce sagittis
-              </label>
-            </div>
-
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Vestibulum eu ligula
-              </label>
-            </div>
-
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="xxx">
-                Other
-                </label>
-                <input class="form-control" type="text" name="xxx" placeholder="">
-            </div>
-          </div>
-        </div>
+        <div class="js-funders"></div>
       </div>
 
       <div class="panel-heading">
@@ -121,30 +56,18 @@
 
       <div class="panel-body panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Email</label>
+          <label class="col-sm-2 control-label" for="input-email">Email</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="crsid@cam.ac.uk">
+            <input id="input-email" class="form-control" type="email" name="email" placeholder="crsid@cam.ac.uk" value="<%= fields.email %>" required>
           </div>
         </div>
+      </div>
 
+      <div class="panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Phone</label>
+          <label class="col-sm-2 control-label" for="input-comments">Any comments or questions?</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" name="xxx" placeholder="123456">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">I prefer contact by</label>
-          <div class="col-sm-10">
-
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="email">Email
-            </label>
-            <label class="radio radio-inline">
-              <input type="radio" name="xxx" value="dogandbone">Phone
-            </label>
-
+            <textarea id="input-comments" class="form-control" name="comment" cols="30" rows="10" placeholder="If it is more complicated than this then tell us."></textarea>
           </div>
         </div>
       </div>
@@ -153,51 +76,37 @@
         <h3 class="panel-title">A note on APC</h3>
       </div>
       <div class="panel-body oa-panel-body">
-        <p>Sometimes you might need to pay an APC. If so we'll let you know.</p>
+        <div class="alert alert-info">
+          <div class="row">
+            <p class="col-md-10">Sometimes an APC may need to be paid, including those funded by Wellcome Trust. We will check and get back to you with detais.</p>
+            <div class="col-md-2">
+              <button type="button" data-toggle="modal" data-target="#oa-modal-apc" class="btn btn-default pull-right">More information</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="panel-body oa-panel-body">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="inputPassword">Copyright Information:</label>
+          <label class="col-sm-2 control-label">Copyright Information:</label>
 
           <div class="col-sm-10">
-            <div class="radio">
-              <label>
-                <input type="radio" name="copyright" value="xxx">
-                I would like the University to manage rights on my behalf.<br>
-                <small>This means you have the copyright but the University has the right to vitae eros in ante sollicitudin.</small>
-              </label>
-            </div>
+
+            <% for (index in copyrightOptions) { %>
+              <% var option = copyrightOptions[index]; %>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="copyright" value="<%= index %>" required>
+                  <%= option.label %>
+                  <span class="help-block"><%= option.help %> <a href="#" data-toggle="modal" data-target="#oa-modal-copyright">More information</a>.</span>
+                </label>
+              </div>
+            <% } %>
 
             <div class="radio">
               <label>
-                <input type="radio" name="copyright" value="xxx">
-                I would like to retain copyright &amp; use a Scholars' Copyright Addendum.<br>
-                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input type="radio" name="copyright" value="xxx">
-                I am going to give rights to the publisher.<br>
-                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input type="radio" name="copyright" value="xxx">
-                I have already given rights to the publisher.<br>
-                <small>This means you nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus.</small>
-              </label>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input type="radio" name="copyright" value="xxx">
+                <input type="radio" name="copyright" value="<%= copyrightOptions.length %>">
                 I don't understand or don't know.<br>
-                <small>This means you don't understand or don't know what's going on.</small>
               </label>
             </div>
           </div>
@@ -209,25 +118,70 @@
           <div class="col-sm-12">
             <div class="checkbox">
               <label>
-                <input type="checkbox" value="xxx">
-                I accept the <a href="#">Terms &amp; Conditions</a> of the University Repository.
+                <input type="checkbox" name="terms" required>
+                I accept the <a href="#" data-toggle="modal" data-target="#oa-modal-terms">Terms &amp; Conditions</a> of the University Repository.
               </label>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="panel-heading">
-        <h3 class="panel-title">We will get back to you in 5 days</h3>
-      </div>
-      <div class="panel-body panel-body oa-panel-body">
-        <p>Duis in accumsan sapien, mattis tempor arcu. Sed nulla arcu, imperdiet vel arcu id, condimentum pulvinar purus. Nulla dignissim risus sed massa gravida molestie. Morbi in volutpat mauris.</p>
-      </div>
-
       <div class="panel-footer clearfix">
-        <button type="submit" data-page="thanks" class="pull-right btn btn-primary btn-lg">Submit <span class="glyphicon glyphicon-chevron-right"></span></button>
+        <p class="pull-left">We will get back to you in <strong>5 working days</strong>.</p>
+        <button type="submit" class="pull-right btn btn-primary btn-lg">Submit <span class="glyphicon glyphicon-chevron-right"></span></button>
       </div>
     </div>
 
   </form>
+</div>
+
+<div class="modal fade" id="oa-modal-apc" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Paying an APC</h4>
+      </div>
+      <div class="modal-body">
+        <p>More information on paying an APC&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="oa-modal-terms" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Terms and Conditions</h4>
+      </div>
+      <div class="modal-body">
+        <p>These are the terms and conditions&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="oa-modal-copyright" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Copyright</h4>
+      </div>
+      <div class="modal-body">
+        <p>More information about copyright options&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,7 @@ define([
     'text!../templates/logout.html'
 ], function($, _, oae, template) {
     'use strict';
+
     var LogOut = function(element) {
         _.bindAll(this);
         this.$el = $(element)
