@@ -34,6 +34,7 @@ require.config({
         'jquery.serializeObject': '/shared/vendor/js/jquery-plugins/jquery.serializeObject',
         'jquery.timeago': '/shared/vendor/js/jquery-plugins/jquery.timeago',
         'jquery-ui': '/shared/vendor/js/jquery-ui/jquery-ui.custom',
+        'lazyload': '/shared/vendor/js/lazyload',
         'jquery.update-picture': '/shared/oae/js/jquery-plugins/jquery.update-picture',
         'jquery.validate': '/shared/vendor/js/jquery-plugins/jquery.validate',
 
@@ -91,6 +92,17 @@ define([
     var widgets = {
         'details-form': 'oa.details-form'
     };
+
+    // Find the script that has specified both the data-main (which loaded this bootstrap script) and a data-loadmodule attribute. The
+    // data-loadmodule attribute tells us which script they wish to load *after* the core APIs have been properly bootstrapped.
+    var $mainScript = $('script[data-main][data-loadmodule]');
+    if ($mainScript.length > 0) {
+        var loadModule = $mainScript.attr('data-loadmodule');
+        if (loadModule) {
+            // Require the module they specified in the data-loadmodule attribute
+            require([loadModule]);
+        }
+    }
 
     $(function() {
         $('[data-oa-widget]').each(function() {
