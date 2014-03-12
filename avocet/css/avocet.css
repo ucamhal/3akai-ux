@@ -17,31 +17,6 @@ body {
   display: none;
 }
 
-.oa-header {
-  background: #181818;
-  margin-bottom: 30px;
-  padding: 9px 0;
-}
-
-.oa-header .oa-main-title {
-  font-size: 1.3em;
-  font-weight: normal;
-  margin: 9px 0;
-}
-
-.oa-header .oa-main-title a {
-  color: #C0C0C0;
-}
-
-.oa-header .container {
-  position: relative;
-}
-
-.oa-btn-login {
-  float: right;
-  position: relative;
-}
-
 .oa-page-header {
   margin-top: 0;
 }
