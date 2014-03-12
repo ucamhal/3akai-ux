@@ -15,8 +15,7 @@
 
 require.config({
     'paths': {
-        // jQuery
-        'jquery': '/avocet/components/jquery/dist/jquery',
+        // jQuery plugins
         'jquery.autosuggest': '/shared/vendor/js/jquery-plugins/jquery.autoSuggest',
         'jquery.browse-focus': '/shared/oae/js/jquery-plugins/jquery.browse-focus',
         'jquery.clip': '/shared/oae/js/jquery-plugins/jquery.clip',
@@ -70,7 +69,6 @@ require.config({
         'oae.core': '/shared/oae/api/oae.core',
     },
     'shim': {
-        'bootstrap': ['jquery'],
         'bootstrap.clickover': ['bootstrap'],
         'bootstrap.notify': ['bootstrap'],
         'bootstrap.focus': ['bootstrap'],
@@ -79,9 +77,7 @@ require.config({
 });
 
 define([
-    'jquery',
     'oae.core'
 ], function($) {
     'use strict';
-
 });
