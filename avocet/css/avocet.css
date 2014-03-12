@@ -24,15 +24,9 @@ body {
 }
 
 .oa-header .oa-main-title {
-  padding: 0 200px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
   font-size: 1.3em;
   font-weight: normal;
-  margin-top: 7px;
+  margin: 9px 0;
 }
 
 .oa-header .oa-main-title a {
@@ -67,17 +61,4 @@ body {
 footer {
   padding: 40px;
   text-align: center;
-}
-
-.oa-details-form .oa-panel-body ~ .oa-panel-body {
-  border-top: 1px solid #DDD;
-}
-
-.oa-details-form .oa-details-form-file-heading {
-  margin: 0;
-}
-
-.oa-multi-add input {
-  display: inline;
-  width: auto;
 }

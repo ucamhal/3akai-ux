@@ -68,10 +68,6 @@ require.config({
         'oae.api.util': '/shared/oae/api/oae.api.util',
         'oae.api.widget': '/shared/oae/api/oae.api.widget',
         'oae.core': '/shared/oae/api/oae.core',
-
-        // OA (avocet)
-        'oa.details-form': '/avocet/js/details-form',
-        'oa.multi-add': '/avocet/js/multi-add'
     },
     'shim': {
         'bootstrap': ['jquery'],
@@ -88,19 +84,4 @@ define([
 ], function($) {
     'use strict';
 
-    var widgets = {
-        'details-form': 'oa.details-form'
-    };
-
-    $(function() {
-        $('[data-oa-widget]').each(function() {
-            var element = this;
-            var widget = widgets[$(this).data('oa-widget')];
-            if (widget) {
-                require([widget], function(Widget) {
-                    new Widget(element);
-                });
-            }
-        });
-    });
 });
