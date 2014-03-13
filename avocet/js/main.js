@@ -35,6 +35,7 @@ require.config({
         'jquery-ui': '/shared/vendor/js/jquery-ui/jquery-ui.custom',
         'jquery.update-picture': '/shared/oae/js/jquery-plugins/jquery.update-picture',
         'jquery.validate': '/shared/vendor/js/jquery-plugins/jquery.validate',
+        'markdown': '/shared/vendor/js/markdown',
 
         // Bootstrap
         'bootstrap': '/avocet/vendor/bootstrap/js/bootstrap',
