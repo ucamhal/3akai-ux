@@ -13,27 +13,9 @@
  * permissions and limitations under the License.
  */
 
-body {
-  display: none;
-}
-
-.oa-page-header {
-  margin-top: 0;
-}
-
-.oa-document-metadata {
-  margin-top: 10px;
-}
-
-.oa-document-doc .well {
-  min-height: 800px;
-}
-
-.oa-publication-info {
-  margin-left: 25px;
-}
-
-footer {
-  padding: 40px;
-  text-align: center;
-}
+/* Import the Bootstrap CSS file */
+@import url('/shared/vendor/css/bootstrap.css');
+/* Import the Font Awesome Icon Set */
+@import url('/shared/vendor/css/font-awesome/css/font-awesome.css');
+/* Import the base avocet styles */
+@import url('/avocet/css/avocet.base.css');

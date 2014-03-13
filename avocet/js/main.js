@@ -16,6 +16,7 @@
 require.config({
     'paths': {
         // jQuery plugins
+        'jquery-ui': '/shared/vendor/js/jquery-ui/jquery-ui.custom',
         'jquery.autosuggest': '/shared/vendor/js/jquery-plugins/jquery.autoSuggest',
         'jquery.browse-focus': '/shared/oae/js/jquery-plugins/jquery.browse-focus',
         'jquery.clip': '/shared/oae/js/jquery-plugins/jquery.clip',
@@ -24,39 +25,42 @@ require.config({
         'jquery.fileSize': '/shared/vendor/js/jquery-plugins/jquery.fileSize',
         'jquery.fileupload': '/shared/vendor/js/jquery-plugins/jquery.fileupload',
         'jquery.form': '/shared/vendor/js/jquery-plugins/jquery.form',
+        'jquery.history': '/shared/vendor/js/jquery-plugins/jquery.history',
         'jquery.iframe-transport': '/shared/vendor/js/jquery-plugins/jquery.iframe-transport',
         'jquery.infinitescroll': '/shared/oae/js/jquery-plugins/jquery.infinitescroll',
         'jquery.jeditable-focus': '/shared/oae/js/jquery-plugins/jquery.jeditable-focus',
+        'jquery.list-header': '/shared/oae/js/jquery-plugins/jquery.list-header',
         'jquery.list-options': '/shared/oae/js/jquery-plugins/jquery.list-options',
         'jquery.parseurl': '/shared/vendor/js/jquery-plugins/jquery.parseurl.oae-edited',
         'jquery.properties-parser': '/shared/vendor/js/jquery-plugins/jquery.properties-parser',
+        'jquery.responsive': '/shared/oae/js/jquery-plugins/jquery.responsive',
         'jquery.serializeObject': '/shared/vendor/js/jquery-plugins/jquery.serializeObject',
         'jquery.timeago': '/shared/vendor/js/jquery-plugins/jquery.timeago',
-        'jquery-ui': '/shared/vendor/js/jquery-ui/jquery-ui.custom',
         'jquery.update-picture': '/shared/oae/js/jquery-plugins/jquery.update-picture',
         'jquery.validate': '/shared/vendor/js/jquery-plugins/jquery.validate',
-        'markdown': '/shared/vendor/js/markdown',
 
         // Bootstrap
-        'bootstrap': '/avocet/vendor/bootstrap/js/bootstrap',
-        'bootstrap.clickover': '/shared/vendor/js/bootstrap-plugins/bootstrapx.clickover',
-        'bootstrap.notify': '/shared/vendor/js/bootstrap-plugins/bootstrap.notify',
+        'bootstrap': '/shared/vendor/js/bootstrap',
+        'bootstrap.clickover': '/shared/vendor/js/bootstrap-plugins/bootstrapx.clickover.oae-edited',
         'bootstrap.focus': '/shared/oae/js/bootstrap-plugins/bootstrap.focus',
         'bootstrap.modal': '/shared/oae/js/bootstrap-plugins/bootstrap.modal',
+        'bootstrap.notify': '/shared/vendor/js/bootstrap-plugins/bootstrap.notify.oae-edited',
 
         // Other dependencies
         'globalize': '/shared/vendor/js/l10n/globalize',
+        'markdown': '/shared/vendor/js/markdown',
         'sockjs': '/shared/vendor/js/sockjs',
         'text': '/shared/vendor/js/requirejs/require.text',
+        'tinycon': '/shared/vendor/js/tinycon',
         'trimpath': '/shared/vendor/js/trimpath',
         'underscore': '/shared/vendor/js/underscore',
 
         // OAE
         'oae.api': '/shared/oae/api/oae.api',
         'oae.api.authentication': '/shared/oae/api/oae.api.authentication',
+        'oae.api.comment': '/shared/oae/api/oae.api.comment',
         'oae.api.config': '/shared/oae/api/oae.api.config',
         'oae.api.content': '/shared/oae/api/oae.api.content',
-        'oae.api.comment': '/shared/oae/api/oae.api.comment',
         'oae.api.discussion': '/shared/oae/api/oae.api.discussion',
         'oae.api.follow': '/shared/oae/api/oae.api.follow',
         'oae.api.group': '/shared/oae/api/oae.api.group',
@@ -67,18 +71,14 @@ require.config({
         'oae.api.user': '/shared/oae/api/oae.api.user',
         'oae.api.util': '/shared/oae/api/oae.api.util',
         'oae.api.widget': '/shared/oae/api/oae.api.widget',
-        'oae.core': '/shared/oae/api/oae.core',
+        'oae.core': '/shared/oae/api/oae.core'
     },
     'shim': {
         'bootstrap.clickover': ['bootstrap'],
-        'bootstrap.notify': ['bootstrap'],
-        'bootstrap.focus': ['bootstrap'],
-        'bootstrap.modal': ['bootstrap']
+        'bootstrap.notify': ['bootstrap']
     }
 });
 
-define([
-    'oae.core'
-], function($) {
+define(['oae.core'], function() {
     'use strict';
 });
