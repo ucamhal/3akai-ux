@@ -16,63 +16,60 @@
 define(['exports', 'jquery', 'underscore'], function(exports, $, _) {
 
     /**
-     * Create a publication on the backend.
+     * Create a publication.
      *
-     * @param  publication                         An object representing a publication.
-     * @param  publication.sourceIds               One or more IDs of the form "source#id"
-     * @param  publication.file                    An object.
-     * @param  publication.file.file               A jQuery.fileupload file object
-     * @param  publication.file.fileuploadElement  The DOM element that jQuery.fileupload has been bound to
-     * @param  publication.displayName             A human readable name for the publication.
-     * @param  [publication.publicationType]       One of the publication type constants.
-     * @param  [publication.date]                  The date of the publication as milliseconds since the std epoch (e.g. Date.getTime()).
-     * @param  [publication.thumbnailUri]
-     * @param  publication.authors                 One or more author name strings.
-     * @param  [publication.publisher]             The name of the publisher of this publication
-     * @param  [publication.issueNumber]           The issueNumber of the journal the publication was published in.
-     * @param  [publication.pageBegin]             The first page that the publication appears on in the publication the publication is published in.
-     * @param  [publication.pageEnd]               The last page that the publication appears on in the publication the publication is published in.
-     * @param  publication.extra                   An object containing additional arbitrary key-value pairs to associate with this publication.
-     * @param  callback                            A function to call when the thing has been created.
+     * @param  {String}          title                    A human readable name for the publication
+     * @param  {String}          correspondingAuthorName  The name of the corresponding author of the publication
+     * @param  {String}          journalName              The name of the journal the publication is published in
+     * @param  {String[]}        funders                  An Array of names of funders who funded the publication
+     * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
+     * @param  {String}          copyrightStrategy        One of the copyright strategy constants defined in the oae-publications Hilary module
+     * @param  {String}          comments                 Free text containing comments or questions on the publication submission
+     * @param  {Object}          file                     jQuery.fileUpload object that was returned when selecting the file that needed to be uploaded
+     * @param  {Element|String}  $fileuploadElement       jQuery element or selector for that jQuery element representing the file upload form field that has been used to initialise jQuery.fileupload
+     * @param  {Function}        [callback]               Standard callback method
+     * @param  {Object}          [callback.err]           Error object containing error code and error message
      */
-    var createPublication = exports.createPublication = function(publication, callback) {
+    var createPublication = exports.createPublication = function(
+            title,
+            correspondingAuthorName,
+            journalName,
+            funders,
+            contactEmail,
+            copyrightStrategy,
+            comments,
+            file,
+            $fileUploadElement,
+            additionalOptions,
+            callback) {
+
+        // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
-        var $fileUploadElement = $(publication.file.fileuploadElement);
-        var file = publication.file.file;
-
         if(!$fileUploadElement.length) {
-            throw new Error('No publication.file.fileuploadElement provided');
+            throw new Error('No fileuploadElement provided');
         }
-        if(!file) {
-            throw new Error('No publication.file.file provided');
+        else if(!file) {
+            throw new Error('No file provided');
         }
-
-        var formData = {
-            sourceIds: [generateUserSourceId()],
-            publicationType: "other",
-            displayName: "",
-            date: new Date().getTime(),
-            thumbnailUri: null,
-            authors: [],
-            publisher: null,
-            issueNumber: null,
-            pageBegin: null,
-            pageEnd: null
-        };
-
-        // Build the form data to send - update defaults w/ provided publication data
-        _.extend(
-            formData,
-            _.pick(publication, "sourceIds", "displayName", "publicationType", "date", "thumbnailUri", "authors", "publisher", "issueNumber", "pageBegin", "pageEnd"),
-            // Flatten values from the extra obj into the form data as extra-NAME=VALUE
-            _.chain(publication.extra).pairs().map(_prefixExtraKey).object().value()
-        );
 
         // Send the file w/ form data
         $fileUploadElement.fileupload('send', {
             'files': [file],
-            'formData': formData,
+            'formData': [
+                {name: 'displayName', value: title},
+                {name: 'authors', value: correspondingAuthorName},
+                {name: 'journalName', value: journalName},
+                {name: 'funders', value: funders},
+                {name: 'contactEmail', value: contactEmail},
+                {name: 'copyrightStrategy', value: copyrightStrategy},
+                {name: 'comments', value: comments},
+
+                // Auto-generated values. These are required by Hilary currently.
+                {name: 'sourceIds', value: _generateUserSourceId()},
+                {name: 'date', value: new Date().getTime()},
+                {name: 'publicationType', value: 'other'}
+            ],
             'success': function(data) {
                 callback(null, data);
             },
@@ -82,23 +79,20 @@ define(['exports', 'jquery', 'underscore'], function(exports, $, _) {
         });
     };
 
-    var _prefixExtraKey = function(e, prefix) {
-        return ["extra-" + e[0], e[1]];
-    };
-
     /**
      * Generate a unique ID to use as the source ID of a user submitted
-     * publication.
+     * publication. A sourceId is used by Hilary to link together semantically
+     * equivalent publication records from different sources.
      *
-     * @return The generated source ID - a string of the form "user#ID" where ID is a random ID.
+     * @return The generated source ID - a string of the form "user#ID" where ID is an opaque random ID.
      */
-    var generateUserSourceId = exports.generateUserSourceId = function() {
+    var _generateUserSourceId = function() {
         // Need to load oae.core on demand as it's not available when this
         // module is loaded.
-        userId = require("oae.core").data.me.id;
-        // Generate a random integer to use as an ID. 2^53 is the largest
-        // representable integer in js, but should be large enough.
-        var id = (Math.random() * 2 - 1) * Math.pow(2, 53);
+        var oae = require("oae.core");
+        var userId = oae.data.me.id;
+        var id = oae.api.util.generateId();
+
         return "user#" + userId + "#" + id;
     };
 });
