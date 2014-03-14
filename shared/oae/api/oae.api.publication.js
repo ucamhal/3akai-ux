@@ -13,63 +13,55 @@
  * permissions and limitations under the License.
  */
 
-define(['exports', 'jquery', 'underscore'], function(exports, $, _) {
+define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $, _, utilAPI) {
 
     /**
-     * Create a publication.
+     * Create a new publication.
      *
-     * @param  {String}          title                    A human readable name for the publication
-     * @param  {String}          correspondingAuthorName  The name of the corresponding author of the publication
+     * @param  {String}          displayName              Display title for the created publication
+     * @param  {String}          correspondingAuthor      The name of the corresponding author of the publication
      * @param  {String}          journalName              The name of the journal the publication is published in
      * @param  {String[]}        funders                  An Array of names of funders who funded the publication
      * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
      * @param  {String}          copyrightStrategy        One of the copyright strategy constants defined in the oae-publications Hilary module
      * @param  {String}          comments                 Free text containing comments or questions on the publication submission
+     * @param  {Element|String}  $fileUploadField         jQuery element or selector for that jQuery element representing the file upload form field that has been used to initialise jQuery.fileupload
      * @param  {Object}          file                     jQuery.fileUpload object that was returned when selecting the file that needed to be uploaded
-     * @param  {Element|String}  $fileuploadElement       jQuery element or selector for that jQuery element representing the file upload form field that has been used to initialise jQuery.fileupload
      * @param  {Function}        [callback]               Standard callback method
      * @param  {Object}          [callback.err]           Error object containing error code and error message
+     * @param  {Publication}     [callback.publication]   Publication object representing the created publication
      */
-    var createPublication = exports.createPublication = function(
-            title,
-            correspondingAuthorName,
-            journalName,
-            funders,
-            contactEmail,
-            copyrightStrategy,
-            comments,
-            file,
-            $fileUploadElement,
-            additionalOptions,
-            callback) {
-
+    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, journalName, funders, contactEmail, copyrightStrategy, comments, $fileUploadField, file, callback) {
         // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
-        if(!$fileUploadElement.length) {
-            throw new Error('No fileuploadElement provided');
-        }
-        else if(!file) {
+        if (!$fileUploadField.length) {
+            throw new Error('No file upload field provided');
+        } else if (!file) {
             throw new Error('No file provided');
         }
+
+        // jQuery.fileupload requires sending the other form data as a .serializeArray object
+        // http://api.jquery.com/serializeArray/
+        var data = [
+            {'name': 'displayName', 'value': displayName},
+            {'name': 'authors', 'value': correspondingAuthor},
+            {'name': 'journalName', 'value': journalName},
+            {'name': 'funders', 'value': funders},
+            {'name': 'contactEmail', 'value': contactEmail},
+            {'name': 'copyrightStrategy', 'value': copyrightStrategy},
+            {'name': 'comments', 'value': comments},
+
+            // Auto-generated values. These are required by the publications API
+            {'name': 'sourceIds', 'value': _generateUserSourceId()},
+            {'name': 'date', 'value': new Date().getTime()},
+            {'name': 'publicationType', 'value': 'other'}
+        ];
 
         // Send the file w/ form data
         $fileUploadElement.fileupload('send', {
             'files': [file],
-            'formData': [
-                {name: 'displayName', value: title},
-                {name: 'authors', value: correspondingAuthorName},
-                {name: 'journalName', value: journalName},
-                {name: 'funders', value: funders},
-                {name: 'contactEmail', value: contactEmail},
-                {name: 'copyrightStrategy', value: copyrightStrategy},
-                {name: 'comments', value: comments},
-
-                // Auto-generated values. These are required by Hilary currently.
-                {name: 'sourceIds', value: _generateUserSourceId()},
-                {name: 'date', value: new Date().getTime()},
-                {name: 'publicationType', value: 'other'}
-            ],
+            'formData': data,
             'success': function(data) {
                 callback(null, data);
             },
@@ -84,15 +76,11 @@ define(['exports', 'jquery', 'underscore'], function(exports, $, _) {
      * publication. A sourceId is used by Hilary to link together semantically
      * equivalent publication records from different sources.
      *
-     * @return The generated source ID - a string of the form "user#ID" where ID is an opaque random ID.
+     * @return {String}         The generated source ID of the form "user#ID" where ID is an opaque random ID
+     * @api private
      */
     var _generateUserSourceId = function() {
-        // Need to load oae.core on demand as it's not available when this
-        // module is loaded.
-        var oae = require("oae.core");
-        var userId = oae.data.me.id;
-        var id = oae.api.util.generateId();
-
-        return "user#" + userId + "#" + id;
+        var userId = require("oae.core").data.me.id;
+        return "user#" + userId + "#" + utilAPI.generateId();
     };
 });
