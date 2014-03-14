@@ -13,71 +13,9 @@
  * permissions and limitations under the License.
  */
 
-body {
-  display: none;
-}
-
-.oa-header {
-  background: #181818;
-  margin-bottom: 30px;
-  padding: 9px 0;
-}
-
-.oa-header .oa-main-title {
-  padding: 0 200px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-  font-size: 1.3em;
-  font-weight: normal;
-  margin-top: 7px;
-}
-
-.oa-header .oa-main-title a {
-  color: #C0C0C0;
-}
-
-.oa-header .container {
-  position: relative;
-}
-
-.oa-btn-login {
-  float: right;
-  position: relative;
-}
-
-.oa-page-header {
-  margin-top: 0;
-}
-
-.oa-document-metadata {
-  margin-top: 10px;
-}
-
-.oa-document-doc .well {
-  min-height: 800px;
-}
-
-.oa-publication-info {
-  margin-left: 25px;
-}
-
-footer {
-  padding: 40px;
-  text-align: center;
-}
-
-.oa-details-form .oa-panel-body ~ .oa-panel-body {
-  border-top: 1px solid #DDD;
-}
-
-.oa-details-form .oa-details-form-file-heading {
-  margin: 0;
-}
-
-.oa-multi-add input {
-  display: inline;
-  width: auto;
-}
+/* Import the Bootstrap CSS file */
+@import url('/shared/vendor/css/bootstrap.css');
+/* Import the Font Awesome Icon Set */
+@import url('/shared/vendor/css/font-awesome/css/font-awesome.css');
+/* Import the base avocet styles */
+@import url('/avocet/css/avocet.base.css');
