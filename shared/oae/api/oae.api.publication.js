@@ -16,6 +16,31 @@
 define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $, _, utilAPI) {
 
     /**
+     * Get a full publication profile.
+     *
+     * @param  {String}       publicationId           Id of the publication we're trying to retrieve
+     * @param  {Function}     callback                Standard callback method
+     * @param  {Object}       callback.err            Error object containing error code and error message
+     * @param  {Content}      callback.publication    Publication object representing the retrieved publication
+     * @throws {Error}                                Error thrown when no publication id has been provided
+     */
+    var getPublication = exports.getPublication = function(publicationId, callback) {
+        if (!publicationId) {
+            throw new Error('A valid publication id should be provided');
+        }
+
+        $.ajax({
+            'url': '/api/publications/' + publicationId,
+            'success': function(data) {
+                callback(null, data);
+            },
+            'error': function(jqXHR, textStatus) {
+                callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
+            }
+        });
+    };
+
+    /**
      * Create a new publication.
      *
      * @param  {String}          displayName              Display title for the created publication

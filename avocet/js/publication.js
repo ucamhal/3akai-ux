@@ -16,10 +16,10 @@
 
 define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
 
-    // Get the publication id from the URL. The expected URL is `/publication/<tenantId>/<resourceId>`.
-    // The content id will then be `c:<tenantId>:<resourceId>`
-    // e.g. publication/cam/xkVkSpFJo
-    var publicationId = 'c:' + $.url().segment(2) + ':' + $.url().segment(3);
+    // Get the publication id from the URL. The expected URL is `/publication/<publicationId>`.
+    // The content id will then be `p:<publicationId>`
+    // e.g. publication/cam:xkVkSpFJo
+    var publicationId = 'p:' + $.url().segment(2);
 
     // Variable used to cache the requested content profile
     var publicationProfile = null;
@@ -35,18 +35,18 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      * error page will be shown
      */
     var getPublicationProfile = function() {
-        oae.api.content.getContent(publicationId, function(err, profile) {
+        oae.api.publication.getPublication(publicationId, function(err, publication) {
             if (err) {
                 if (err.code === 401) {
-                    oae.api.util.redirect().accessdenied();
+                    //oae.api.util.redirect().accessdenied();
                 } else {
-                    oae.api.util.redirect().notfound();
+                    //oae.api.util.redirect().notfound();
                 }
                 return;
             }
 
             // Cache the publication profile data
-            publicationProfile = profile;
+            publicationProfile = publication;
             // Set the browser title
             oae.api.util.setBrowserTitle(publicationProfile.displayName);
             // Show the publication preview
@@ -55,7 +55,6 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
             setUpPublicationMetaData();
             // We can now unhide the page
             oae.api.util.showPage();
-            console.log(publicationProfile);
         });
     };
 
@@ -64,11 +63,13 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      */
     var setUpPublicationPreview = function() {
         // Load document viewer when a PDF or Office document needs to be displayed
-        if (publicationProfile.previews && publicationProfile.previews.pageCount) {
-            oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, publicationProfile);
-        } else {
-            oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, publicationProfile);
-        }
+        oae.api.content.getContent(publicationProfile.linkedContentId, function(err, linkedContent) {
+            if (linkedContent.previews && linkedContent.previews.pageCount) {
+                oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, linkedContent);
+            } else {
+                oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, linkedContent);
+            }
+        });
     };
 
     /**
@@ -76,7 +77,7 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      */
     var setUpPublicationMetaData = function() {
         oae.api.util.template().render($('#publication-metadata-template'), {
-            'publicationProfile': publicationProfile
+            'publication': publicationProfile
         }, $('#publication-metadata-container'));
     };
 

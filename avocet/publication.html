@@ -17,14 +17,16 @@
     <body>
 
         <!-- HEADER -->
-        <div data-widget="avocetheader"></div>
+        <div data-widget="avocetheader"><!-- --></div>
 
         <!-- BODY -->
-        <div id="publication-metadata-container"><!-- --></div>
-        <div id="publication-preview-container"><!-- --></div>
+        <div class="container">
+            <div id="publication-metadata-container"><!-- --></div>
+            <div id="publication-preview-container"><!-- --></div>
+        </div>
 
         <div id="publication-metadata-template"><!--
-            <h1>${publicationProfile.displayName|encodeForHTML}</h1>
+            <h1>${publication.displayName|encodeForHTML}</h1>
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <label for="publication-share">Share:</label>
