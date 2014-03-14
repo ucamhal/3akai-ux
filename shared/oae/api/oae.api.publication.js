@@ -59,9 +59,28 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
         ];
 
         // Send the file w/ form data
-        $fileUploadElement.fileupload('send', {
+        $fileUploadField.fileupload('send', {
             'files': [file],
             'formData': data,
+            'success': function(data) {
+                callback(null, data);
+            },
+            'error': function(jqXHR, textStatus) {
+                callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
+            }
+        });
+    };
+
+    /**
+     * Get the publications uploaded by the current user.
+     *
+     * @param  {Function}        callback               Standard callback method
+     * @param  {Object}          callback.err           Error object containing error code and error message
+     * @param  {Publication[]}   callback.publication   List of publications representing the publications uploaded by the current user
+     */
+    var getMyUploads = exports.getMyUploads = function(callback) {
+        $.ajax({
+            'url': '/api/publications/library/' + require('oae.core').data.me.id,
             'success': function(data) {
                 callback(null, data);
             },
