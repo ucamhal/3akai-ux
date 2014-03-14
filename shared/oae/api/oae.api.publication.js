@@ -83,7 +83,6 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'publicationType', 'value': 'other'}
         ];
 
-        // Send the file w/ form data
         $fileUploadField.fileupload('send', {
             'files': [file],
             'formData': data,
@@ -105,7 +104,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      */
     var getMyUploads = exports.getMyUploads = function(callback) {
         $.ajax({
-            'url': '/api/publications/library/' + require('oae.core').data.me.id,
+            'url': '/api/publications/uploads/' + require('oae.core').data.me.id,
             'success': function(data) {
                 callback(null, data);
             },

@@ -16,18 +16,13 @@
 
 define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
 
-    // Get the publication id from the URL. The expected URL is `/publication/<publicationId>`.
-    // The content id will then be `p:<publicationId>`
-    // e.g. publication/cam:xkVkSpFJo
-    var publicationId = 'p:' + $.url().segment(2);
+    // Get the publication id from the URL. The expected URL is `/publication/<tenantId>/<publicationId>`.
+    // The publication id will then be `p:<tenantId>/<publicationId>`
+    // e.g. publication/cam/xkVkSpFJo
+    var publicationId = 'p:' + $.url().segment(2) + ':' + $.url().segment(3);
 
     // Variable used to cache the requested content profile
     var publicationProfile = null;
-
-
-    ////////////////////////////////////////
-    // PUBLICATION PROFILE INITIALIZATION //
-    ////////////////////////////////////////
 
     /**
      * Get the publication's basic profile and set up the screen. If the publication
@@ -36,15 +31,6 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      */
     var getPublicationProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
-            if (err) {
-                if (err.code === 401) {
-                    //oae.api.util.redirect().accessdenied();
-                } else {
-                    //oae.api.util.redirect().notfound();
-                }
-                return;
-            }
-
             // Cache the publication profile data
             publicationProfile = publication;
             // Set the browser title
@@ -59,26 +45,23 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
     };
 
     /**
-     * Renders the publication preview.
+     * Render the publication preview.
      */
     var setUpPublicationPreview = function() {
         // Load document viewer when a PDF or Office document needs to be displayed
-        oae.api.content.getContent(publicationProfile.linkedContentId, function(err, linkedContent) {
-            if (linkedContent.previews && linkedContent.previews.pageCount) {
-                oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, linkedContent);
-            } else {
-                oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, linkedContent);
-            }
-        });
+        var linkedContent = publicationProfile.linkedContent;
+        if (linkedContent.previews && linkedContent.previews.pageCount) {
+            oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, linkedContent);
+        } else {
+            oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, linkedContent);
+        }
     };
 
     /**
-     * [setUpPublicationMetaData description]
+     * Render the publication metadata.
      */
     var setUpPublicationMetaData = function() {
-        oae.api.util.template().render($('#publication-metadata-template'), {
-            'publication': publicationProfile
-        }, $('#publication-metadata-container'));
+        oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $('#publication-metadata-container'));
     };
 
     getPublicationProfile();

@@ -13,9 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/* Import the Bootstrap CSS file */
-@import url('/shared/vendor/css/bootstrap.css');
-/* Import the Font Awesome Icon Set */
-@import url('/shared/vendor/css/font-awesome/css/font-awesome.css');
+/* Import the base OAE styles */
+@import url('/shared/oae/css/oae.core.css');
 /* Import the base avocet styles */
 @import url('/avocet/css/avocet.base.css');
