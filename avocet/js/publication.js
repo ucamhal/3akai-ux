@@ -61,7 +61,18 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      * Render the publication metadata.
      */
     var setUpPublicationMetaData = function() {
-        oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $('#publication-metadata-container'));
+        var $container = $('#publication-metadata-container');
+        oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $container);
+        setUpHighlightingOfShareUrlOnClick($container);
+    };
+
+    /**
+     * Highlight the share URL text when clicking on its input.
+     */
+    var setUpHighlightingOfShareUrlOnClick = function($container) {
+        $container.on("click", ".avocet-shareable-link", function() {
+            $(this).select();
+        });
     };
 
     getPublicationProfile();
