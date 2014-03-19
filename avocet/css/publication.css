@@ -18,6 +18,6 @@
     width: 400px;
 }
 
-input.avocet-shareable-link[readonly] {
+#publication-share {
     cursor: auto;
 }
