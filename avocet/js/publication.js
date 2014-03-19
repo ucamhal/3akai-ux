@@ -62,6 +62,11 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
      */
     var setUpPublicationMetaData = function() {
         oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $('#publication-metadata-container'));
+
+        // Highlight the share URL text when clicking on its input
+        $("#publication-share").on("click", function() {
+            $(this).select();
+        });
     };
 
     getPublicationProfile();
