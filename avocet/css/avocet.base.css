@@ -26,3 +26,37 @@ body {
 .oa-btn-lg {
     padding: 10px 16px;
 }
+
+.oa-content-footer {
+    background: #3D3D3D;
+    padding-top: 40px;
+}
+
+.oa-thumbnail {
+    background: transparent;
+    border: none;
+}
+
+.oa-thumbnail img {
+    margin: 0;
+    opacity: .5;
+}
+
+.oa-content-footer .oa-thumbnail .oa-caption {
+    color: #818181;
+    text-shadow: 1px 1px 0 #333;
+}
+
+.oa-home-banner {
+    background: url("/avocet/images/index.png") black top center;
+    background-size: cover;
+}
+
+.oa-home-banner-wrap {
+    padding: 75px 30px;
+}
+
+.oa-home-banner .oa-heading {
+    color: #EEE;
+    max-width: 780px;
+}
