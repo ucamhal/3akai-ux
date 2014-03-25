@@ -145,6 +145,7 @@ module.exports = function(grunt) {
                     {
                         'files': _hashFiles([
                             '<%= target %>/optimized/admin',
+                            '<%= target %>/optimized/avocet',
                             '<%= target %>/optimized/custom',
                             '<%= target %>/optimized/docs',
                             '<%= target %>/optimized/shared',
@@ -155,6 +156,7 @@ module.exports = function(grunt) {
                         ]),
                         'references': _replacementReferences([
                             'admin',
+                            'avocet',
                             'custom',
                             'docs',
                             'node_modules/oae-*',
@@ -191,6 +193,7 @@ module.exports = function(grunt) {
                         ],
                         'references': _replacementReferences([
                             'admin',
+                            'avocet',
                             'custom',
                             'docs',
                             'node_modules/oae-*',
@@ -216,18 +219,21 @@ module.exports = function(grunt) {
                     {
                         'folders': [
                             '<%= target %>/optimized/admin/js',
+                            '<%= target %>/optimized/avocet/js',
                             '<%= target %>/optimized/custom/js',
                             '<%= target %>/optimized/docs/js',
                             '<%= target %>/optimized/ui/js'
                         ],
                         'files': [
                             '<%= target %>/optimized/admin/**/*.css',
+                            '<%= target %>/optimized/avocet/**/*.css',
                             '<%= target %>/optimized/docs/**/*.css',
                             '<%= target %>/optimized/custom/**/*.css',
                             '<%= target %>/optimized/ui/**/*.css'
                         ],
                         'references': _replacementReferences([
                             'admin',
+                            'avocet',
                             'custom',
                             'docs',
                             'node_modules/oae-*',
