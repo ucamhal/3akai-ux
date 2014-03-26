@@ -26,3 +26,7 @@ body {
 .oa-btn-lg {
     padding: 10px 16px;
 }
+
+.oa-inline-btn-link {
+    padding: 0;
+}
