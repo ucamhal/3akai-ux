@@ -27,36 +27,40 @@ body {
     padding: 10px 16px;
 }
 
-.oa-content-footer {
-    background: #3D3D3D;
-    padding-top: 40px;
-}
-
-.oa-thumbnail {
-    background: transparent;
-    border: none;
-}
-
-.oa-thumbnail img {
-    margin: 0;
-    opacity: .5;
-}
-
-.oa-content-footer .oa-thumbnail .oa-caption {
-    color: #818181;
-    text-shadow: 1px 1px 0 #333;
+.oa-home-jumbotron {
+    background: #FFF;
+    padding: 0;
 }
 
 .oa-home-banner {
-    background: url("/avocet/images/index.png") black top center;
+    background: url("/avocet/images/home-banner.jpg") black top center;
     background-size: cover;
-}
-
-.oa-home-banner-wrap {
-    padding: 75px 30px;
+    padding: 145px 0;
+    text-align: center;
 }
 
 .oa-home-banner .oa-heading {
     color: #EEE;
+    margin: 0 auto 20px auto;
     max-width: 780px;
+    text-shadow: 0px 1px 2px #2C2C2C;
+}
+
+.oa-home-section {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.oa-home-section:nth-child(even) {
+    background: #F5F5F5;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.oa-content-container {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+.oa-panel-heading {
+    padding: 7px 15px;
 }

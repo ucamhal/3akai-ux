@@ -16,6 +16,6 @@
 define(['oae.core'], function(oae) {
     // Redirect the user back to the landing page if he is not logged in
     if (oae.data.me.anon) {
-        oae.api.util.redirect().login();
+        window.location = '/api/auth/google';
     }
 });
