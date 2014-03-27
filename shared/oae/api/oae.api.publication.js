@@ -87,7 +87,15 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             'files': [file],
             'formData': data,
             'success': function(data) {
-                callback(null, data);
+                // The response will return as text/plain to avoid IE9 trying to download
+                // the response when using the iFrame fallback upload solution
+
+                // In IE9 the response is a jQuery object. In this case we have
+                // to extract the data found in the inner pre tag.
+                if (data instanceof $) {
+                    data = data.find('pre').text();
+                }
+                callback(null, JSON.parse(data));
             },
             'error': function(jqXHR, textStatus) {
                 callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
