@@ -13,14 +13,79 @@
  * permissions and limitations under the License.
  */
 
-html {
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat-Regular'), url('/avocet/fonts/montserrat-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat-Bold'), url('/avocet/fonts/montserrat-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+input,
+button,
+textarea,
+body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
     height: 100%;
 }
 
 body {
-    height: 100%;
     padding-left: 0;
     padding-right: 0;
+    min-width: 960px;
+}
+
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', arial, helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+.btn {
+    border: none;
+    border-radius: 0;
+}
+
+.container {
+    width: 960px;
+}
+
+.modal-backdrop.in {
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+
+.oa-btn-primary {
+    border-radius: 8px / 25px;
+    font-size: 22px;
+    padding: 17px 48px;
+}
+
+.oa-link {
+    background-color: transparent;
+}
+
+.oa-flex-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+}
+
+.oa-flex-vertical-center {
+    -webkit-align-self: center;
+            align-self: center;
 }
 
 .oa-main-container {
@@ -28,62 +93,264 @@ body {
     position: relative;
 }
 
-.oa-home-jumbotron {
-    background: #FFF;
-    padding: 0;
+.oa-well {
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 8px;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
 }
 
-.oa-home-banner {
-    background: url("/avocet/images/home-banner.jpg") black top center;
-    background-size: cover;
-    padding: 145px 0;
+.oa-panel-primary {
     text-align: center;
 }
 
-.oa-home-banner .oa-heading {
-    color: #EEE;
-    margin: 0 auto 20px auto;
+.oa-panel-primary h2,
+.oa-panel-primary h3 {
+    font-weight: normal;
+}
+
+.oa-panel-primary h2 {
+    font-size: 36px;
+    line-height: 1.25em;
+}
+
+.oa-home-banner {
+    padding: 77px 0 115px 0;
+}
+
+.oa-home-banner h2 {
+    margin: 0 auto 50px auto;
     max-width: 780px;
-    text-shadow: 0px 1px 2px #2C2C2C;
 }
 
-.oa-btn-lg {
-    padding: 10px 16px;
+.oa-home-banner .oa-btn-upload {
+    border-radius: 15px / 25px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, .25);
+    font-size: 34px;
+    font-weight: 700;
+    padding: 22px 47px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .25);
 }
 
-.oa-no-margin {
+.oa-no-margin,
+.oa-section .oa-no-margin {
     margin: 0;
 }
 
 .oa-btn-link {
+    background: none;
     font: inherit;
 }
 
 .oa-inline-btn-link {
     padding: 0;
+    margin-top: -3px;
 }
 
-.oa-home-section {
-    padding: 70px 0;
-    text-align: center;
+.oa-home-container {
+    padding: 0 190px;
 }
 
-.oa-home-section:nth-child(even) {
-    background: #F5F5F5;
-    border-bottom: 1px solid #E9E9E9;
+.oa-content-banner-container {
+    max-width: 635px;
 }
 
 .oa-content-container {
-    margin: 0 auto;
-    max-width: 720px;
+    max-width: 822px;
 }
 
-.oa-content-container img {
-    padding-bottom: 30px;
+.oa-home-section .oa-btn-upload {
+    margin-top: 25px;
 }
 
-.oa-panel-heading {
-    padding: 7px 15px;
+.oa-content-banner {
+    margin: 0;
+    padding: 27px 0;
+    text-align: center;
+}
+
+.oa-content-banner h2 {
+    font-weight: normal;
+    font-size: 52px;
+}
+
+.oa-content-banner p,
+.oa-content-banner ul {
+    font-size: 22px;
+    margin: 24px 0;
+}
+
+.oa-form-section {
+    padding: 36px 0;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.oa-form-section:last-child {
+    border-bottom: none;
+}
+
+.oa-home-section {
+    text-align: center;
+}
+
+.oa-home-section,
+.oa-content-section {
+    padding: 50px 0 56px 0;
+}
+
+.oa-section a,
+.oa-section p,
+.oa-section ul {
+    font-size: 22px;
+}
+
+.oa-section p,
+.oa-section ul {
+    margin: 30px 0 0 0;
+}
+
+.oa-section header + p,
+.oa-section header + ul {
+    margin: 7px 0 0 0;
+}
+
+.oa-section strong {
+    font-weight: normal;
+}
+
+.oa-section h3,
+.oa-section h4 {
+    font-weight: 700;
+}
+
+.oa-section h3 {
+    font-size: 36px;
+    margin: 0 0 10px 0;
+}
+
+.oa-section h4 {
+    font-size: 24px;
+    margin: 50px 0 18px 0;
+}
+
+.oa-section img {
+    padding: 20px;
+}
+
+.oa-form label {
+    font-size: 22px;
+}
+
+.oa-form .form-group {
+    padding-bottom: 35px;
+}
+
+.oa-form input[type="text"],
+.oa-form input[type="email"],
+.oa-form textarea {
+    border-radius: 0;
+    font-size: 21px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.oa-form input[type="text"],
+.oa-form input[type="email"] {
+    height: 51px;
+    padding: 0 8px;
+}
+
+.oa-form textarea {
+    padding: 20px;
+}
+
+.oa-fileinfo {
+    padding: 48px 0;
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+.oa-fileinfo .container {
+    background: url('/avocet/images/background-myuploads.png') no-repeat left center;
+    padding-left: 130px;
+    min-height: 115px;
+}
+
+.oa-fileinfo p {
+    font-size: 22px;
+}
+
+.oa-publicationinfo {
+    margin: 0;
+    padding: 23px 0;
+}
+
+.oa-publicationinfo p {
+    margin: 0;
+}
+
+.oa-modal {
+    padding-top: 20px;
+    width: 900px;
+}
+
+.oa-modal-content {
+    border-radius: 3px;
+    -webkit-box-shadow: 6px 6px 49px rgba(0, 0, 0, .5);
+            box-shadow: 6px 6px 49px rgba(0, 0, 0, .5);
+}
+
+.oa-modal-header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-radius: 3px 3px 0 0;
+    padding: 38px 27px 32px 97px;
+}
+
+.oa-modal-header button i {
+    font-size: 40px;
+}
+
+.oa-modal-footer {
+    border-top-style: solid;
+    border-top-width: 4px;
+}
+
+.oa-modal-header h4 {
+    font-size: 28px;
+}
+
+.oa-modal-body {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-top-width: 4px;
+    padding: 29px 96px;
+}
+
+.oa-modal-body h5 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    margin: 17px 0 27px 0;
+}
+
+.oa-modal-body p,
+.oa-modal-body a {
+    font-size: 20px;
+}
+
+.oa-modal-body p {
+    line-height: 1.4em;
+    margin-bottom: 29px;
+}
+
+.oa-modal-footer {
+    border-radius: 0 0 3px 3px;
+    padding: 25px 95px;
 }
 
 .oa-icon-normal {

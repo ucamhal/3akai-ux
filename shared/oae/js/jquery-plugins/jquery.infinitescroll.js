@@ -204,7 +204,7 @@ define(['jquery', 'underscore', 'oae.api.util', 'oae.api.i18n'], function (jQuer
                 var $tmp = $('<div>').html(templateOutput);
                 $tmp.children().each(function(index, newListItem) {
                     var id = $(newListItem).attr('data-id');
-                    var $existing = $('li[data-id="' + id + '"]', $listContainer);
+                    var $existing = $('[data-id="' + id + '"]', $listContainer);
                     if (id) {
                         if (prepend) {
                             $existing.remove();
