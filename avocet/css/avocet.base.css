@@ -13,14 +13,56 @@
  * permissions and limitations under the License.
  */
 
-html {
+html,
+body {
     height: 100%;
 }
 
 body {
-    height: 100%;
+    min-width: 960px;
     padding-left: 0;
     padding-right: 0;
+}
+
+.btn {
+    border: none;
+    border-radius: 0;
+}
+
+.container {
+    width: 960px;
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=60);
+    opacity: .6;
+}
+
+.oa-btn-primary,
+.oa-btn-secondary {
+    border-radius: 4px;
+    padding: 17px 48px;
+}
+
+.oa-btn-secondary {
+    padding: 13px;
+}
+
+.oa-link {
+    background-color: transparent;
+}
+
+.oa-flex-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+}
+
+.oa-flex-vertical-center {
+    -webkit-align-self: center;
+            align-self: center;
 }
 
 .oa-main-container {
@@ -28,64 +70,239 @@ body {
     position: relative;
 }
 
-.oa-home-jumbotron {
-    background: #FFF;
-    padding: 0;
+.oa-well {
+    border-radius: 6px;
+    margin: 20px 0 34px 0;
+    padding: 15px;
 }
 
-.oa-home-banner {
-    background: url("/avocet/images/home-banner.jpg") black top center;
-    background-size: cover;
-    padding: 145px 0;
+.oa-panel-primary {
     text-align: center;
 }
 
-.oa-home-banner .oa-heading {
-    color: #EEE;
-    margin: 0 auto 20px auto;
+.oa-panel-primary h2 {
+    line-height: 1.25em;
+}
+
+.oa-home-banner {
+    padding: 77px 0 115px 0;
+}
+
+.oa-home-banner h2 {
+    margin: 0 auto 50px auto;
     max-width: 780px;
-    text-shadow: 0px 1px 2px #2C2C2C;
 }
 
-.oa-btn-lg {
-    padding: 10px 16px;
+.oa-home-banner .oa-btn-upload {
+    border-radius: 4px;
+    padding: 16px 51px;
 }
 
-.oa-no-margin {
+.oa-no-margin,
+.oa-section .oa-no-margin {
     margin: 0;
 }
 
 .oa-btn-link {
+    background: none;
     font: inherit;
 }
 
+.oa-btn-link:active {
+    box-shadow: none;
+}
+
 .oa-inline-btn-link {
+    margin-top: -3px;
     padding: 0;
 }
 
-.oa-home-section {
-    padding: 70px 0;
-    text-align: center;
-}
-
-.oa-home-section:nth-child(even) {
-    background: #F5F5F5;
-    border-bottom: 1px solid #E9E9E9;
+.oa-home-container {
+    padding: 0 190px;
 }
 
 .oa-content-container {
-    margin: 0 auto;
-    max-width: 720px;
+    max-width: 822px;
 }
 
-.oa-content-container img {
-    padding-bottom: 30px;
+.oa-home-section .oa-btn-upload {
+    margin-top: 25px;
 }
 
-.oa-panel-heading {
-    padding: 7px 15px;
+.oa-content-banner {
+    margin: 0;
+    padding: 55px 0;
+    text-align: left;
 }
 
-.oa-icon-normal {
-    font-size: 1em;
+.oa-content-banner p,
+.oa-content-banner ul {
+    margin: 24px 0;
+}
+
+.oa-content-banner p:last-child,
+.oa-content-banner ul:last-child {
+    margin-bottom: 0;
+}
+
+.oa-content-banner h2 {
+    margin: 0 0 41px 0;
+}
+
+.oa-form-section {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 0;
+}
+
+.oa-form-section:last-child {
+    border-bottom: none;
+}
+
+.oa-home-section {
+    text-align: center;
+}
+
+.oa-home-section,
+.oa-content-section {
+    padding: 44px 0 56px 0;
+}
+
+.oa-section p,
+.oa-section ul {
+    margin: 30px 0 0 0;
+}
+
+.oa-section.oa-form-section p {
+    margin: 30px 0;
+}
+
+.oa-section.oa-form-section p:last-child {
+    margin-bottom: 40px;
+}
+
+.oa-section.oa-form-section h4 + p {
+    margin-top: 0;
+}
+
+.oa-section h3 {
+    margin: 0 0 36px 0;
+}
+
+.oa-home-section h3 {
+    margin: 0 0 10px 0;
+}
+
+.oa-section h4 {
+    margin: 40px 0 18px 0;
+}
+
+.oa-section header + p,
+.oa-section header + ul {
+    margin-top: 0;
+}
+
+.oa-section h5 {
+    margin: 20px 0 0 0;
+}
+
+.oa-section img {
+    padding: 20px;
+}
+
+.oa-form .form-group {
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+.oa-form input[type="text"],
+.oa-form input[type="email"],
+.oa-form textarea {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.oa-form input[type="text"],
+.oa-form input[type="email"] {
+    height: 51px;
+    padding: 0 8px;
+}
+
+.oa-form textarea {
+    padding: 20px;
+}
+
+.oa-fileinfo {
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding: 48px 0;
+}
+
+.oa-fileinfo .container {
+    background: url('/avocet/images/background-myuploads.png') no-repeat left center;
+    min-height: 115px;
+    padding-left: 130px;
+}
+
+.oa-publicationinfo {
+    margin: 0;
+    padding: 23px 0;
+}
+
+.oa-publicationinfo p {
+    margin: 0;
+}
+
+.oa-modal {
+    padding-top: 20px;
+    width: 730px;
+}
+
+.oa-modal-content {
+    border-radius: 3px;
+    -webkit-box-shadow: 6px 6px 49px rgba(0, 0, 0, .5);
+            box-shadow: 6px 6px 49px rgba(0, 0, 0, .5);
+}
+
+.oa-modal-header {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-radius: 3px 3px 0 0;
+    padding: 27px 60px;
+}
+
+.oa-modal-footer {
+    border-top-style: solid;
+    border-top-width: 4px;
+}
+
+.oa-modal-body {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-top-width: 4px;
+    padding: 30px 60px;
+}
+
+.oa-modal-body h5 {
+    margin: 17px 0 27px 0;
+}
+
+.oa-modal-body h5:first-child {
+    margin-top: 0;
+}
+
+.oa-modal-body p {
+    line-height: 1.4em;
+    margin-bottom: 29px;
+}
+
+.oa-modal-body p:last-child {
+    margin: 0;
+}
+
+.oa-modal-footer {
+    border-radius: 0 0 3px 3px;
+    padding: 17px 60px;
 }

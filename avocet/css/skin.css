@@ -1,0 +1,408 @@
+/*!
+ * Copyright 2014 Digital Services, University of Cambridge Licensed
+ * under the Educational Community License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ *
+ *     http://opensource.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+/********************
+ ** Primary button **
+ ********************/
+.oa-btn-primary,
+.oa-section .oa-btn-primary {
+    background-color: #CB4F00;
+}
+
+.oa-btn-primary,
+.oa-btn-primary:active,
+.oa-btn-primary:focus,
+.oa-btn-primary:hover,
+.oa-section .oa-btn-primary,
+.oa-section .oa-btn-primary:active,
+.oa-section .oa-btn-primary:focus,
+.oa-section .oa-btn-primary:hover {
+    color: #FFF;
+}
+
+.oa-btn-primary:active,
+.oa-btn-primary:focus,
+.oa-btn-primary:hover,
+.oa-section .oa-btn-primary:active,
+.oa-section .oa-btn-primary:focus,
+.oa-section .oa-btn-primary:hover {
+    background-color: #DB6E4C;
+}
+
+/**********************
+ ** Secondary button **
+ **********************/
+.oa-btn-secondary {
+    background: #323232;
+}
+
+.oa-btn-secondary,
+.oa-btn-secondary:active,
+.oa-btn-secondary:focus,
+.oa-btn-secondary:hover {
+    color: #B7B7B7;
+}
+
+.oa-btn-secondary:active,
+.oa-btn-secondary:focus,
+.oa-btn-secondary:hover {
+    background-color: #424242;
+}
+
+/************************
+ ** Highlighted panels **
+ ************************/
+/* Primary panel */
+.oa-panel-primary,
+.oa-panel-primary-color {
+    background-color: #106470;
+}
+
+.oa-panel-primary,
+.oa-panel-primary a,
+.oa-panel-primary-color,
+.oa-panel-primary-color a {
+    color: #FFF;
+}
+
+/* Secondary panel */
+.oa-panel-secondary,
+.oa-panel-secondary-color {
+    background-color: #CB4F00;
+}
+
+.oa-panel-secondary,
+.oa-panel-secondary a,
+.oa-panel-secondary-color,
+.oa-panel-secondary-color a {
+    color: #FFF;
+}
+
+/********************
+ ** Neutral panels **
+ ********************/
+/* Neutral color 1 */
+.oa-panel-neutral1 {
+    background-color: #F9F9F9;
+}
+
+/* Neutral color 2 */
+.oa-panel-neutral2 {
+    background-color: #F3F6F6;
+}
+
+/************
+ ** Modals **
+ ************/
+.oa-modal-body {
+    background-color: #F9F9F9;
+    border-bottom-color: #ECEBEA;
+    border-top-color: #FFF;
+}
+
+.oa-modal-body h5 {
+    color: #106470;
+}
+
+.oa-modal-body p,
+.oa-modal-header h4 {
+    color: #575A5D;
+}
+
+.oa-modal-header {
+    border-bottom-color: #ECEBEA;
+}
+
+.oa-modal-footer {
+    border-top-color: #FFF;
+}
+
+.oa-modal-footer,
+.oa-modal-header {
+    background-color: #F3F6F6;
+}
+
+/*****************
+ ** Site header **
+ *****************/
+.oa-site-header {
+    background: #171717;
+}
+
+.oa-site-header a,
+.oa-site-header a:focus,
+.oa-site-header a:hover,
+.oa-site-header button,
+.oa-site-header button:active,
+.oa-site-header button:focus,
+.oa-site-header button:hover,
+.oa-site-header p {
+    color: #FFF;
+}
+
+.oa-site-header .oa-nav a {
+    border-bottom-color: transparent;
+}
+
+.oa-site-header .oa-subnav {
+    background: #F7F5F2;
+}
+
+.oa-site-header .oa-subnav a {
+    color: #323232;
+}
+
+.oa-site-header .oa-nav a:hover,
+.oa-site-header .oa-nav a.active {
+    border-bottom-color: #CBCBCB;
+}
+
+.oa-site-header .oa-subnav a:hover,
+.oa-site-header .oa-subnav a.active {
+    border-bottom-color: #575A5D;
+    color: #575A5D;
+}
+
+/*****************
+ ** Site footer **
+ *****************/
+.oa-site-footer,
+.oa-site-footer a {
+    color: #F9F9F9;
+}
+
+/********************
+ ** Section Colors **
+ ********************/
+/* Home section */
+.oa-home-section {
+    background-color: #FFF;
+}
+
+.oa-home-section:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+/* Content section */
+.oa-content-section {
+    background-color: #FFF;
+}
+
+.oa-content-section:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+/* Form section */
+.oa-form-section {
+    background-color: #FFF;
+    border-bottom-color: #EEEDEC;
+}
+
+.oa-form-section:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+/* Form note */
+.oa-form-section.oa-form-note {
+    background-color: #F3F6F6;
+}
+
+
+/*********************
+ ** Site navigation **
+ *********************/
+.oa-site-navigation {
+    background-color: #FFF;
+}
+
+.oa-site-navigation a {
+    color: #393C3C;
+}
+
+.oa-site-navigation a:focus,
+.oa-site-navigation a:hover {
+    border-bottom-color: #BDBDBD;
+}
+
+.oa-site-navigation .active a {
+    border-bottom-color: #171717;
+}
+
+.oa-site-navigation .active a {
+    color: #CB4F00;
+}
+
+/*****************
+ ** Home banner **
+ *****************/
+.oa-home-banner h2 {
+    color: #FFF;
+}
+
+.oa-home-banner .oa-btn-upload {
+    background-color: #FFF;
+    color: #CB4F00;
+}
+
+.oa-home-banner .oa-btn-upload:active,
+.oa-home-banner .oa-btn-upload:focus,
+.oa-home-banner .oa-btn-upload:hover {
+    background: linear-gradient(to bottom, #FFF 0%, #E1E1E1 100%);
+    color: #DB6E4C;
+}
+
+/**********************
+ ** Publication form **
+ **********************/
+.oa-fileinfo {
+    border-top-color: #EEEDEC;
+}
+
+.oa-fileinfo p {
+    color: #575A5D;
+}
+
+.oa-form label {
+    color: #575A5D;
+}
+
+.oa-form input[type="email"],
+.oa-form input[type="text"],
+.oa-form textarea {
+    border-color: #C7C7C7;
+}
+
+/****************
+ ** My uploads **
+ ****************/
+.oa-myuploads-upload,
+.oa-myuploads-header {
+    border-bottom-color: #EDEDEC;
+}
+
+.oa-myuploads-header h3,
+.oa-myuploads-reference {
+    color: #575A5D;
+}
+
+.oa-myuploads-metadata h4 a {
+    color: #106470;
+}
+
+.oa-myuploads-metadata h4 a:focus,
+.oa-myuploads-metadata h4 a:hover {
+    color: #70A2A9;
+}
+
+.oa-myuploads-upload-date,
+.oa-myuploads-reference span {
+    color: #8E908F;
+}
+
+/******************
+ ** Text colours **
+ ******************/
+ /* Headings */
+.oa-heading,
+.oa-section h3,
+.oa-section h4,
+.oa-section h5 {
+    color: #106470;
+}
+
+/* Normal text */
+.oa-section p,
+.oa-section ul {
+    color: #575a5d;
+}
+
+.oa-section strong {
+    color: #575A5D;
+}
+
+/* Links */
+.oa-link,
+.oa-panel-primary .oa-link,
+.oa-panel-secondary .oa-link,
+.oa-section a {
+    color: #CB4F00;
+}
+
+.oa-link:focus,
+.oa-link:hover,
+.oa-panel-primary .oa-link:focus,
+.oa-panel-secondary .oa-link:hover,
+.oa-section a:focus,
+.oa-section a:hover {
+    color: #DB6E4C;
+}
+
+/* Well */
+.oa-well {
+    background-color: #F7F8FA;
+    color: #DC9779;
+}
+
+/**************************************
+ ** Widget Specific: publicationform **
+ **************************************/
+#oa-publicationform .tt-dropdown-menu {
+    background-color: #FFF;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+#oa-publicationform .tt-suggestion {
+    border-bottom-color: #E5E5E5;
+    color: #333;
+}
+
+#oa-publicationform .tt-suggestion.tt-cursor {
+    background-color: #106470;
+}
+
+#oa-publicationform .tt-suggestion.tt-cursor p,
+#oa-publicationform .tt-suggestion.tt-cursor strong {
+    color: #FFF;
+}
+
+#oa-publicationform .tt-hint {
+    color: #999
+}
+
+/****************************************
+ ** Widget Specific: submitpublication **
+ ****************************************/
+#oa-submitpublication-upload-wrap.oa-dragover p {
+    color: #70A2A9;
+}
+
+#oa-submitpublication-welcome-container header {
+    background-color: #F3F6F6;
+    border-bottom-color: #EDECEB;
+}
+
+#oa-submitpublication-welcome-container .oa-submitpublication-btn-help {
+    color: #106470;
+}
+
+#oa-submitpublication-welcome-container .oa-submitpublication-btn-help:active,
+#oa-submitpublication-welcome-container .oa-submitpublication-btn-help:focus,
+#oa-submitpublication-welcome-container .oa-submitpublication-btn-help:hover {
+    color: #70A2A9;
+}
+
+#oa-submitpublication-upload-progress-container .oa-progress-bar {
+    background-color: #70A2A9;
+}

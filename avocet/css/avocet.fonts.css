@@ -1,0 +1,117 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Sans', 'Myriad Pro', arial, helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+input,
+button,
+textarea,
+body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.oa-home-banner .oa-btn-upload {
+    font-size: 34px;
+}
+
+.oa-panel-primary h2 {
+    font-size: 40px;
+}
+
+.oa-panel-primary h2,
+.oa-panel-primary h3 {
+    font-weight: normal;
+}
+
+.oa-content-banner p,
+.oa-content-banner ul {
+    font-size: 22px;
+}
+
+.oa-well {
+    font-weight: bold;
+}
+
+.oa-section h3,
+.oa-section h4,
+.oa-section h5 {
+    font-weight: normal;
+}
+
+.oa-section h3 {
+    font-size: 28px;
+}
+
+.oa-section h4 {
+    font-size: 22px;
+}
+
+.oa-section h5 {
+    font-size: 18px;
+}
+
+.oa-section a,
+.oa-section p,
+.oa-section ul {
+    font-size: 18px;
+}
+
+.oa-btn-primary,
+.oa-btn-secondary {
+    font-size: 22px;
+}
+
+.oa-form label {
+    font-size: 18px;
+}
+
+.oa-section strong {
+    font-weight: normal;
+}
+
+.oa-form input[type="text"],
+.oa-form input[type="email"],
+.oa-form textarea {
+    font-size: 21px;
+}
+
+.oa-fileinfo p {
+    font-size: 22px;
+}
+
+.oa-modal-header button i {
+    font-size: 28px;
+}
+
+.oa-modal-header h4 {
+    font-size: 28px;
+}
+
+.oa-modal-body h5 {
+    font-size: 22px;
+}
+
+.oa-modal-header h4,
+.oa-modal-body h5 {
+    font-weight: normal;
+}
+
+.oa-modal-body p,
+.oa-modal-body a {
+    font-size: 18px;
+}
+
+.oa-modal-footer button {
+    font-size: 16px;
+}
+
+.oa-icon-normal {
+    font-size: 1em;
+}
+
+.oa-publicationinfo p {
+    font-size: 18px;
+}
