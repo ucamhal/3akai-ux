@@ -10,6 +10,9 @@
 
         <!-- CORE CSS -->
         <link rel="stylesheet" href="/avocet/css/avocet.css">
+        <!-- PAGE CSS -->
+        <link rel="stylesheet" href="/avocet/css/preview.css">
+
     </head>
     <body>
 
@@ -33,24 +36,24 @@
 
         <!-- BODY -->
         <div class="container">
-            <div id="oa-submissioninfo-container" class="alert alert-warning"><!-- --></div>
-            <div id="oa-submissioninfo-template"><!--
-                <p>This submission was received on <strong>${receivedDate}</strong></p>
-                <p>You should get contacted within one working day from the submission date</p>
-            --></div>
-            <div id="oa-fileinfo-container"><!-- --></div>
-            <div id="oa-fileinfo-template"><!--
-                <div class="well">
-                    <h3 class="oa-no-margin"><i class="icon-file"></i> ${fileName|encodeForHTML} <small>${fileSize}</small></h3>
-                </div>
-            --></div>
-            <div id="oa-publicationform-container"><!-- --></div>
+            <div id="publication-metadata-container"><!-- --></div>
+            <div id="publication-preview-container"><!-- --></div>
         </div>
+
+        <div id="publication-metadata-template"><!--
+            <h1>${publication.displayName|encodeForHTML}</h1>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label for="publication-share">Share:</label>
+                    <input type="text" id="publication-share" class="form-control" value="${window.location.href}" readonly/>
+                </div>
+            </form>
+        --></div>
 
         <!-- FOOTER -->
         <div data-widget="avocetfooter"><!-- --></div>
 
         <!-- JAVASCRIPT -->
-        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/publication.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
+        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/preview.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
     </body>
 </html>

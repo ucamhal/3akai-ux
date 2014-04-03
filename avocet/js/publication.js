@@ -13,10 +13,9 @@
  * permissions and limitations under the License.
  */
 
+define(['jquery', 'oae.core'], function($, oae) {
 
-define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
-
-    // Get the publication id from the URL. The expected URL is `/publication/<tenantId>/<publicationId>`.
+    // Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
     // The publication id will then be `p:<tenantId>/<publicationId>`
     // e.g. publication/cam/xkVkSpFJo
     var publicationId = 'p:' + $.url().segment(2) + ':' + $.url().segment(3);
@@ -24,51 +23,81 @@ define(['jquery', 'underscore', 'oae.core'], function($, _, oae) {
     // Variable used to cache the requested content profile
     var publicationProfile = null;
 
-    /**
-     * Get the publication's basic profile and set up the screen. If the publication
-     * can't be found or is private to the current user, the appropriate
-     * error page will be shown
-     */
     var getPublicationProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
             // Cache the publication profile data
             publicationProfile = publication;
             // Set the browser title
             oae.api.util.setBrowserTitle(publicationProfile.displayName);
-            // Show the publication preview
-            setUpPublicationPreview();
-            // Show the publication metadata
-            setUpPublicationMetaData();
+            // Render the submission info
+            renderSubmissionInfo();
+            // Render the file info
+            renderFileInfo();
+            // Initialise the form
+            initForm();
             // We can now unhide the page
             oae.api.util.showPage();
         });
     };
 
     /**
-     * Render the publication preview.
+     * Converts a Number to a String and adds padding if the number is lower than 10.
+     *
+     * @param  {Number}   nr  The number to add padding to
+     * @return {String}       The number converted to a string which is at least 2 characters long
      */
-    var setUpPublicationPreview = function() {
-        // Load document viewer when a PDF or Office document needs to be displayed
-        var linkedContent = publicationProfile.linkedContent;
-        if (linkedContent.previews && linkedContent.previews.pageCount) {
-            oae.api.widget.insertWidget('documentpreview', null, $('#publication-preview-container'), null, linkedContent);
-        } else {
-            oae.api.widget.insertWidget('filepreview', null, $('#publication-preview-container'), null, linkedContent);
-        }
+    var zeroPadding = function(nr) {
+        return nr < 10 ? '0' + nr : String(nr);
     };
 
     /**
-     * Render the publication metadata.
+     * Renders the submission info template
      */
-    var setUpPublicationMetaData = function() {
-        oae.api.util.template().render($('#publication-metadata-template'), {'publication': publicationProfile}, $('#publication-metadata-container'));
+    var renderSubmissionInfo = function() {
+        var receivedDate = new Date(publicationProfile.date);
+        var day = zeroPadding(receivedDate.getDate());
+        var month = zeroPadding(receivedDate.getMonth() + 1);
+        var year = receivedDate.getFullYear();
+        oae.api.util.template().render($('#oa-submissioninfo-template'), {
+            'receivedDate': day + '/' + month + '/' + year
+        }, $('#oa-submissioninfo-container'));
+    };
 
-        // Highlight the share URL text when clicking on its input
-        $("#publication-share").on("click", function() {
-            $(this).select();
+    /**
+     * Renders the file info template
+     */
+    var renderFileInfo = function() {
+        oae.api.util.template().render($('#oa-fileinfo-template'), {
+            'fileName': publicationProfile.linkedContent.filename,
+            'fileSize': $.fn.fileSize(publicationProfile.linkedContent.size),
+        }, $('#oa-fileinfo-container'));
+    };
+
+    /**
+     * Maps publication data to a structure which the form can understand.
+     *
+     * @param  {Object}  publication  A publication returned from the API
+     * @return {Object}               Reorganized publication data
+     */
+    var publicationDataToFormData = function(publication) {
+        return {
+            'title': publication.displayName,
+            'author': publication.authors[0],
+            'email': publication.contactEmail,
+            'journal': publication.journalName
+        };
+    };
+
+    /**
+     * Initialises the form
+     */
+    var initForm = function() {
+        // Fetch and insert the publicationform widget
+        oae.api.widget.insertWidget('publicationform', null, $('#oa-publicationform-container'), null, {
+            'prefill': publicationDataToFormData(publicationProfile),
+            'disabled': true
         });
     };
 
     getPublicationProfile();
-
 });

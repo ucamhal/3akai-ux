@@ -46,6 +46,10 @@ body {
     padding: 10px 16px;
 }
 
+.oa-no-margin {
+    margin: 0;
+}
+
 .oa-inline-btn-link {
     padding: 0;
 }
