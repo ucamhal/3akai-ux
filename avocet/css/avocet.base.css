@@ -50,6 +50,10 @@ body {
     margin: 0;
 }
 
+.oa-btn-link {
+    font: inherit;
+}
+
 .oa-inline-btn-link {
     padding: 0;
 }
