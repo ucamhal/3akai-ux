@@ -59,7 +59,8 @@ define(['jquery', 'oae.core'], function($, oae) {
         var month = zeroPadding(receivedDate.getMonth() + 1);
         var year = receivedDate.getFullYear();
         oae.api.util.template().render($('#oa-submissioninfo-template'), {
-            'receivedDate': day + '/' + month + '/' + year
+            'receivedDate': day + '/' + month + '/' + year,
+            'referenceNumber': publicationProfile.ticket.externalId
         }, $('#oa-submissioninfo-container'));
     };
 
@@ -74,17 +75,27 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Maps publication data to a structure which the form can understand.
+     * Maps a publication to a data structure which can be passed to the publicationform widget.
      *
      * @param  {Object}  publication  A publication returned from the API
      * @return {Object}               Reorganized publication data
      */
     var publicationDataToFormData = function(publication) {
         return {
-            'title': publication.displayName,
-            'author': publication.authors[0],
-            'email': publication.contactEmail,
-            'journal': publication.journalName
+            'fields': {
+                'author': publication.authors.join(', '),
+                'comment': publication.comments,
+                'department': publication.department,
+                'email': publication.contactEmail,
+                'journal': publication.journalName,
+                'other-funders': publication.otherFunders,
+                'title': publication.displayName
+            },
+            'checkboxes': {
+                'funders': publication.otherFunders ?  publication.funders.concat(['other']) : publication.funders,
+                'terms': true,
+                'use-cambridge-addendum': publication.useCambridgeAddendum !== 'false'
+            }
         };
     };
 
