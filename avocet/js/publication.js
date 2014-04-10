@@ -81,6 +81,15 @@ define(['jquery', 'oae.core'], function($, oae) {
      * @return {Object}               Reorganized publication data
      */
     var publicationDataToFormData = function(publication) {
+        var funders = _.filter(publication.funders, function(funder) {
+            return !/^other:/g.test(funder);
+        });
+        var otherFunders = _.difference(publication.funders, funders);
+        var otherFundersString = _.map(otherFunders, function(otherFunder) {
+            // Remove the 'other:' part from the string
+            return otherFunder.substr(6);
+        }).join(', ');
+
         return {
             'fields': {
                 'author': publication.authors.join(', '),
@@ -88,11 +97,12 @@ define(['jquery', 'oae.core'], function($, oae) {
                 'department': publication.department,
                 'email': publication.contactEmail,
                 'journal': publication.journalName,
-                'other-funders': publication.otherFunders,
+                'other-funders': otherFundersString,
                 'title': publication.displayName
             },
             'checkboxes': {
-                'funders': publication.otherFunders ?  publication.funders.concat(['other']) : publication.funders,
+                // Add the 'other' checkbox to the funders array if custom other funders are present
+                'funders': otherFunders.length ? funders.concat(['other']) : funders,
                 'terms': true,
                 'use-cambridge-addendum': publication.useCambridgeAddendum !== 'false'
             }
