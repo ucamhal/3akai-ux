@@ -17,7 +17,83 @@
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
 
-            <div class="oa-content-banner oa-panel-primary">
+            <div data-widget="avocetfloatingnavigation"
+                 data-scroll-element="body"
+                 data-nav-template="#nav-template"
+                 data-nav-entries='[
+                    {
+                        "target": "#section-todo",
+                        "name": "What do I need to do?"
+                    },
+                    {
+                        "target": "#section-manuscript",
+                        "name": "Which manuscripts do I need to upload?"
+                    },
+                    {
+                        "target": "#section-version",
+                        "name": "Which version should I upload?"
+                    },
+                    {
+                        "target": "#section-formats",
+                        "name": "What formats do you accept?"
+                    },
+                    {
+                        "target": "#section-fees",
+                        "name": "I need to pay a publisher’s fee"
+                    },
+                    {
+                        "target": "#section-copyright",
+                        "name": "Copyright",
+                        "children": [
+                            {
+                                "name": "Why might you want to retain copyright?",
+                                "target": "#section-copyright-retention"
+                            }
+                        ]
+                    },
+                    {
+                        "target": "#section-copyrightoptions",
+                        "name": "Your Copyright Options",
+                        "children": [
+                            {
+                                "target": "#section-copyrightoptions-author-addendum",
+                                "name": "1. Use an Author Addendum"
+                            },
+                            {
+                                "target": "#section-copyrightoptions-traditional-cta",
+                                "name": "2. Sign a traditional copyright agreement"
+                            },
+                            {
+                                "target": "#section-copyrightoptions-existing-agreement",
+                                "name": "What to do if you’ve already signed an agreement"
+                            }
+                        ]
+                    },
+                    {
+                        "target": "#section-licensing",
+                        "name": "Licensing",
+                        "children": [
+                            {
+                                "target": "#section-licensing-cc-by",
+                                "name": "CC BY"
+                            },
+                            {
+                                "target": "#section-licensing-cc-by-nc",
+                                "name": "CC BY-NC"
+                            },
+                            {
+                                "target": "#section-licensing-cc-by-nc-nd",
+                                "name": "CC BY-NC-ND"
+                            }
+                        ]
+                    },
+                    {
+                        "target": "#section-funder-acknowledgment",
+                        "name": "Acknowledge your funder"
+                    }
+                 ]'><!-- --></div>
+
+            <div id="section-todo" class="oa-content-banner oa-panel-primary">
                 <div class="container oa-content-container">
                     <header>
                         <h2>What do I need to do?</h2>
@@ -26,7 +102,7 @@
                 </div>
             </div>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-manuscript" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Which manuscripts do I need to upload?</h3>
@@ -35,7 +111,7 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-version" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Which version should I upload?</h3>
@@ -45,7 +121,7 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-formats" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>What formats do you accept?</h3>
@@ -55,7 +131,7 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-fees" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>I need to pay a publisher’s fee</h3>
@@ -67,14 +143,14 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-copyright" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Copyright</h3>
                     </header>
                     <p>When you return your edited manuscript to your publisher you are asked to sign a Copyright Transfer Agreement. This is standard in most traditional publication agreements. It is important for you to retain rights as an author enabling you to publish your work open access, use it in teaching materials and to promote your research work i.e., via your website.</p>
 
-                    <section>
+                    <section id="section-copyright-retention">
                         <header>
                             <h4>Why might you want to retain copyright?</h4>
                         </header>
@@ -84,7 +160,7 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-copyrightoptions" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Your Copyright Options</h3>
@@ -94,7 +170,7 @@
                     <p>If you have any questions or need clarification please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
                     <p>You have two copyright options;</p>
 
-                    <article>
+                    <article id="section-copyrightoptions-author-addendum">
                         <header>
                             <h4>1. Use an Author Addendum</h4>
                         </header>
@@ -103,7 +179,7 @@
                         <p>If you need advice and guidance on how to approach your publisher for an addendum to your existing agreement please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
                     </article>
 
-                    <article>
+                    <article id="section-copyrightoptions-traditional-cta">
                         <header>
                             <h4>2. Sign a traditional copyright agreement</h4>
                         </header>
@@ -121,7 +197,7 @@
                         <p>If you would like us to check your publisher’s CTA and offer you help and guidance on your rights then please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
                     </article>
 
-                    <article>
+                    <article id="section-copyrightoptions-existing-agreement">
                         <header>
                             <h4>What to do if you’ve already signed an agreement</h4>
                         </header>
@@ -141,27 +217,27 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-licensing" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Licensing</h3>
                     </header>
                     <p>As well as copyright, different funders and publishers adhere to a range of licensing agreements. Licenses affect how your work can be copied, distributed, shared and how others can use it, commercially and non-commercially.</p>
-                    <article>
+                    <article id="section-licensing-cc-by">
                         <header>
                             <h4>CC BY</h4>
                         </header>
                         <p>This license lets others distribute, remix, tweak and build upon your work, including commercially, as long as they credit you for the original creation.</p>
                     </article>
 
-                    <article>
+                    <article id="section-licensing-cc-by-nc">
                         <header>
                             <h4>CC BY-NC</h4>
                         </header>
                         <p>This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms.</p>
                     </article>
 
-                    <article>
+                    <article id="section-licensing-cc-by-nc-nd">
                         <header>
                             <h4>CC BY-NC-ND</h4>
                         </header>
@@ -170,7 +246,7 @@
                 </div>
             </section>
 
-            <section class="oa-section oa-content-section">
+            <section id="section-funder-acknowledgment" class="oa-section oa-content-section">
                 <div class="container oa-content-container">
                     <header>
                         <h3>Acknowledge your funder</h3>
