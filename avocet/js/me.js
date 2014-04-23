@@ -17,6 +17,6 @@ define(['oae.core'], function(oae) {
     // Redirect the user back to the landing page if he is not logged in
     // TODO This will need to change once Shibboleth authentication is in place
     if (oae.data.me.anon) {
-        window.location = '/api/auth/google';
+        oae.api.util.redirect().login();
     }
 });
