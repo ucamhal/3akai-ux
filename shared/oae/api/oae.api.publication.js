@@ -46,7 +46,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {String}          displayName              Display title for the created publication
      * @param  {String}          correspondingAuthor      The name of the corresponding author of the publication
      * @param  {String}          journalName              The name of the journal the publication is published in
-     * @param  {String[]}        funders                  An Array of names of funders who funded the publication
+     * @param  {String[]}        funders                  An Array of names of funders who funded the publication, custom funder names should be using the 'other:<funderName>' format
      * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
      * @param  {Boolean}         useCambridgeAddendum     Whether the submitter will use the Cambridge Authors' Addendum
      * @param  {String}          comments                 Free text containing comments or questions on the publication submission

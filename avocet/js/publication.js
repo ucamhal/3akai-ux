@@ -16,21 +16,25 @@
 define(['jquery', 'oae.core'], function($, oae) {
 
     // Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
-    // The publication id will then be `p:<tenantId>/<publicationId>`
-    // e.g. publication/cam/xkVkSpFJo
+    // The publication id will then be `p:<tenantId>:<publicationId>`
+    // e.g. p:avocet:g1Z-sJMW0n
     var publicationId = 'p:' + $.url().segment(2) + ':' + $.url().segment(3);
 
     // Variable used to cache the requested content profile
     var publicationProfile = null;
 
-    var getPublicationProfile = function() {
+    /**
+     * Gets the publication based on the publicationId and initialises the page by
+     * prefilling the form and rendering the file and submission info panels.
+     */
+    var setUpSubmissionProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
             // Cache the publication profile data
             publicationProfile = publication;
             // Set the browser title
             oae.api.util.setBrowserTitle(publicationProfile.displayName);
-            // Render the submission info
-            renderSubmissionInfo();
+            // Render the publication info
+            renderPublicationInfo();
             // Render the file info
             renderFileInfo();
             // Initialise the form
@@ -41,31 +45,18 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Converts a Number to a String and adds padding if the number is lower than 10.
-     *
-     * @param  {Number}   nr  The number to add padding to
-     * @return {String}       The number converted to a string which is at least 2 characters long
+     * Render the publication info template
      */
-    var zeroPadding = function(nr) {
-        return nr < 10 ? '0' + nr : String(nr);
-    };
-
-    /**
-     * Renders the submission info template
-     */
-    var renderSubmissionInfo = function() {
+    var renderPublicationInfo = function() {
         var receivedDate = new Date(publicationProfile.date);
-        var day = zeroPadding(receivedDate.getDate());
-        var month = zeroPadding(receivedDate.getMonth() + 1);
-        var year = receivedDate.getFullYear();
-        oae.api.util.template().render($('#oa-submissioninfo-template'), {
-            'receivedDate': day + '/' + month + '/' + year,
+        oae.api.util.template().render($('#oa-publicationinfo-template'), {
+            'receivedDate': oae.api.l10n.transformDate(receivedDate),
             'referenceNumber': publicationProfile.ticket.externalId
-        }, $('#oa-submissioninfo-container'));
+        }, $('#oa-publicationinfo-container'));
     };
 
     /**
-     * Renders the file info template
+     * Render the file info template
      */
     var renderFileInfo = function() {
         oae.api.util.template().render($('#oa-fileinfo-template'), {
@@ -75,15 +66,17 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Maps a publication to a data structure which can be passed to the publicationform widget.
+     * Map a publication to a data structure which can be passed to the publicationform widget.
      *
      * @param  {Object}  publication  A publication returned from the API
      * @return {Object}               Reorganized publication data
      */
     var publicationDataToFormData = function(publication) {
+        // Get the funders from the publication object exluding any custom ones (using format 'other:funderName').
         var funders = _.filter(publication.funders, function(funder) {
             return !/^other:/g.test(funder);
         });
+        // Get the custom funders from the publication object
         var otherFunders = _.difference(publication.funders, funders);
         var otherFundersString = _.map(otherFunders, function(otherFunder) {
             // Remove the 'other:' part from the string
@@ -110,7 +103,7 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Initialises the form
+     * Initialise the form
      */
     var initForm = function() {
         // Fetch and insert the publicationform widget
@@ -120,5 +113,5 @@ define(['jquery', 'oae.core'], function($, oae) {
         });
     };
 
-    getPublicationProfile();
+    setUpSubmissionProfile();
 });
