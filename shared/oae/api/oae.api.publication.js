@@ -73,7 +73,6 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'authors', 'value': correspondingAuthor},
             {'name': 'department', 'value': department},
             {'name': 'journalName', 'value': journalName},
-            {'name': 'funders', 'value': funders},
             {'name': 'contactEmail', 'value': contactEmail},
             {'name': 'useCambridgeAddendum', 'value': useCambridgeAddendum},
             {'name': 'comments', 'value': comments},
@@ -83,6 +82,14 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'date', 'value': new Date().getTime()},
             {'name': 'publicationType', 'value': 'other'}
         ];
+
+        // Add the funders to the data array
+        _.each(funders, function(funder) {
+            data.push({
+                'name': 'funders',
+                'value': funder
+            });
+        });
 
         $fileUploadField.fileupload('send', {
             'files': [file],
