@@ -24,8 +24,8 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
     var publicationProfile = null;
 
     /**
-     * Gets the publication based on the publicationId and initialises the page by
-     * prefilling the form and rendering the file and submission info panels.
+     * Set up the submission profile by getting the publication associated to the
+     * submission, prefill the form and render the file and submission info panels
      */
     var setUpSubmissionProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
@@ -72,7 +72,7 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
      * @return {Object}               Reorganized publication data
      */
     var publicationDataToFormData = function(publication) {
-        // Get the funders from the publication object exluding any custom ones (using format 'other:funderName').
+        // Get the funders from the publication object exluding any custom ones (using format 'other:funderName')
         var funders = _.filter(publication.funders, function(funder) {
             return !/^other:/g.test(funder);
         });
