@@ -85,7 +85,7 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
         }
 
         // Set up and submit a form which posts to the strategy url
-        var $form = $('<form method="post"></form>').attr('action', loginUrl);
+        var $form = $('<form class="hide" method="post"></form>').attr('action', loginUrl).appendTo('body');
         $('<input type="hidden" name="redirectUrl" />').val(_getLoginRedirectURL()).appendTo($form);
         $form.submit();
     };
