@@ -15,6 +15,6 @@
 
 define(['oae.core'], function(oae) {
     if (oae.data.me.anon) {
-        oae.api.authentication.login();
+        oae.api.authentication.loginFirstEnabledStrategy();
     }
 });

@@ -76,10 +76,8 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
 
     /**
      * Log in using the first found enabled authentication strategy.
-     *
-     * @param  {String}         redirectUrl              Optional url to redirect to once the user has been logged in
      */
-    var login = exports.login = function(redirectUrl) {
+    var loginFirstEnabledStrategy = exports.loginFirstEnabledStrategy = function() {
         var loginUrl = _.pluck(getEnabledStrategies(), 'url')[0];
 
         if (!loginUrl) {
@@ -88,7 +86,7 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
 
         // Set up and submit a form which posts to the strategy url
         var $form = $('<form method="post"></form>').attr('action', loginUrl);
-        $('<input type="hidden" name="redirectUrl" />').val(redirectUrl || _getLoginRedirectURL()).appendTo($form);
+        $('<input type="hidden" name="redirectUrl" />').val(_getLoginRedirectURL()).appendTo($form);
         $form.submit();
     };
 
@@ -225,6 +223,8 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
      * login redirect target has been encoded in the URL, this target will always be used as the redirect.
      * When no explicit target is present, the current page will be reloaded unless the user is currently
      * on the landing page. In that case, the user will be redirected to his personal landing page.
+     *
+     * @api private
      */
     var _getLoginRedirectURL = function() {
         var currentLocation = window.location.pathname;
