@@ -29,6 +29,10 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
      */
     var setUpSubmissionProfile = function() {
         oae.api.publication.getPublication(publicationId, function(err, publication) {
+            if (err) {
+                oae.api.util.redirect().notfound();
+            }
+
             // Cache the publication profile data
             publicationProfile = publication;
             // Set the browser title
