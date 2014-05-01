@@ -370,3 +370,7 @@ body {
             border-radius: 0 0 3px 3px;
     padding: 17px 60px;
 }
+
+.oa-navigation-area {
+    position: relative;
+}
