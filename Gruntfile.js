@@ -471,7 +471,7 @@ module.exports = function(grunt) {
     });
 
     // Run the CasperJS and QUnit tests
-    grunt.registerTask('test', ['casperjs', 'qunit']);
+    grunt.registerTask('test', ['qunit']);
 
     // Default task for production build
     grunt.registerTask('default', ['clean', 'copy', 'git-describe', 'requirejs', 'touchBootstrap', 'hashFiles', 'writeVersion', 'configNginx']);
