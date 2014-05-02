@@ -132,6 +132,39 @@
     color: #FFF;
 }
 
+.oa-site-header .oa-nav a {
+    border-bottom-color: transparent;
+}
+
+.oa-site-header .oa-subnav {
+    background: #F7F5F2;
+}
+
+.oa-site-header .oa-subnav a {
+    color: #323232;
+}
+
+.oa-site-header .oa-nav a:hover,
+.oa-site-header .oa-nav a.active {
+    border-bottom-color: #CBCBCB;
+}
+
+.oa-site-header .oa-subnav a:hover,
+.oa-site-header .oa-subnav a.active {
+    border-bottom-color: #575A5D;
+    color: #575A5D;
+}
+
+.oa-site-header .oa-btn-auth {
+    background: #323232;
+    color: #B7B7B7;
+}
+
+.oa-site-header .oa-btn-upload {
+    background: #DB6E4C;
+    color: #FFFFFF;
+}
+
 /********************
  ** Section Colors **
  ********************/
