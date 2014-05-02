@@ -183,7 +183,7 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .oa-form-section {
-    padding: 36px 0;
+    padding: 0;
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
@@ -210,6 +210,10 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 .oa-section p,
 .oa-section ul {
     margin: 30px 0 0 0;
+}
+
+.oa-section.oa-form-section p {
+    margin: 30px 0;
 }
 
 .oa-section header + p,
@@ -245,7 +249,8 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
 }
 
 .oa-form .form-group {
-    padding-bottom: 35px;
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
 
 .oa-form input[type="text"],
