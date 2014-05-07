@@ -90,4 +90,4 @@ if (argv.p || argv.u) {
     CoreUtil.exec(packageCmd, 'Error distributing the release', 9, true);
 }
 
-CoreUtil.logSuccess('Successfully released 3akai-ux '.text + argv.v.white + ' to the remote repository '.text + remoteName.white);
+CoreUtil.logSuccess('Successfully released avocet-ui '.text + argv.v.white + ' to the remote repository '.text + remoteName.white);
