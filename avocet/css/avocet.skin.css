@@ -16,6 +16,7 @@
 /********************
  ** Primary button **
  ********************/
+
 .oa-btn-primary,
 .oa-section .oa-btn-primary {
     background-color: #CB4F00;
@@ -44,6 +45,7 @@
 /**********************
  ** Secondary button **
  **********************/
+
 .oa-btn-secondary {
     background: #323232;
 }
@@ -64,6 +66,7 @@
 /************************
  ** Highlighted panels **
  ************************/
+
 /* Primary panel */
 .oa-panel-primary,
 .oa-panel-primary-color {
@@ -93,6 +96,7 @@
 /********************
  ** Neutral panels **
  ********************/
+
 /* Neutral color 1 */
 .oa-panel-neutral1 {
     background-color: #F9F9F9;
@@ -106,6 +110,7 @@
 /************
  ** Modals **
  ************/
+
 .oa-modal-body {
     background-color: #F9F9F9;
     border-bottom-color: #ECEBEA;
@@ -137,6 +142,7 @@
 /*****************
  ** Site header **
  *****************/
+
 .oa-site-header {
     background: #171717;
 }
@@ -178,6 +184,7 @@
 /*****************
  ** Site footer **
  *****************/
+
 .oa-site-footer,
 .oa-site-footer a {
     color: #F9F9F9;
@@ -186,6 +193,7 @@
 /********************
  ** Section Colors **
  ********************/
+
 /* Home section */
 .oa-home-section {
     background-color: #FFF;
@@ -223,6 +231,7 @@
 /*********************
  ** Site navigation **
  *********************/
+
 .oa-site-navigation {
     background-color: #FFF;
 }
@@ -247,6 +256,7 @@
 /*****************
  ** Home banner **
  *****************/
+
 .oa-home-banner h2 {
     color: #FFF;
 }
@@ -266,6 +276,7 @@
 /**********************
  ** Publication form **
  **********************/
+
 .oa-fileinfo {
     border-top-color: #EEEDEC;
 }
@@ -287,6 +298,7 @@
 /****************
  ** My uploads **
  ****************/
+
 .oa-myuploads-upload,
 .oa-myuploads-header {
     border-bottom-color: #EDEDEC;
@@ -314,6 +326,7 @@
 /******************
  ** Text colours **
  ******************/
+
  /* Headings */
 .oa-heading,
 .oa-section h3,
@@ -358,6 +371,7 @@
 /**************************************
  ** Widget Specific: publicationform **
  **************************************/
+
 #oa-publicationform .tt-dropdown-menu {
     background-color: #FFF;
     border-color: rgba(0, 0, 0, 0.15);
@@ -384,6 +398,7 @@
 /****************************************
  ** Widget Specific: submitpublication **
  ****************************************/
+
 #oa-submitpublication-upload-wrap.oa-dragover p {
     color: #70A2A9;
 }

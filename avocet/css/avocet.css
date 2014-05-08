@@ -15,7 +15,7 @@
 /* Import the base OAE styles */
 @import url('../../shared/oae/css/oae.core.css');
 /* Import the skin file */
-@import url('skin.css');
+@import url('avocet.skin.css');
 /* Import the fonts file */
 @import url('avocet.fonts.css');
 /* Import the base avocet styles */
