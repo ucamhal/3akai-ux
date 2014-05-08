@@ -259,6 +259,15 @@ body {
     margin-top: 35px;
 }
 
+/**************************
+ ** File upload progress **
+ **************************/
+
+.oa-progress-size {
+    margin-top: 10px;
+    text-align: left;
+}
+
 /***************
  ** File info **
  ***************/

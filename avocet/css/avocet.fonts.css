@@ -121,6 +121,14 @@ body {
     font-size: 21px;
 }
 
+/**************************
+ ** File upload progress **
+ **************************/
+
+.oa-progress-size {
+    font-size: 18px;
+}
+
 /***************
  ** File info **
  ***************/
