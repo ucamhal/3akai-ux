@@ -14,6 +14,7 @@
  */
 
 define(['jquery', 'oae.core'], function($, oae) {
+
     /**
      * Render the configured Addendum link
      */
