@@ -97,11 +97,8 @@
                             <header>
                                 <h4>1. Use an Author Addendum</h4>
                             </header>
-                            <p>The SPARC Author Addendum enables you to change the traditional agreement you have with your publisher to allow you to retain key rights in relation to your work. You still transfer copyright, but include a caveat covering digital usage and access.</p>
-                            <p>
-                                <a href="http://www.sparc.arl.org/resources/authors/addendum" target="_blank">Find out how to use the SPARC Author Addendum <i class="icon-external-link oa-icon-normal"></i></a><br>
-                                <a href="http://www.sparc.arl.org/sites/default/files/Access-Reuse_Addendum.pdf" target="_blank">Download the SPARC Author Addendum <i class="icon-external-link oa-icon-normal"></i></a>
-                            </p>
+                            <p>The University of Cambridge Scholars' Addendum enables you to change the traditional agreement you have with your publisher to allow you to retain key rights in relation to your work. You still transfer copyright, but include a caveat covering digital usage and access.</p>
+                            <p id="oa-todo-addendum-link-container"><!-- --></p>
                             <p>If you need advice and guidance on how to approach your publisher for an addendum to your existing agreement please <a href="mailto:info@openaccess.cam.ac.uk">contact us</a>.</p>
                         </article>
 
@@ -217,11 +214,15 @@
                 </div>
             </div>
 
+            <div id="oa-todo-addendum-link-template"><!--
+                <a href="${addendumUrl}" target="_blank">Download the Cambridge Scholars' Addendum <i class="icon-external-link oa-icon-normal"></i></a>
+            --></div>
+
             <!-- FOOTER -->
             <div data-widget="avocetfooter"><!-- --></div>
         </div>
 
         <!-- JAVASCRIPT -->
-        <script data-main="/shared/oae/api/oae.bootstrap.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
+        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/todo.js"  src="/shared/vendor/js/requirejs/require-jquery.js"></script>
     </body>
 </html>
