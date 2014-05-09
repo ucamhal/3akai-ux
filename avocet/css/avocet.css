@@ -12,8 +12,11 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-
 /* Import the base OAE styles */
 @import url('../../shared/oae/css/oae.core.css');
+/* Import the skin file */
+@import url('avocet.skin.css');
+/* Import the fonts file */
+@import url('avocet.fonts.css');
 /* Import the base avocet styles */
 @import url('avocet.base.css');

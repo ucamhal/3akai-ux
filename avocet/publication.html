@@ -12,43 +12,32 @@
         <link rel="stylesheet" href="/avocet/css/avocet.css">
     </head>
     <body>
+
         <div class="oa-main-container">
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
 
-            <!-- BREADCRUMB -->
-            <div data-widget="breadcrumb" data-breadcrumb='[
-                {
-                    "href": "/",
-                    "title": "Home"
-                },
-                {
-                    "href": "/me",
-                    "title": "Me"
-                },
-                {
-                    "title": "Publication"
-                }
-            ]'></div>
-
             <!-- BODY -->
-            <div class="container">
-                <div id="oa-publicationinfo-container" class="alert alert-warning"><!-- --></div>
-                <div id="oa-publicationinfo-template"><!--
-                    <p>This submission was received on ${receivedDate}</p>
-                    <p>The reference number is <strong>${referenceNumber}</strong></p>
-                    <p>You should get contacted within one working day from the submission date</p>
-                --></div>
-                <div id="oa-fileinfo-container"><!-- --></div>
-                <div id="oa-fileinfo-template"><!--
-                    <div class="well">
-                        <h3 class="oa-no-margin"><i class="icon-file"></i> ${fileName|encodeForHTML} <small>${fileSize}</small></h3>
-                    </div>
-                --></div>
-                <div id="oa-publicationform-container"><!-- --></div>
+            <div id="oa-fileinfo-template"><!--
+                <div class="container">
+                    <p class="oae-threedots oa-no-margin">${fileName|encodeForHTML}</p>
+                    <p class="oa-no-margin">${fileSize}</p>
+                </div>
+            --></div>
+            <div id="oa-fileinfo-container" class="oa-fileinfo oa-panel-neutral1"><!-- --></div>
+            <div id="oa-publicationinfo-template"><!--
+                <p>This submission was received on ${receivedDate}.</p>
+                <p>The reference number is <strong>${referenceNumber}</strong>.</p>
+                <p>You should get contacted within one working day from the submission date.</p>
+            --></div>
+            <div class="oa-publicationinfo oa-panel-primary-color">
+                <div class="container">
+                    <div id="oa-publicationinfo-container"><!-- --></div>
+                </div>
             </div>
 
-            <!-- FOOTER -->
+            <div id="oa-publicationform-container"><!-- --></div>
+
             <div data-widget="avocetfooter"><!-- --></div>
         </div>
 
