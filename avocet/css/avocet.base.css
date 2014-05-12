@@ -64,6 +64,11 @@ body {
     padding: 13px;
 }
 
+.oa-btn-primary i,
+.oa-btn-secondary i {
+    padding-right: 3px;
+}
+
 .oa-btn-link {
     background: none;
     font: inherit;
@@ -99,6 +104,10 @@ body {
 
 .oa-content-container {
     max-width: 822px;
+}
+
+.oa-error-container {
+    max-width: 540px;
 }
 
 /************************
@@ -190,6 +199,17 @@ body {
     margin-top: 0;
 }
 
+/* Error section */
+
+.oa-error-section {
+    padding: 55px 0;
+    text-align: center;
+}
+
+.oa-error-section .oa-btn-secondary {
+    margin-top: 50px;
+}
+
 /*************
  ** Banners **
  *************/
@@ -230,6 +250,12 @@ body {
 
 .oa-content-banner h2 {
     margin: 0 0 41px 0;
+}
+
+/* Error page banner */
+
+.oa-error-banner {
+    padding: 50px;
 }
 
 /***********
