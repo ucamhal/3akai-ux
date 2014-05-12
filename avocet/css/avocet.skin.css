@@ -171,6 +171,7 @@
 }
 
 .oa-site-header .oa-nav a:hover,
+.oa-site-header .oa-nav a:focus,
 .oa-site-header .oa-nav a.active {
     border-bottom-color: #CBCBCB;
 }
