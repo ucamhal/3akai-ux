@@ -13,24 +13,27 @@
  * permissions and limitations under the License.
  */
 
-define(['jquery', 'oae.core'], function($, oae) {
+.oa-error-container {
+    max-width: 540px;
+}
 
-    /**
-     * Binds a click event to login button
-     */
-    var setupLogin = function() {
-        $('#oa-accessdenied-login').on('click', oae.api.authentication.loginFirstEnabledStrategy);
-    };
+/* Error section */
 
-    /**
-     * Initialise the access denied page
-     */
-    var initPage = function() {
-        oae.api.util.template().render($('#oa-access-denied-message-template'), {}, $('#oa-access-denied-message-container'));
-        if (oae.data.me.anon) {
-            setupLogin();
-        }
-    };
+.oa-error-section {
+    padding: 55px 0;
+    text-align: center;
+}
 
-    initPage();
-});
+.oa-error-section .oa-btn-secondary {
+    margin-top: 50px;
+}
+
+/* Error page banner */
+
+.oa-error-banner {
+    padding: 50px;
+}
+
+.oa-error-banner h2 {
+    margin: 0;
+}
