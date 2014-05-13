@@ -49,6 +49,7 @@ requirejs.config({
         'jquery-ui': 'vendor/js/jquery-ui/jquery-ui.custom',
         'lazyload': 'vendor/js/lazyload',
         'markdown': 'vendor/js/markdown',
+        'marked': 'vendor/js/marked',
         'qunitjs': 'vendor/js/qunit',
         'sockjs': 'vendor/js/sockjs',
         'text': 'vendor/js/requirejs/require.text',
