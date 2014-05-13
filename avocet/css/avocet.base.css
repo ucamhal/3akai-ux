@@ -374,3 +374,15 @@ body {
 .oa-navigation-area {
     position: relative;
 }
+
+.oa-navigation-area .oa-content-container {
+    padding-right: 190px;
+
+    /* Has the effect of layering the content higher than the side nav
+       as both this element and the nav share the same stacking context,
+       both this and the nav are positioned and this element occours
+       after the nav in DOM order. Without this the content would lay below
+       the positioned nav, resulting in half of the content being obscured
+       to clicks by the nav (which covers the right 50% of the page). */
+    position: relative;
+}
