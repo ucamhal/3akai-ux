@@ -114,6 +114,9 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
                 'funders': otherFunders.length ? funders.concat(['other']) : funders,
                 'terms': true,
                 'use-cambridge-addendum': publication.useCambridgeAddendum !== 'false'
+            },
+            'radioButtons': {
+                'hasExternalFunders': funders.length || otherFunders.length ? 'yes' : 'no'
             }
         };
     };
