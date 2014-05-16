@@ -58,7 +58,7 @@ define([
         'jquery.clip',
         'jquery.dnd-upload',
         'jquery.infinitescroll',
-        'jquery.list-header',
+        'jquery.list',
         'jquery.responsive',
         'jquery.update-picture',
 
