@@ -49,6 +49,11 @@ body {
     font-size: 22px;
 }
 
+.oa-btn-primary i,
+.oa-btn-secondary i {
+    font-size: 1em;
+}
+
 /************************
  ** Highlighted panels **
  ************************/

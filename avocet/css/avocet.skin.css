@@ -46,20 +46,28 @@
  ** Secondary button **
  **********************/
 
-.oa-btn-secondary {
+.oa-btn-secondary,
+.oa-section .oa-btn-secondary {
     background: #323232;
 }
 
 .oa-btn-secondary,
 .oa-btn-secondary:active,
 .oa-btn-secondary:focus,
-.oa-btn-secondary:hover {
+.oa-btn-secondary:hover,
+.oa-section .oa-btn-secondary,
+.oa-section .oa-btn-secondary:active,
+.oa-section .oa-btn-secondary:focus,
+.oa-section .oa-btn-secondary:hover {
     color: #B7B7B7;
 }
 
 .oa-btn-secondary:active,
 .oa-btn-secondary:focus,
-.oa-btn-secondary:hover {
+.oa-btn-secondary:hover,
+.oa-section .oa-btn-secondary:active,
+.oa-section .oa-btn-secondary:focus,
+.oa-section .oa-btn-secondary:hover {
     background-color: #424242;
 }
 

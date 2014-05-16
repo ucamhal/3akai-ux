@@ -64,6 +64,11 @@ body {
     padding: 13px;
 }
 
+.oa-btn-primary i,
+.oa-btn-secondary i {
+    padding-right: 3px;
+}
+
 .oa-btn-link {
     background: none;
     font: inherit;
