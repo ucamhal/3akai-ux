@@ -94,14 +94,13 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
             // acceptanceDate is a millisecond timestamp representing the date in UTC. We need obtain the local time equivalent of this time in order to have Globalize.format() format it (as you can't tell Globalize to format the UTC representation)
             var dateUTC = new Date(publication.acceptanceDate);
             var dateLocal = new Date(dateUTC.getUTCFullYear(), dateUTC.getUTCMonth(), dateUTC.getUTCDate());
-
-            var acceptanceDateString = Globalize.format(dateLocal, 'd', 'en-GB');
+            acceptanceDateString = Globalize.format(dateLocal, 'd', 'en-GB');
         }
 
         return {
             'fields': {
                 'acceptanceDate': acceptanceDateString,
-                'author': publication.authors.join(', '),
+                'authors': publication.authors.join(', '),
                 'comment': publication.comments,
                 'department': publication.department,
                 'email': publication.contactEmail,
