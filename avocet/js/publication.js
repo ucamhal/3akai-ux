@@ -78,7 +78,7 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
     var publicationDataToFormData = function(publication) {
         // Get the funders from the publication object exluding any custom ones (using format 'other:funderName')
         var funders = _.filter(publication.funders, function(funder) {
-            return !/^other:/g.test(funder);
+            return !/^other:/.test(funder);
         });
         // Get the custom funders from the publication object
         var otherFunders = _.difference(publication.funders, funders);
@@ -98,25 +98,18 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
         }
 
         return {
-            'fields': {
-                'acceptanceDate': acceptanceDateString,
-                'authors': publication.authors.join(', '),
-                'comment': publication.comments,
-                'department': publication.department,
-                'email': publication.contactEmail,
-                'journal': publication.journalName,
-                'other-funders': otherFundersString,
-                'title': publication.displayName
-            },
-            'checkboxes': {
-                // Add the 'other' checkbox to the funders array if custom other funders are present
-                'funders': otherFunders.length ? funders.concat(['other']) : funders,
-                'terms': true,
-                'use-cambridge-addendum': publication.useCambridgeAddendum !== 'false'
-            },
-            'radioButtons': {
-                'hasExternalFunders': funders.length || otherFunders.length ? 'yes' : 'no'
-            }
+            'title': publication.displayName,
+            'authors': publication.authors.join(', '),
+            'department': publication.department,
+            'journal': publication.journalName,
+            'acceptanceDate': acceptanceDateString,
+            'hasExternalFunders': funders.length || otherFunders.length ? 'yes' : 'no',
+            'funders': otherFunders.length ? funders.concat(['other']) : funders,
+            'otherFunders': otherFundersString,
+            'comment': publication.comments,
+            'email': publication.contactEmail,
+            'useCambridgeAddendum': publication.useCambridgeAddendum !== 'false',
+            'terms': true
         };
     };
 
