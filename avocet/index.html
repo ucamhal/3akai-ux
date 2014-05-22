@@ -17,42 +17,63 @@
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
 
-            <header class="oa-home-banner oa-panel-primary">
-                <div class="container">
-                    <h2>Accepted for publication?<br>Make sure your work can meet REF and other funders’ Open Access requirements</h2>
-                    <a href="/me" class="btn oa-btn-upload oa-btn-primary" title="Go to the manuscript upload page">Upload manuscript</a>
-                </div>
-            </header>
-
-            <section class="oa-home-section oa-section">
-                <div class="container oa-home-container">
-                    <header>
-                        <h3 class="oa-section-heading">What do I need to do?</h3>
+            <div id="home-content-container"><!-- --></div>
+            <div id="home-content-template"><!--
+                {if oae.data.me.anon}
+                    <header class="oa-home-banner oa-panel-primary">
+                        <div class="container">
+                            <h2>Accepted for publication?<br>Make sure your work can meet REF and other funders’ Open Access requirements</h2>
+                            <a href="/upload" class="btn oa-btn-upload oa-btn-primary" title="Go to the manuscript upload page">Upload manuscript</a>
+                        </div>
                     </header>
-                    <img class="img-responsive center-block" src="/avocet/images/home-todo.png" alt="Upload your manuscript">
-                    <p>When your work is accepted by a journal, <a href="/me" class="oa-link">upload it</a>.</p>
-                    <p>We’ll make sure it complies with Open Access requirements for the next REF, and any other funder mandates that apply. <a href="/what-do-i-need-to-do" title="Find out more about meeting funder requirements">Find out more</a></p>
-                    <a href="/me" class="btn oa-btn-upload oa-btn-primary" title="Go to the manuscript upload page">Upload manuscript</a>
-                </div>
-            </section>
 
-            <section class="oa-home-section oa-section">
-                <div class="container oa-home-container">
-                    <header>
-                        <h3 class="oa-section-heading">What's changing?</h3>
-                    </header>
-                    <img class="img-responsive center-block" src="/avocet/images/home-changing.png" alt="Upload your manuscript">
-                    <p>New HEFCE policy requires peer-reviewed articles and conference proceedings to be available through an institutional repository, when they are accepted for publication, to be eligible for the next REF.</p>
-                    <p>We will continue to advise on other funders’ policies and to pay eligible Open Access costs for papers funded by RCUK and the Wellcome Trust.</p>
-                    <p><a href="/what-is-changing" title="Find out more about the new HEFCE policy">Find out more</a></p>
+                    <section class="oa-home-section oa-section">
+                        <div class="container oa-home-container">
+                            <header>
+                                <h3 class="oa-section-heading">What do I need to do?</h3>
+                            </header>
+                            <img class="img-responsive center-block" src="/avocet/images/home-todo.png" alt="Upload your manuscript">
+                            <p>When your work is accepted by a journal, <a href="/upload" class="oa-link">upload it</a>.</p>
+                            <p>We’ll make sure it complies with Open Access requirements for the next REF, and any other funder mandates that apply. <a href="/what-do-i-need-to-do" title="Find out more about meeting funder requirements">Find out more</a></p>
+                            <a href="/upload" class="btn oa-btn-upload oa-btn-primary" title="Go to the manuscript upload page">Upload manuscript</a>
+                        </div>
+                    </section>
+
+                    <section class="oa-home-section oa-section">
+                        <div class="container oa-home-container">
+                            <header>
+                                <h3 class="oa-section-heading">What's changing?</h3>
+                            </header>
+                            <img class="img-responsive center-block" src="/avocet/images/home-changing.png" alt="Upload your manuscript">
+                            <p>New HEFCE policy requires peer-reviewed articles and conference proceedings to be available through an institutional repository, when they are accepted for publication, to be eligible for the next REF.</p>
+                            <p>We will continue to advise on other funders’ policies and to pay eligible Open Access costs for papers funded by RCUK and the Wellcome Trust.</p>
+                            <p><a href="/what-is-changing" title="Find out more about the new HEFCE policy">Find out more</a></p>
+                            <p><a href="/changing" title="Find out more about the new HEFCE policy">Find out more</a></p>
+                        </div>
+                    </section>
+                {else}
+                    <div id="oa-upload-success-container"></div>
+                    <div data-widget="myuploads"></div>
+                {/if}
+            --></div>
+
+            <div id="oa-upload-success-template"><!--
+                <div class="oa-panel-primary">
+                    <div class="container">
+                        <h2>Thanks ${oae.data.me.displayName|encodeForHTML}!</h2>
+                        <p>__MSG__YOUR_MANUSCRIPT_HAS_BEEN_UPLOADED__</p>
+                        <p class="oa-well">__MSG__YOUR_REFERENCE__: ${ticketId}</p>
+                        <h3>__MSG__DO_YOU_KNOW_YOUR_RIGHTS_AS_AN_AUTHOR__</h3>
+                        <p>__MSG__YOU_CAN_RETAIN_SOME_RIGHTS_TO_YOUR_WORK_BY_USING__ <button type="button" class="oa-trigger-addendum btn oa-link oa-btn-link oa-inline-btn-link">__MSG__FIND_OUT_MORE__</button> <a class="oa-link" href="${addendumUrl}" target="_blank" title="__MSG__DOWNLOAD_THE_CAMBRIDGE_SCHOLARS_ADDENDUM__">__MSG__DOWNLOAD_THE_CAMBRIDGE_SCHOLARS_ADDENDUM__</a></p>
+                    </div>
                 </div>
-            </section>
+            --></div>
 
             <!-- FOOTER -->
             <div data-widget="avocetfooter"><!-- --></div>
         </div>
 
         <!-- JAVASCRIPT -->
-        <script data-main="/shared/oae/api/oae.bootstrap.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
+        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/index.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
     </body>
 </html>

@@ -14,17 +14,22 @@
     <body>
         <div class="oa-main-container">
             <!-- HEADER -->
-            <div data-widget="avocetheader"><!-- --></div>
+            <div class="oa-avocetheader-no-upload" data-widget="avocetheader" data-links='[]'><!-- --></div>
+
+            <div class="oa-upload-back-container">
+                <div class="container">
+                    <a class="oa-link" href="/"><i class="icon-chevron-left"></i> Back</a>
+                </div>
+            </div>
 
             <!-- BODY -->
             <div data-widget="submitpublication"><!-- --></div>
-            <div data-widget="myuploads"><!-- --></div>
 
             <!-- FOOTER -->
             <div data-widget="avocetfooter"><!-- --></div>
         </div>
 
         <!-- JAVASCRIPT -->
-        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/me.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
+        <script data-main="/shared/oae/api/oae.bootstrap.js" data-loadmodule="/avocet/js/upload.js" src="/shared/vendor/js/requirejs/require-jquery.js"></script>
     </body>
 </html>

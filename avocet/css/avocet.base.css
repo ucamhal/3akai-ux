@@ -370,3 +370,21 @@ body {
             border-radius: 0 0 3px 3px;
     padding: 17px 60px;
 }
+
+/* Upload success */
+#oa-upload-success-container .oa-panel-primary {
+    padding: 50px 0 33px 0;
+}
+
+#oa-upload-success-container .container {
+    padding-bottom: 14px;
+    padding-top: 14px;
+}
+
+#oa-upload-success-container h2 {
+    margin: 0 0 7px 0;
+}
+
+#oa-upload-success-container p {
+    font-size: 18px;
+}
