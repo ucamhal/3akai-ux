@@ -313,8 +313,7 @@
     border-bottom-color: #EDEDEC;
 }
 
-.oa-myuploads-header h3,
-.oa-myuploads-reference {
+.oa-myuploads-header h3 {
     color: #575A5D;
 }
 
@@ -327,8 +326,7 @@
     color: #70A2A9;
 }
 
-.oa-myuploads-upload-date,
-.oa-myuploads-reference span {
+.oa-myuploads-metadata span {
     color: #8E908F;
 }
 
