@@ -141,6 +141,7 @@ module.exports = function(grunt) {
                      *  * We do not hash the favicon (ico) because it is a browser standard file
                      *  * We do not hash less files because they are programmatically access
                      *  * We exclude the directories that have already been hashed (bundles and cultures)
+                     *  * We exclude pdf files in the openaccess.cam.ac.uk custom dir as their filenames are human readable and already versioned
                      *
                      * TODO: Remove "custom" when there is a proper landing page customization strategy
                      */
@@ -154,7 +155,8 @@ module.exports = function(grunt) {
                             '<%= target %>/optimized/ui'
                         ], ['css', 'html', 'ico', 'js', 'json', 'less'], [
                             '!<%= target %>/optimized/shared/vendor/js/l10n/cultures.*/**',
-                            '!<%= target %>/optimized/ui/bundles.*/**'
+                            '!<%= target %>/optimized/ui/bundles.*/**',
+                            '!<%= target %>/optimized/custom/openaccess.cam.ac.uk/**/*.pdf'
                         ]),
                         'references': _replacementReferences([
                             'admin',
