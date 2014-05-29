@@ -86,6 +86,7 @@ requirejs.config({
         'oae.api.profile': 'oae/api/oae.api.profile',
         'oae.api.publication': 'oae/api/oae.api.publication',
         'oae.api.push': 'oae/api/oae.api.push',
+        'oae.api.tickets': 'oae/api/oae.api.tickets',
         'oae.api.user': 'oae/api/oae.api.user',
         'oae.api.util': 'oae/api/oae.api.util',
         'oae.api.widget': 'oae/api/oae.api.widget',

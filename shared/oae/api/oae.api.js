@@ -22,9 +22,9 @@
  * on `oae.core`, which invokes this plugin, and also efficiently pre-loads many third-party dependencies.
  */
 define(['oae.api.admin', 'oae.api.authentication', 'oae.api.config', 'oae.api.content', 'oae.api.comment', 'oae.api.discussion', 'oae.api.follow',
-        'oae.api.group', 'oae.api.i18n', 'oae.api.l10n', 'oae.api.profile', 'oae.api.publication', 'oae.api.push', 'oae.api.user', 'oae.api.util', 'oae.api.widget'],
+        'oae.api.group', 'oae.api.i18n', 'oae.api.l10n', 'oae.api.profile', 'oae.api.publication', 'oae.api.push', 'oae.api.tickets', 'oae.api.user', 'oae.api.util', 'oae.api.widget'],
 
-    function(adminAPI, authenticationAPI, configAPI, contentAPI, commentAPI, discussionAPI, followAPI, groupAPI, i18nAPI, l10nAPI, profileAPI, publicationAPI, pushAPI, userAPI, utilAPI, widgetAPI) {
+    function(adminAPI, authenticationAPI, configAPI, contentAPI, commentAPI, discussionAPI, followAPI, groupAPI, i18nAPI, l10nAPI, profileAPI, publicationAPI, pushAPI, ticketsAPI, userAPI, utilAPI, widgetAPI) {
 
         /*!
          * Object containing all of the available OAE API modules and their functions, as well as some
@@ -45,6 +45,7 @@ define(['oae.api.admin', 'oae.api.authentication', 'oae.api.config', 'oae.api.co
                 'profile': profileAPI,
                 'publication': publicationAPI,
                 'push': pushAPI,
+                'tickets': ticketsAPI,
                 'user': userAPI,
                 'util': utilAPI,
                 'widget': widgetAPI
