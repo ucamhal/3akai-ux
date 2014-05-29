@@ -21,17 +21,6 @@ define(['oae.core'], function(oae) {
     var renderPage = function() {
         oae.api.util.template().render($('#home-content-template'), {}, $('#home-content-container'));
         oae.api.widget.loadWidgets($('#home-content-container'));
-
-        if (!oae.data.me.anon) {
-            var lastUploaded = sessionStorage.getItem('avocet-last-uploaded');
-            if (lastUploaded) {
-                sessionStorage.removeItem('avocet-last-uploaded');
-                oae.api.util.template().render($('#oa-upload-success-template'), {
-                    'addendumUrl': oae.api.config.getValue('oae-tickets', 'general', 'addendumUrl'),
-                    'ticketId': lastUploaded
-                }, $('#oa-upload-success-container'));
-            }
-        }
     }
 
     renderPage();

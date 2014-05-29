@@ -52,21 +52,9 @@
                         </div>
                     </section>
                 {else}
-                    <div id="oa-upload-success-container"></div>
+                    <div data-widget="confirmation"></div>
                     <div data-widget="myuploads"></div>
                 {/if}
-            --></div>
-
-            <div id="oa-upload-success-template"><!--
-                <div class="oa-panel-primary">
-                    <div class="container">
-                        <h2>Thanks ${oae.data.me.displayName|encodeForHTML}!</h2>
-                        <p>__MSG__YOUR_MANUSCRIPT_HAS_BEEN_UPLOADED__</p>
-                        <p class="oa-well">__MSG__YOUR_REFERENCE__: ${ticketId}</p>
-                        <h3>__MSG__DO_YOU_KNOW_YOUR_RIGHTS_AS_AN_AUTHOR__</h3>
-                        <p>__MSG__YOU_CAN_RETAIN_SOME_RIGHTS_TO_YOUR_WORK_BY_USING__ <button type="button" class="oa-trigger-addendum btn oa-link oa-btn-link oa-inline-btn-link">__MSG__FIND_OUT_MORE__</button> <a class="oa-link" href="${addendumUrl}" target="_blank" title="__MSG__DOWNLOAD_THE_CAMBRIDGE_SCHOLARS_ADDENDUM__">__MSG__DOWNLOAD_THE_CAMBRIDGE_SCHOLARS_ADDENDUM__</a></p>
-                    </div>
-                </div>
             --></div>
 
             <!-- FOOTER -->
