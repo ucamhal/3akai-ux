@@ -402,8 +402,29 @@
  ** Widget Specific: submitpublication **
  ****************************************/
 
-#oa-submitpublication-upload-wrap.oa-dragover p {
+#oa-submitpublication-upload-wrap {
+    border-color: #DFE2E2;
+}
+
+#oa-submitpublication-upload #oa-submitpublication-upload-wrap.oa-dragover {
+    background-color: #F3F6F6;
+    border-color: #98B0B4;
+}
+
+#oa-submitpublication-upload-wrap p {
     color: #70A2A9;
+}
+
+#oa-submitpublication-upload-wrap.oa-dragover p {
+    color: #106470;
+}
+
+#oa-submitpublication-upload-wrap .oa-link {
+    color: #DB6E4C;
+}
+
+#oa-submitpublication-upload-wrap.oa-dragover .oa-link {
+    color: #CB4F00;
 }
 
 #oa-submitpublication-welcome-container header {
