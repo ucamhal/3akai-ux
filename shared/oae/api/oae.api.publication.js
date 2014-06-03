@@ -56,7 +56,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {Object}          [callback.err]           Error object containing error code and error message
      * @param  {Publication}     [callback.publication]   Publication object representing the created publication
      */
-    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, department, journalName, acceptanceDate, funders, contactEmail, useCambridgeAddendum, comments, $fileUploadField, file, callback) {
+    var createPublication = exports.createPublication = function(displayName, correspondingAuthor, department, institution, journalName, acceptanceDate, funders, contactEmail, useCambridgeAddendum, comments, $fileUploadField, file, callback) {
         // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
@@ -72,6 +72,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
             {'name': 'displayName', 'value': displayName},
             {'name': 'authors', 'value': correspondingAuthor},
             {'name': 'department', 'value': department},
+            {'name': 'institution', 'value': institution},
             {'name': 'journalName', 'value': journalName},
             {'name': 'contactEmail', 'value': contactEmail},
             {'name': 'useCambridgeAddendum', 'value': useCambridgeAddendum},
