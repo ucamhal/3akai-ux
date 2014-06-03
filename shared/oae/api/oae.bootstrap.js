@@ -46,7 +46,7 @@ requirejs.config({
         'jquery.timeago': 'vendor/js/jquery-plugins/jquery.timeago',
         'jquery.typeahead': 'vendor/js/jquery-plugins/jquery.typeahead',
         'jquery.validate': 'vendor/js/jquery-plugins/jquery.validate',
-        'jquery-ui': 'vendor/js/jquery-ui/jquery-ui.custom',
+        'jquery-ui': 'vendor/js/jquery-ui/jquery-ui-1.10.4.custom',
         'lazyload': 'vendor/js/lazyload',
         'markdown': 'vendor/js/markdown',
         'marked': 'vendor/js/marked',
@@ -71,6 +71,7 @@ requirejs.config({
 
         // OAE API modules
         'oae.api': 'oae/api/oae.api',
+        'oae.api.admin': 'oae/api/oae.api.admin',
         'oae.api.authentication': 'oae/api/oae.api.authentication',
         'oae.api.config': 'oae/api/oae.api.config',
         'oae.api.content': 'oae/api/oae.api.content',
