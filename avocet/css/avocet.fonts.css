@@ -91,7 +91,8 @@ body {
 
 .oa-section a,
 .oa-section p,
-.oa-section ul {
+.oa-section ul,
+.oa-section ol {
     font-size: 18px;
 }
 
@@ -168,7 +169,9 @@ body {
 }
 
 .oa-modal-body p,
-.oa-modal-body a {
+.oa-modal-body a,
+.oa-modal-body ul,
+.oa-modal-body ol {
     font-size: 18px;
 }
 

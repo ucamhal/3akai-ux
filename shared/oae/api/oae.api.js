@@ -130,6 +130,7 @@ define(['oae.api.authentication', 'oae.api.config', 'oae.api.content', 'oae.api.
                                         // We can show the body as internationalization and
                                         // initial widget loading have finished
                                         $('body').show();
+                                        $(document).trigger('widgetsready.oae');
 
                                         // Initialize websocket push API, unless we're on the
                                         // global admin tenant

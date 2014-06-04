@@ -117,6 +117,8 @@
 }
 
 .oa-modal-body p,
+.oa-modal-body ul,
+.oa-modal-body ol,
 .oa-modal-header h4 {
     color: #575A5D;
 }
@@ -331,7 +333,8 @@
 
 /* Normal text */
 .oa-section p,
-.oa-section ul {
+.oa-section ul,
+.oa-section ol {
     color: #575a5d;
 }
 
