@@ -424,6 +424,7 @@
     color: #DB6E4C;
 }
 
+#oa-submitpublication-upload-wrap .oa-link:hover,
 #oa-submitpublication-upload-wrap.oa-dragover .oa-link {
     color: #CB4F00;
 }
