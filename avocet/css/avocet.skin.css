@@ -88,19 +88,6 @@
     color: #FFF;
 }
 
-/* Secondary panel */
-.oa-panel-secondary,
-.oa-panel-secondary-color {
-    background-color: #CB4F00;
-}
-
-.oa-panel-secondary,
-.oa-panel-secondary a,
-.oa-panel-secondary-color,
-.oa-panel-secondary-color a {
-    color: #FFF;
-}
-
 /********************
  ** Neutral panels **
  ********************/
@@ -130,6 +117,8 @@
 }
 
 .oa-modal-body p,
+.oa-modal-body ul,
+.oa-modal-body ol,
 .oa-modal-header h4 {
     color: #575A5D;
 }
@@ -313,8 +302,7 @@
     border-bottom-color: #EDEDEC;
 }
 
-.oa-myuploads-header h3,
-.oa-myuploads-reference {
+.oa-myuploads-header h3 {
     color: #575A5D;
 }
 
@@ -327,8 +315,7 @@
     color: #70A2A9;
 }
 
-.oa-myuploads-upload-date,
-.oa-myuploads-reference span {
+.oa-myuploads-metadata span {
     color: #8E908F;
 }
 
@@ -346,7 +333,8 @@
 
 /* Normal text */
 .oa-section p,
-.oa-section ul {
+.oa-section ul,
+.oa-section ol {
     color: #575a5d;
 }
 
@@ -357,7 +345,6 @@
 /* Links */
 .oa-link,
 .oa-panel-primary .oa-link,
-.oa-panel-secondary .oa-link,
 .oa-section a {
     color: #CB4F00;
 }
@@ -365,9 +352,17 @@
 .oa-link:focus,
 .oa-link:hover,
 .oa-panel-primary .oa-link:focus,
-.oa-panel-secondary .oa-link:hover,
 .oa-section a:focus,
 .oa-section a:hover {
+    color: #DB6E4C;
+}
+
+.oa-panel-primary .oa-link {
+    color: #FFA167;
+}
+
+.oa-panel-primary .oa-link:focus,
+.oa-panel-primary .oa-link:hover {
     color: #DB6E4C;
 }
 
@@ -408,8 +403,30 @@
  ** Widget Specific: submitpublication **
  ****************************************/
 
-#oa-submitpublication-upload-wrap.oa-dragover p {
+#oa-submitpublication-upload-wrap {
+    border-color: #DFE2E2;
+}
+
+#oa-submitpublication-upload #oa-submitpublication-upload-wrap.oa-dragover {
+    background-color: #F3F6F6;
+    border-color: #98B0B4;
+}
+
+#oa-submitpublication-upload-wrap p {
     color: #70A2A9;
+}
+
+#oa-submitpublication-upload-wrap.oa-dragover p {
+    color: #106470;
+}
+
+#oa-submitpublication-upload-wrap .oa-link {
+    color: #DB6E4C;
+}
+
+#oa-submitpublication-upload-wrap .oa-link:hover,
+#oa-submitpublication-upload-wrap.oa-dragover .oa-link {
+    color: #CB4F00;
 }
 
 #oa-submitpublication-welcome-container header {
