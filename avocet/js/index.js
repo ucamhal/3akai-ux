@@ -16,10 +16,10 @@
 define(['oae.core'], function(oae) {
 
     /**
-     * Renders the content on the page
+     * Render the content on the page
      */
     var renderPage = function() {
-        oae.api.util.template().render($('#home-content-template'), {}, $('#home-content-container'));
+        oae.api.util.template().render($('#home-content-template'), null, $('#home-content-container'));
         oae.api.widget.loadWidgets($('#home-content-container'));
     }
 

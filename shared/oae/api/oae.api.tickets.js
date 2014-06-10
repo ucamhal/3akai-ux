@@ -25,11 +25,10 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {String}          contactEmail             The email of the person who should be contacted regarding the submission of this publication
      * @param  {Boolean}         useCambridgeAddendum     Whether the submitter will use the Cambridge Authors' Addendum
      * @param  {String}          comments                 Free text containing comments or questions on the publication submission
-
      * @param  {String}          contentId                The ID of the content item associated with this ticket
      * @param  {Function}        [callback]               Standard callback method
      * @param  {Object}          [callback.err]           Error object containing error code and error message
-     * @param  {Ticket}     [callback.ticket]   Ticket object representing the created ticket
+     * @param  {Ticket}          [callback.ticket]        Ticket object representing the created ticket
      */
     var createTicket = exports.createTicket = function(displayName, correspondingAuthor, department, institution, journalName, acceptanceDate, funders, contactEmail, useCambridgeAddendum, comments, contentId, callback) {
         // Set a default callback function in case no callback function has been provided
@@ -37,7 +36,6 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
 
         var data = {
             'contentId': contentId,
-
             'publication': {
                 'displayName': displayName,
                 'authors': [correspondingAuthor],
@@ -51,7 +49,7 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
                 'comments': comments,
 
                 // Auto-generated values. These are required by the tickets API
-                'date': new Date().getTime(),
+                'date': Date.now(),
                 'publicationType': 'other',
                 'publisher': ' ',
             },
