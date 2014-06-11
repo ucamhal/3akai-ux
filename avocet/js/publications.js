@@ -13,72 +13,183 @@
  * permissions and limitations under the License.
  */
 
-define(['jquery', 'oae.core', 'globalize'], function($, oae) {
+define(['jquery', 'oae.core'], function($, oae) {
 
-    // Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
-    // The publication id will then be `p:<tenantId>:<publicationId>`
-    // e.g. p:avocet:g1Z-sJMW0n
-    var publicationId = 'p:' + $.url().segment(2) + ':' + $.url().segment(3);
-
-    // Variable used to cache the requested content profile
-    var publicationProfile = null;
+    var publication;
+    var publicationSubmitter;
 
     /**
-     * Set up the submission profile by getting the publication associated to the
-     * submission, prefill the form and render the file and submission info panels
+     * Fetch a publication by the id supplied in the URL
+     *
+     * @param  {Function}    callback      The function to be called when the publication has been fetched.
      */
-    var setUpSubmissionProfile = function() {
-        oae.api.publication.getPublication(publicationId, function(err, publication) {
+    var fetchPublication = function(callback) {
+        var publicationId = getPublicationIdFromURL();
+        if (!publicationId) {
+            oae.api.util.redirect().notfound();
+        }
+
+        oae.api.publication.getPublication(publicationId, function(err, fetchedPublication) {
             if (err) {
                 oae.api.util.redirect().notfound();
             }
 
-            // Cache the publication profile data
-            publicationProfile = publication;
-            // Set the browser title
-            oae.api.util.setBrowserTitle(publicationProfile.displayName);
-            // Render the publication info
-            renderPublicationInfo();
-            // Render the file info
-            renderFileInfo();
-            // Initialise the form
-            initForm();
-            // We can now unhide the page
-            oae.api.util.showPage();
+            publication = fetchedPublication;
+            callback();
         });
     };
 
     /**
-     * Render the publication info template
+     * Fetch the user who submitted the viewed publication
+     *
+     * @param  {Function}    callback      The function to be called when the user has been fetched.
      */
-    var renderPublicationInfo = function() {
-        var receivedDate = new Date(publicationProfile.date);
-        oae.api.util.template().render($('#oa-publicationinfo-template'), {
-            'receivedDate': oae.api.l10n.transformDate(receivedDate),
-            'referenceNumber': publicationProfile.ticket.externalId
-        }, $('#oa-publicationinfo-container'));
-    };
-
-    /**
-     * Render the file info template
-     */
-    var renderFileInfo = function() {
-        oae.api.util.template().render($('#oa-fileinfo-template'), {
-            'fileName': publicationProfile.linkedContent.filename,
-            'fileSize': $.fn.fileSize(publicationProfile.linkedContent.size)
-        }, $('#oa-fileinfo-container'));
-    };
-
-    /**
-     * Initialise the form
-     */
-    var initForm = function() {
-        // Fetch and insert the publicationform widget
-        oae.api.widget.insertWidget('publicationform', null, $('#oa-publicationform-container'), null, {
-            'publication': publicationProfile,
-            'disabled': true
+    var fetchPublicationSubmitter = function(callback) {
+        oae.api.user.getUser(publication.linkedContent.createdBy, function(error, user) {
+            publicationSubmitter = user;
+            callback();
         });
     };
 
-    setUpSubmissionProfile();
+    /**
+     * Initialise the page
+     */
+    var initPage = function() {
+        renderPage();
+        insertWidgets();
+        setupPushNotifications();
+        addBinding();
+    };
+
+    /**
+     * Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
+     * The publication id will then be `p:<tenantId>:<publicationId>`. e.g. p:avocet:g1Z-sJMW0n
+     *
+     * @return  {String}    A Publication id
+     */
+    var getPublicationIdFromURL = function() {
+        var url = $.url();
+        var tenantId = url.segment(2);
+        var publicationId = url.segment(3);
+        return tenantId && publicationId ? 'p:' + tenantId + ':' + publicationId : null;
+    };
+
+    /**
+     * Render the different sections of the page
+     */
+    var renderPage = function() {
+        renderPublicationTitle();
+        renderTabs();
+    };
+
+    /**
+     * Render the publication title
+     */
+    var renderPublicationTitle = function() {
+        oae.api.util.template().render($('#oa-publication-title-template'), {
+            'publication': publication
+        }, $('#oa-publication-title-container'));
+    };
+
+    /**
+     * Render the tabs content
+     */
+    var renderTabs = function() {
+        oae.api.util.template().render($('#oa-tabs-template'), {
+            'publication': publication
+        }, $('#oa-tabs-container'));
+    };
+
+    /**
+     * Insert all necessary widgets into the page
+     */
+    var insertWidgets = function() {
+        insertPublicationMetadata();
+        insertPublicationPreview();
+        insertPublicationForm();
+        insertTrackingForm();
+    };
+
+    /**
+     * Insert the publication metadata widget
+     */
+    var insertPublicationMetadata = function() {
+        oae.api.widget.insertWidget('publicationmetadata', null, $('#oa-publication-metadata-container'), null, {
+            'publication': publication,
+            'publicationSubmitter': publicationSubmitter
+        });
+    };
+
+    /**
+     * Insert the publicationform widget
+     */
+    var insertPublicationForm = function() {
+        var $formContainer = $('#oa-publicationform-container');
+        if ($formContainer.length) {
+            oae.api.widget.insertWidget('publicationform', null, $formContainer, null, {
+                'publication': publication,
+                'disabled': !(publication.permissions.isAdmin || publication.permissions.isGlobalAdmin)
+            });
+        }
+    };
+
+    /**
+     * Insert the publication preview widget
+     */
+    var insertPublicationPreview = function() {
+        var content = publication.linkedContent;
+        var $previewContainer = $('#oa-publication-preview-container');
+        if ($previewContainer.length && content) {
+            var widgetToInsert = content.previews && content.previews.pageCount ? 'documentpreview' : 'filepreview';
+            oae.api.widget.insertWidget(widgetToInsert, null, $previewContainer.empty(), null, content);
+        }
+    };
+
+    /**
+     * Insert the ticketform widget
+     */
+    var insertTrackingForm = function() {
+        var $formContainer = $('#oa-trackingform-container');
+        if ($formContainer.length) {
+            oae.api.widget.insertWidget('trackingform', null, $formContainer, null, {
+                'publication': publication
+            });
+        }
+    };
+
+    /**
+     * Subscribe to the 'previews-finished' push notification for the viewed publication
+     */
+    var setupPushNotifications = function() {
+        oae.api.push.subscribe(publication.linkedContentId, 'activity', publication.signature, 'internal', false, function(activity) {
+            if (activity['oae:activityType'] === 'previews-finished') {
+                // Update the linked content profile in the publicationProfile with the one provided in the activity object
+                publication.linkedContent = activity.object;
+                insertPublicationPreview();
+            }
+        });
+    };
+
+    /**
+     * Binds all necessary events
+     */
+    var addBinding = function() {
+        if (publication.permissions.isAdmin || publication.permissions.isGlobalAdmin) {
+            $(document).on('oa.publicationform.submit oa.trackingform.submit', function(event, publicationData) {
+                oae.api.publication.updatePublication(publication.id, publicationData, function(err, data) {
+                    if (!err) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        }
+    };
+
+    fetchPublication(function() {
+        if (publication.linkedContent) {
+            fetchPublicationSubmitter(initPage);
+        } else {
+            initPage();
+        }
+    });
 });

@@ -17,26 +17,61 @@
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
 
-            <!-- BODY -->
-            <div id="oa-fileinfo-template"><!--
-                <div class="container">
-                    <p class="oae-threedots oa-no-margin">${fileName|encodeForHTML}</p>
-                    <p class="oa-no-margin">${fileSize}</p>
-                </div>
-            --></div>
-            <div id="oa-fileinfo-container" class="oa-fileinfo oa-panel-neutral1"><!-- --></div>
-            <div id="oa-publicationinfo-template"><!--
-                <p>This submission was received on ${receivedDate}.</p>
-                <p>The reference number is <strong>${referenceNumber}</strong>.</p>
-                <p>You should get contacted within one working day from the submission date.</p>
-            --></div>
-            <div class="oa-publicationinfo oa-panel-primary-color">
-                <div class="container">
-                    <div id="oa-publicationinfo-container"><!-- --></div>
-                </div>
+            <div class="container">
+                <section class="oa-section oa-metadata-section">
+                    <div id="oa-publication-title-template"><!--
+                        <h3 class="oae-threedots">${publication.displayName}</h3>
+                    --></div>
+                    <header id="oa-publication-title-container"><!-- --></header>
+                    <div id="oa-publication-metadata-container"><!-- --></div>
+                </section>
             </div>
 
-            <div id="oa-publicationform-container"><!-- --></div>
+            <div id="oa-tabs-container"><!-- --></div>
+
+            <div id="oa-tabs-template"><!--
+                <nav class="oa-nav-tabs-wrap">
+                    <div class="container">
+                        <ul class="nav nav-tabs oa-nav-tabs">
+                            <li class="active"><a href="#oa-tab-manuscript" data-toggle="tab">Manuscript</a></li>
+                            {if publication.permissions.isSubmitter || publication.permissions.isAuthor || publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
+                                <li><a href="#oa-tab-submission-details" data-toggle="tab">Submission details</a></li>
+                            {/if}
+                            {if publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
+                                <li><a href="#oa-tab-tracking" data-toggle="tab">Tracking</a></li>
+                            {/if}
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+                    <section class="oa-tab-pane oa-section tab-pane active" id="oa-tab-manuscript">
+                        {if publication.underEmbargo && !(publication.permissions.isAdmin || publication.permissions.isGlobalAdmin || publication.permissions.isAuthor || publication.permissions.isSubmitter)}
+                            <div class="container">
+                                <p class="oa-message-under-embargo"><i class="icon-lock oa-icon-normal"></i> This publication is under embargo{if publication.embargoDate} until ${oae.api.util.utcDateToLocal(publication.embargoDate)}{/if}.</p>
+                            </div>
+                        {else}
+                            <div class="container oa-publication-preview" id="oa-publication-preview-container"></div>
+                        {/if}
+                    </section>
+                    {if publication.permissions.isSubmitter || publication.permissions.isAuthor || publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
+                        <section class="oa-tab-pane tab-pane" id="oa-tab-submission-details">
+                            <div class="oa-fileinfo oa-panel-neutral1">
+                                <div class="container">
+                                    <p class="oae-threedots oa-no-margin">${publication.linkedContent.filename|encodeForHTML}</p>
+                                    <p class="oa-no-margin">${$.fn.fileSize(publication.linkedContent.size)}</p>
+                                </div>
+                            </div>
+                            <div id="oa-publicationform-container"></div>
+                        </section>
+                    {/if}
+                    {if publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
+                        <section class="oa-tab-pane tab-pane" id="oa-tab-tracking">
+                            <div id="oa-trackingform-container"></div>
+                        </section>
+                    {/if}
+                </div>
+            --></div>
 
             <div data-widget="avocetfooter"><!-- --></div>
         </div>

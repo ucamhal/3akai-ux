@@ -71,6 +71,10 @@ body {
  ** Sections **
  **************/
 
+.oa-section {
+    font-size: 18px;
+}
+
 .oa-section h3,
 .oa-section h4,
 .oa-section h5 {
@@ -89,13 +93,7 @@ body {
     font-size: 18px;
 }
 
-.oa-section a,
-.oa-section p,
-.oa-section ul,
-.oa-section ol {
-    font-size: 18px;
-}
-
+.oa-section dt,
 .oa-section strong {
     font-weight: normal;
 }
@@ -117,7 +115,7 @@ body {
  ** Forms **
  ***********/
 
-.oa-form label {
+.oa-form select {
     font-size: 18px;
 }
 
@@ -155,6 +153,10 @@ body {
  ** Modals **
  ************/
 
+.oa-modal-body {
+    font-size: 18px;
+}
+
 .oa-modal-header h4 {
     font-size: 28px;
 }
@@ -166,13 +168,6 @@ body {
 .oa-modal-header h4,
 .oa-modal-body h5 {
     font-weight: normal;
-}
-
-.oa-modal-body p,
-.oa-modal-body a,
-.oa-modal-body ul,
-.oa-modal-body ol {
-    font-size: 18px;
 }
 
 .oa-modal-footer button {

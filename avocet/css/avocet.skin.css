@@ -310,7 +310,8 @@
 /* Normal text */
 .oa-section p,
 .oa-section ul,
-.oa-section ol {
+.oa-section ol,
+.oa-section dl {
     color: #575a5d;
 }
 
