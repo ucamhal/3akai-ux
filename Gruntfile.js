@@ -253,9 +253,39 @@ module.exports = function(grunt) {
         'git-describe': {
             'oae': {}
         },
-        'casperjs': {
-            options: {},
-            files: ['tests/casperjs/suites/*.js']
+        'ghost': {
+            'dist': {
+                'filesSrc': ['node_modules/oae-*/*/tests/*.js'],
+                // CasperJS test command options
+                'options': {
+                    // Specify the files to be included in each test
+                    'includes': [
+                        'tests/casperjs/util/include/admin.js',
+                        'tests/casperjs/util/include/collabdocs.js',
+                        'tests/casperjs/util/include/config.js',
+                        'tests/casperjs/util/include/content.js',
+                        'tests/casperjs/util/include/discussions.js',
+                        'tests/casperjs/util/include/follow.js',
+                        'tests/casperjs/util/include/groups.js',
+                        'tests/casperjs/util/include/users.js',
+                        'tests/casperjs/util/include/util.js'
+                    ],
+                    // Prepare te testing environment before starting the tests
+                    'pre': ['tests/casperjs/util/prep.js'],
+                    // Don't stop casperjs after first test failure
+                    'failFast': false
+                }
+            }
+        },
+        'exec': {
+            'runCasperTest': {
+                cmd: function(path) {
+                    var includes = grunt.config('ghost').dist.options.includes;
+                    var pre = grunt.config('ghost').dist.options.pre;
+
+                    return 'casperjs test --includes=' + includes + ' --pre=' + pre + ' ' + path;
+                }
+            }
         }
     });
 
@@ -266,7 +296,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-git-describe');
     grunt.loadNpmTasks('grunt-ver');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-casperjs');
+    grunt.loadNpmTasks('grunt-ghost');
+    grunt.loadNpmTasks('grunt-exec');
 
     // Task to write the version to a file
     grunt.registerTask('writeVersion', function() {
@@ -494,8 +525,19 @@ module.exports = function(grunt) {
         grunt.task.run('contrib-qunit');
     });
 
-    // Run the CasperJS and QUnit tests
-    grunt.registerTask('test', ['qunit']);
+    // Task to run the CasperJS and QUnit tests
+    grunt.registerTask('test', ['ghost', 'qunit']);
+
+    // Task to run an individual CasperJS test
+    grunt.registerTask('test-file', function(path) {
+        path = path || grunt.option('path');
+
+        if (!path) {
+            return grunt.fail.fatal('Please provide a path to a CasperJS test file. e.g. `grunt test-file --path node_modules/oae-core/accountpreferences/tests/accountpreferences.js`');
+        }
+
+        grunt.task.run('exec:runCasperTest:' + path);
+    });
 
     // Default task for production build
     grunt.registerTask('default', ['clean', 'copy', 'git-describe', 'requirejs', 'touchBootstrap', 'hashFiles', 'writeVersion', 'configNginx']);
