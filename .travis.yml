@@ -75,14 +75,14 @@ before_install:
   - node src/node/server.js &> /dev/null &
 
   # Install Hilary
-  - cd ~/build/avocet-hilary
-  - git clone  --branch master --depth=1 git://github.com/CUL-DigitalServices/avocet-hilary.git ../avocet-hilary
+  - cd ~/build/CUL-DigitalServices
+  - git clone  --branch master --depth=1 git://github.com/CUL-DigitalServices/avocet-hilary.git ./avocet-hilary
   - cd ./avocet-hilary
   - npm install --production
   - node app.js | node_modules/.bin/bunyan -l error &
 
   # Configure avocet-ui / nginx
-  - cd ~/build/avocet-ui
+  - cd ~/build/CUL-DigitalServices/avocet-ui
   - npm install
   - "echo '{\"NGINX_USER\": \"root\",\"NGINX_GROUP\": \"root\",\"NGINX_HOSTNAME\": \"admin.oae.com\",\"UX_HOME\": \"/home/travis/build/CUL-DigitalServices/avocet-ui\",\"LOCAL_FILE_STORAGE_DIRECTORY\": \"/home/travis/build/CUL-DigitalServices/files\"}' > nginx/nginx.json"
   - grunt configNginx
@@ -102,9 +102,6 @@ services:
   - elasticsearch
   - rabbitmq
   - redis-server
-
-script:
-  - grunt test --qunit-host cam.oae.com
 
 after_success:
   # Package and upload to Amazon S3
