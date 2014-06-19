@@ -70,56 +70,12 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
     };
 
     /**
-     * Map a publication to a data structure which can be passed to the publicationform widget.
-     *
-     * @param  {Object}  publication  A publication returned from the API
-     * @return {Object}               Reorganized publication data
-     */
-    var publicationDataToFormData = function(publication) {
-        // Get the funders from the publication object exluding any custom ones (using format 'other:funderName')
-        var funders = _.filter(publication.funders, function(funder) {
-            return !/^other:/.test(funder);
-        });
-        // Get the custom funders from the publication object
-        var otherFunders = _.difference(publication.funders, funders);
-        var otherFundersString = _.map(otherFunders, function(otherFunder) {
-            // Remove the 'other:' part from the string
-            return otherFunder.substr(6);
-        }).join(', ');
-
-        // Default the acceptance date to an empty string
-        var acceptanceDateString = '';
-        // If an acceptance date is set, convert it to DD/MM/YYYY format
-        if (publication.acceptanceDate !== null) {
-            // acceptanceDate is a millisecond timestamp representing the date in UTC. We need obtain the local time equivalent of this time in order to have Globalize.format() format it (as you can't tell Globalize to format the UTC representation)
-            var dateUTC = new Date(publication.acceptanceDate);
-            var dateLocal = new Date(dateUTC.getUTCFullYear(), dateUTC.getUTCMonth(), dateUTC.getUTCDate());
-            acceptanceDateString = Globalize.format(dateLocal, 'd', 'en-GB');
-        }
-
-        return {
-            'title': publication.displayName,
-            'authors': publication.authors.join(', '),
-            'department': publication.department,
-            'journal': publication.journalName,
-            'acceptanceDate': acceptanceDateString,
-            'hasExternalFunders': funders.length || otherFunders.length ? 'yes' : 'no',
-            'funders': otherFunders.length ? funders.concat(['other']) : funders,
-            'otherFunders': otherFundersString,
-            'comment': publication.comments,
-            'email': publication.contactEmail,
-            'useCambridgeAddendum': publication.useCambridgeAddendum !== 'false',
-            'terms': true
-        };
-    };
-
-    /**
      * Initialise the form
      */
     var initForm = function() {
         // Fetch and insert the publicationform widget
         oae.api.widget.insertWidget('publicationform', null, $('#oa-publicationform-container'), null, {
-            'prefill': publicationDataToFormData(publicationProfile),
+            'publication': publicationProfile,
             'disabled': true
         });
     };
