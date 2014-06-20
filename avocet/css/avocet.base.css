@@ -386,3 +386,18 @@ body {
        to clicks by the nav (which covers the right 50% of the page). */
     position: relative;
 }
+
+/* Back bar */
+
+.oa-back-bar-container {
+    background-color: #114F58;
+}
+
+.oa-back-bar {
+    margin: 15px;
+}
+
+.oa-back-bar a {
+    font-size: 18px;
+    color: #FFF;
+}
