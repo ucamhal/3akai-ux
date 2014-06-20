@@ -209,10 +209,6 @@ define(['exports', 'jquery', 'oae.api.config'], function(exports, $, configAPI) 
         // If a `url` parameter is available in the URL, use this as the redirect URL
         if ($.url().param('url')) {
             return $.url().param('url');
-        // When on the landing page, use the me page as the redirect URL
-        } else if (window.location.pathname === '' || window.location.pathname === '/') {
-            return '/me';
-        // On all other pages, redirect back to the current page
         } else {
             return currentLocation;
         }

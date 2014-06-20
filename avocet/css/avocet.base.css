@@ -370,3 +370,18 @@ body {
             border-radius: 0 0 3px 3px;
     padding: 17px 60px;
 }
+
+/* Back bar */
+
+.oa-back-bar-container {
+    background-color: #114F58;
+}
+
+.oa-back-bar {
+    margin: 15px;
+}
+
+.oa-back-bar a {
+    font-size: 18px;
+    color: #FFF;
+}

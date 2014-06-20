@@ -1279,6 +1279,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
         };
 
         /**
+         * Redirect the currently logged in user to the home page.
+         */
+        var home = function() {
+            window.location = '/';
+        };
+
+        /**
          * Redirect the currently user to the me page.
          */
         var me = function() {
@@ -1320,6 +1327,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
 
         return {
             'login': login,
+            'home': home,
             'me': me,
             'accessdenied': accessdenied,
             'notfound': notfound,
