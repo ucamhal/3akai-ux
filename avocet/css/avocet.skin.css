@@ -108,8 +108,6 @@
 
 .oa-modal-body {
     background-color: #F9F9F9;
-    border-bottom-color: #ECEBEA;
-    border-top-color: #FFF;
 }
 
 .oa-modal-body h5 {
@@ -128,7 +126,7 @@
 }
 
 .oa-modal-footer {
-    border-top-color: #FFF;
+    border-top-color: #ECEBEA;
 }
 
 .oa-modal-footer,
