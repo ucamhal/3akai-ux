@@ -65,7 +65,7 @@ define(['jquery', 'oae.core', 'globalize'], function($, oae) {
     var renderFileInfo = function() {
         oae.api.util.template().render($('#oa-fileinfo-template'), {
             'fileName': publicationProfile.linkedContent.filename,
-            'fileSize': $.fn.fileSize(publicationProfile.linkedContent.size),
+            'fileSize': $.fn.fileSize(publicationProfile.linkedContent.size)
         }, $('#oa-fileinfo-container'));
     };
 

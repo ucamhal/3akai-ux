@@ -20,7 +20,7 @@ define(['oae.core'], function(oae) {
      */
     var addBinding = function() {
         // See if there is a link to a specific section in the page
-        var linkedSection = $.url().attr().fragment.replace(/[^\w-]+/g, "");
+        var linkedSection = $.url().attr().fragment.replace(/[^\w\-]+/g, '');
         // Select the linked section
         var $jumpTo = $('#' + linkedSection);
         if ($jumpTo.length) {
