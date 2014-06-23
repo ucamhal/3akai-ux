@@ -21,7 +21,7 @@ define(['oae.core'], function(oae) {
     var renderPage = function() {
         oae.api.util.template().render($('#home-content-template'), null, $('#home-content-container'));
         oae.api.widget.loadWidgets($('#home-content-container'));
-    }
+    };
 
     renderPage();
 });
