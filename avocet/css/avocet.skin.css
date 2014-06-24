@@ -158,12 +158,11 @@
     border-bottom-color: transparent;
 }
 
-.oa-site-header .oa-subnav {
+.oa-site-header .oa-nav {
     background: #F7F5F2;
 }
 
-.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item,
-.oa-site-header .oa-subnav .oa-nav-item {
+.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item {
     color: #323232;
 }
 
@@ -173,10 +172,7 @@
     border-bottom-color: #CBCBCB;
 }
 
-.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item:hover,
-
-.oa-site-header .oa-subnav .oa-nav-item:hover,
-.oa-site-header .oa-subnav .oa-nav-item.active {
+.oa-site-header .oa-nav:not(.depth-1) .oa-nav-item:hover {
     border-bottom-color: #575A5D;
     color: #575A5D;
 }
