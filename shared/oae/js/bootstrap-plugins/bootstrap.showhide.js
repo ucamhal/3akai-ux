@@ -26,16 +26,25 @@
  */
  define(['jquery'], function($) {
 
-    /** @returns A show()/hide() function which adds & removes a class when showing/hiding. */
-    var makeShowHide = function(addClass, removeClass, baseImplementation) {
+    /**
+     * Mark elements matching a pattern with a class when applying a jQuery function to them.
+     *
+     * @param   {String}    addClass        Class(es) to add to the elements
+     * @param   {String}    removeClass     Class(es) to remove from the elements
+     * @param   {String}    classFilter     A jQuery selector which matches elements which should have classes added/removed. Elements not matching this pattern will be passed through to baseImplementation unchanged.
+     * @return  {Function}                  A show()/hide() function which adds & removes a class when showing/hiding.
+     */
+    var makeShowHide = function(addClass, removeClass, classFilter, baseImplementation) {
         return function showHide() {
-            if(arguments.length !== 0) {
-                if(console && console.warn) {
+            if (arguments.length !== 0) {
+                if (console && console.warn) {
                     console.warn("Bootstrap compatibility for $.show()/$.hide() is not implemented for show()/hide() calls with > 0 arguments. Falling back to jQuery's default implementation.");
                 }
-            }
-            else {
-                this.removeClass(removeClass).addClass(addClass);
+            } else {
+                // Only add/remove classes to elements matching the filter
+                this.filter(classFilter)
+                    .removeClass(removeClass)
+                    .addClass(addClass);
             }
             return baseImplementation.apply(this, arguments);
         };
@@ -48,8 +57,8 @@
     };
 
     // Override $(xx).show() and $(xx).hide() with our Bootstrap 3 compatible versions.
-    $.fn.show = makeShowHide("show", "hide hidden", $.fn.show);
-    $.fn.hide = makeShowHide("hidden", "show", $.fn.hide);
+    $.fn.show = makeShowHide('show', 'hide hidden', '.show,.hide,.hidden', $.fn.show);
+    $.fn.hide = makeShowHide('hidden', 'show', '.show,.hide,.hidden', $.fn.hide);
 
     return original;
 });
