@@ -55,6 +55,7 @@ define([
          */
         'bootstrap.focus',
         'bootstrap.modal',
+        'bootstrap.showhide',
         'jquery.browse-focus',
         'jquery.clip',
         'jquery.dnd-upload',

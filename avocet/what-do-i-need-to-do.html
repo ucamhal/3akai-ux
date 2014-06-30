@@ -17,7 +17,7 @@
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
 
-            <div class="oa-content-banner oa-panel-primary">
+            <div id="section-todo" class="oa-content-banner oa-panel-primary">
                 <div class="container oa-content-container">
                     <header>
                         <h2>What do I need to do?</h2>
@@ -27,145 +27,204 @@
                 </div>
             </div>
 
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Which manuscripts to upload</h3>
-                    </header>
-                    <p>Upload articles or conference proceedings (with an ISSN). Monographs, books and other book chapters do not need to be uploaded.</p>
-                </div>
-            </section>
+            <div class="oa-navigation-area">
 
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Which version to upload</h3>
-                    </header>
-                    <img class="center-block img-responsive" src="/avocet/images/infographic-what-version.png" alt="Which version to upload">
-                    <p>You should upload your Author’s Accepted Manuscript. This is your version of the manuscript after peer review and including any final changes, but before publisher typesetting or copy-editing by the publisher.</p>
-                    <p>Please do not send final versions, or typeset proofs.</p>
-                    <p>You should upload the manuscript before you sign the publisher’s Copyright Transfer Agreement. <a href="#section-your-copyright-options">Find out more about your copyright options</a>.</p>
-                </div>
-            </section>
+                <div data-widget="avocetfloatingnavigation"
+                     data-scroll-element="body"
+                     data-nav-title="What do I need to do?"
+                     data-nav-entries='[
+                        {
+                            "target": "#section-manuscript",
+                            "name": "Which manuscripts to upload"
+                        },
+                        {
+                            "target": "#section-version",
+                            "name": "Which version to upload"
+                        },
+                        {
+                            "target": "#section-formats",
+                            "name": "File formats we accept"
+                        },
+                        {
+                            "target": "#section-open-access-charges",
+                            "name": "Open Access charges (APCs)"
+                        },
+                        {
+                            "target": "#section-fees",
+                            "name": "Other publisher fees"
+                        },
+                        {
+                            "target": "#section-copyright-retention",
+                            "name": "Copyright"
+                        },
+                        {
+                            "target": "#section-your-copyright-options",
+                            "name": "Your Copyright Options",
+                            "children": [
+                                {
+                                    "target": "#section-cta",
+                                    "name": "1. Sign a Copyright Transfer Agreement"
+                                },
+                                {
+                                    "target": "#section-addendum",
+                                    "name": "2. Use a Scholar’s Addendum"
+                                },
+                                {
+                                    "target": "#section-copyright-existing-agreement",
+                                    "name": "I’ve already signed an agreement"
+                                }
+                            ]
+                        },
+                        {
+                            "target": "#section-licences",
+                            "name": "Licences"
+                        },
+                        {
+                            "target": "#section-funder-acknowledgment",
+                            "name": "Acknowledging funders"
+                        }
+                     ]'><!-- --></div>
 
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>File formats we accept</h3>
-                    </header>
-                    <p>We prefer Word and PDF files.</p>
-                </div>
-            </section>
-
-            <section id="section-open-access-charges" class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Open Access charges (APCs)</h3>
-                    </header>
-                    <p>In many cases you can comply with HEFCE’s requirements without paying a fee.</p>
-                    <p>The University has grants from RCUK and the Wellcome Trust to support their Open Access policies. Upload your manuscript and we’ll let you know if your paper is eligible for these funds. It’s important that you contact us before selecting an Open Access option from your publisher.</p>
-                    <p>Funders other than RCUK or Wellcome may have Open Access policies, some of which can only be met using a paid option - we can advise you.</p>
-                    <p>If you have any other queries please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
-                </div>
-            </section>
-
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Other publisher fees</h3>
-                    </header>
-                    <p>Some journals charge other fees such as submission fees, excess page charges or colour charges.</p>
-                    <p>For RCUK-funded articles that comply with RCUK Open Access policies, the University can pay for page and colour charges.</p>
-                    <p>The University cannot pay submission fees, or other funders’ colour, page and image charges; these are the responsibility of the author.</p>
-                    <p>If you have any queries or require guidance then please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
-                </div>
-            </section>
-
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Copyright</h3>
-                    </header>
-                    <p>When your article is accepted, the publisher will ask you to sign a Copyright Transfer Agreement (CTA). This is standard in most traditional publication agreements. It is important for you to contact us <i>before</i> signing this so that we can advise you.</p>
-                </div>
-            </section>
-
-            <section id="section-your-copyright-options" class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Your Copyright Options</h3>
-                    </header>
-                    <p>Your rights will vary depending on your publisher. Many Copyright Transfer Agreements already allow you to comply with HEFCE and some other funders’ Open Access policies.</p>
-                    <p>Publishers may choose to licence back some rights in your work e.g. for use in teaching or to promote your research. You may prefer to retain your rights, rather than give them to the publisher and try to get them back later.</p>
-                    <p>You have two copyright options;</p>
-
-                    <article>
+                <section id="section-manuscript" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
                         <header>
-                            <h4>1. Sign a Copyright Transfer Agreement</h4>
+                            <h3>Which manuscripts to upload</h3>
                         </header>
 
-                        <p>A Copyright Transfer Agreement (CTA) may give your publisher copyright and might affect how and when you can make your manuscript Open Access.</p>
-                        <p>We’ll check your publisher’s model for licensing and Open Access when you <a href="/me" class="oa-link">upload your manuscript</a>.</p>
-                    </article>
+                        <p>Upload articles or conference proceedings (with an ISSN). Monographs, books and other book chapters do not need to be uploaded.</p>
+                    </div>
+                </section>
 
-                    <article>
+                <section id="section-version" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
                         <header>
-                            <h4>2. Use a Scholar’s Addendum</h4>
+                            <h3>Which version to upload</h3>
+                        </header>
+                        <img class="center-block img-responsive" src="/avocet/images/infographic-what-version.png" alt="Which version to upload">
+                        <p>You should upload your Author’s Accepted Manuscript. This is your version of the manuscript after peer review and including any final changes, but before publisher typesetting or copy-editing by the publisher.</p>
+                        <p>Please do not send final versions, or typeset proofs.</p>
+                        <p>You should upload the manuscript before you sign the publisher’s Copyright Transfer Agreement. <a href="#section-your-copyright-options">Find out more about your copyright options</a>.</p>
+                    </div>
+                </section>
+
+                <section id="section-formats" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>File formats we accept</h3>
+                        </header>
+                        <p>We prefer Word and PDF files.</p>
+                    </div>
+                </section>
+
+                <section id="section-open-access-charges" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Open Access charges (APCs)</h3>
+                        </header>
+                        <p>In many cases you can comply with HEFCE’s requirements without paying a fee.</p>
+                        <p>The University has grants from RCUK and the Wellcome Trust to support their Open Access policies. Upload your manuscript and we’ll let you know if your paper is eligible for these funds. It’s important that you contact us before selecting an Open Access option from your publisher.</p>
+                        <p>Funders other than RCUK or Wellcome may have Open Access policies, some of which can only be met using a paid option - we can advise you.</p>
+                        <p>If you have any other queries please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
+                    </div>
+                </section>
+
+                <section id="section-fees" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Other publisher fees</h3>
+                        </header>
+                        <p>Some journals charge other fees such as submission fees, excess page charges or colour charges.</p>
+                        <p>For RCUK-funded articles that comply with RCUK Open Access policies, the University can pay for page and colour charges.</p>
+                        <p>The University cannot pay submission fees, or other funders’ colour, page and image charges; these are the responsibility of the author.</p>
+                        <p>If you have any queries or require guidance then please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
+                    </div>
+                </section>
+
+                <section id="section-copyright-retention" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Copyright</h3>
+                        </header>
+                        <p>When your article is accepted, the publisher will ask you to sign a Copyright Transfer Agreement (CTA). This is standard in most traditional publication agreements. It is important for you to contact us <i>before</i> signing this so that we can advise you.</p>
+                    </div>
+                </section>
+
+                <section id="section-your-copyright-options" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Your Copyright Options</h3>
+                        </header>
+                        <p>Your rights will vary depending on your publisher. Many Copyright Transfer Agreements already allow you to comply with HEFCE and some other funders’ Open Access policies.</p>
+                        <p>Publishers may choose to licence back some rights in your work e.g. for use in teaching or to promote your research. You may prefer to retain your rights, rather than give them to the publisher and try to get them back later.</p>
+                        <p>You have two copyright options;</p>
+
+                        <article id="section-cta">
+                            <header>
+                                <h4>1. Sign a Copyright Transfer Agreement</h4>
+                            </header>
+
+                            <p>A Copyright Transfer Agreement (CTA) may give your publisher copyright and might affect how and when you can make your manuscript Open Access.</p>
+                            <p>We’ll check your publisher’s model for licensing and Open Access when you <a href="/me" class="oa-link">upload your manuscript</a>.</p>
+                        </article>
+
+                        <article id="section-addendum">
+                            <header>
+                                <h4>2. Use a Scholar’s Addendum</h4>
+                            </header>
+
+                            <p>The University of Cambridge Scholars' Addendum enables you to change the traditional agreement you have with your publisher. You still transfer copyright, but include a proviso covering digital usage and access.</p>
+                            <p>How to use the Addendum:</p>
+                            <ol>
+                                <li data-widget="addendumlink"><!-- --></li>
+                                <li>Print the Addendum and add the manuscript and journal titles, corresponding author and publisher names.</li>
+                                <li>Date and sign the agreement.</li>
+                                <li>Attach the agreement to the publisher’s Copyright Transfer Agreement.</li>
+                            </ol>
+                            <p>If you need advice and guidance on how to approach your publisher and use the Addendum with your existing agreement, please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
+                            <p><a href="http://www.sparc.arl.org/initiatives/author-rights" target="_blank" class="oa-link">There are alternative Addendums available here <i class="icon-external-link oa-icon-normal"></i></a>.</p>
+                        </article>
+
+                        <article id="section-copyright-existing-agreement">
+                            <header>
+                                <h4>I’ve already signed an agreement</h4>
+                            </header>
+                            <p>If you can, it’s better to contact us before you sign an agreement. If you’ve already signed we can check whether the agreement allows you to comply with HEFCE and your other funders’ Open Access policies.</p>
+                            <p>If it doesn’t comply, we can liaise with your publisher and help you negotiate amended rights. If you need advice and guidance please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="section-licences" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Licences</h3>
+                        </header>
+                        <p>Licences are used to tell the reader what rights they are being given in relation to the paper/article when they access it. Different publishers offer a range of licensing agreements. Licences affect how your work can be copied, distributed, shared and how others can use it, commercially and non-commercially.</p>
+                        <p>Some funders (e.g. RCUK, Wellcome Trust) specify what licence Open Access content should be published under. If this applies to your article, we'll check whether your journal offers the right licence and advise you if you need to take any further action.</p>
+                    </div>
+                </section>
+
+                <section id="section-funder-acknowledgment" class="oa-section oa-content-section">
+                    <div class="container oa-content-container">
+                        <header>
+                            <h3>Acknowledging funders</h3>
                         </header>
 
-                        <p>The University of Cambridge Scholars' Addendum enables you to change the traditional agreement you have with your publisher. You still transfer copyright, but include a proviso covering digital usage and access.</p>
-                        <p>How to use the Addendum:</p>
-                        <ol>
-                            <li data-widget="addendumlink"><!-- --></li>
-                            <li>Print the Addendum and add the manuscript and journal titles, corresponding author and publisher names.</li>
-                            <li>Date and sign the agreement.</li>
-                            <li>Attach the agreement to the publisher’s Copyright Transfer Agreement.</li>
-                        </ol>
-                        <p>If you need advice and guidance on how to approach your publisher and use the Addendum with your existing agreement, please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
-                        <p><a href="http://www.sparc.arl.org/initiatives/author-rights" target="_blank" class="oa-link">There are alternative Addendums available here <i class="icon-external-link oa-icon-normal"></i></a>.</p>
-                    </article>
+                        <p>Most funders require you to acknowledge your funder when your manuscript is published.</p>
+                        <p>The Research Information Network has developed a standard acknowledgment which is acceptable to all funders. Acknowledgements should follow these guidelines;</p>
+                        <ul>
+                            <li>the funding agency name should be written in full</li>
+                            <li>the grant number should be in square brackets</li>
+                            <li>multiple grant numbers should be separated by a comma and space</li>
+                            <li>funding agencies should be separated by a semi-colon.</li>
+                        </ul>
+                        <p>E.g. 'This work was supported by the Wellcome Trust [grant number], [grant number]; Medical Research Council [grant number] and Cancer Research UK [grant number]</p>
+                        <p>If you have any queries or require guidance then please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
 
-                    <article>
-                        <header>
-                            <h4>I’ve already signed an agreement</h4>
-                        </header>
-                        <p>If you can, it’s better to contact us before you sign an agreement. If you’ve already signed we can check whether the agreement allows you to comply with HEFCE and your other funders’ Open Access policies.</p>
-                        <p>If it doesn’t comply, we can liaise with your publisher and help you negotiate amended rights. If you need advice and guidance please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Licences</h3>
-                    </header>
-
-                    <p>Licences are used to tell the reader what rights they are being given in relation to the paper/article when they access it. Different publishers offer a range of licensing agreements. Licences affect how your work can be copied, distributed, shared and how others can use it, commercially and non-commercially.</p>
-                    <p>Some funders (e.g. RCUK, Wellcome Trust) specify what licence Open Access content should be published under. If this applies to your article, we'll check whether your journal offers the right licence and advise you if you need to take any further action.</p>
-                </div>
-            </section>
-
-            <section class="oa-section oa-content-section">
-                <div class="container oa-content-container">
-                    <header>
-                        <h3>Acknowledging funders</h3>
-                    </header>
-
-                    <p>Most funders require you to acknowledge your funder when your manuscript is published.</p>
-                    <p>The Research Information Network has developed a standard acknowledgment which is acceptable to all funders. Acknowledgements should follow these guidelines;</p>
-                    <ul>
-                        <li>the funding agency name should be written in full</li>
-                        <li>the grant number should be in square brackets</li>
-                        <li>multiple grant numbers should be separated by a comma and space</li>
-                        <li>funding agencies should be separated by a semi-colon.</li>
-                    </ul>
-                    <p>E.g. 'This work was supported by the Wellcome Trust [grant number], [grant number]; Medical Research Council [grant number] and Cancer Research UK [grant number]</p>
-                    <p>If you have any queries or require guidance then please <a href="mailto:info@openaccess.cam.ac.uk" title="__MSG__CONTACT_US_VIA_EMAIL__">contact us</a>.</p>
-
-                    <p><a href="http://rinarchive.jisc-collections.ac.uk/our-work/research-funding-policy-and-guidance/acknowledgement-funders-journal-articles" target="_blank" title="Read full details of the RIN guidelines on the RIN website">Read full details of the RIN guidelines <i class="icon-external-link oa-icon-normal"></i></a>. If you don’t correctly acknowledge your funder, it can cause problems, such as making your article ineligible for funds from RCUK or Wellcome block grants.</p>
-                </div>
-            </section>
+                        <p><a href="http://rinarchive.jisc-collections.ac.uk/our-work/research-funding-policy-and-guidance/acknowledgement-funders-journal-articles" target="_blank" title="Read full details of the RIN guidelines on the RIN website">Read full details of the RIN guidelines <i class="icon-external-link oa-icon-normal"></i></a>. If you don’t correctly acknowledge your funder, it can cause problems, such as making your article ineligible for funds from RCUK or Wellcome block grants.</p>
+                    </div>
+                </section>
+            </div>
 
             <!-- FOOTER -->
             <div data-widget="avocetfooter"><!-- --></div>
