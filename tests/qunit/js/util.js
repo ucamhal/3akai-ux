@@ -352,7 +352,19 @@ define(['exports', 'jquery', 'underscore', 'oae.core', 'jquery.properties-parser
                 '/ui/index.html': null,
                 '/ui/me.html': null,
                 '/ui/search.html': null,
-                '/ui/user.html': null
+                '/ui/user.html': null,
+
+                // Avocet files
+                '/avocet/index.html': null,
+                '/avocet/publications.html': null,
+                '/avocet/upload.html': null,
+                '/avocet/what-do-i-need-to-do.html': null,
+                '/avocet/what-is-changing.html': null,
+                '/avocet/what-is-open-access.html': null,
+                '/avocet/errors/accessdenied.html': null,
+                '/avocet/errors/noscript.html': null,
+                '/avocet/errors/notfound.html': null,
+                '/avocet/errors/unavailable.html': null
             },
             'apiJS': {
                 '/shared/oae/api/oae.api.authentication.js': null,
@@ -370,7 +382,7 @@ define(['exports', 'jquery', 'underscore', 'oae.core', 'jquery.properties-parser
                 '/shared/oae/api/oae.api.util.js': null,
                 '/shared/oae/api/oae.api.widget.js': null,
                 '/shared/oae/api/oae.bootstrap.js': null,
-                '/shared/oae/api/oae.core.js': null,
+                '/shared/oae/api/oae.core.js': null
             },
             'oaePlugins': {
                 '/shared/oae/js/activityadapter.js': null,
@@ -386,12 +398,27 @@ define(['exports', 'jquery', 'underscore', 'oae.core', 'jquery.properties-parser
                 '/shared/oae/js/jquery-plugins/jquery.update-picture.js': null,
                 '/shared/oae/js/mimetypes.js': null
             },
-            'mainJS': {},
+            'mainJS': {
+                // Avocet files
+                '/avocet/js/content.js': null,
+                '/avocet/js/index.js': null,
+                '/avocet/js/publications.js': null,
+                '/avocet/js/upload.js': null,
+                '/avocet/errors/js/accessdenied.js': null,
+                '/avocet/errors/js/unavailable.js': null
+            },
             'mainCSS': {
                 '/shared/oae/css/oae.base.css': null,
                 '/shared/oae/css/oae.components.css': null,
                 '/shared/oae/css/oae.core.css': null,
-                '/shared/oae/css/oae.skin.static.css': null
+                '/shared/oae/css/oae.skin.static.css': null,
+
+                // Avocet files
+                '/avocet/css/avocet.base.css': null,
+                '/avocet/css/avocet.css': null,
+                '/avocet/css/avocet.fonts.css': null,
+                '/avocet/css/avocet.skin.css': null,
+                '/avocet/errors/css/avocet.error.css': null
             }
         };
 

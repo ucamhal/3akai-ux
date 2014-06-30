@@ -57,13 +57,13 @@ var _expose = function(exports) {
      */
     var _adaptActivity = function(context, me, activity, sanitization) {
         // Move the relevant items (comments, previews, ..) to the top
-        _prepareActivity(activity);
+        _prepareActivity(me, activity);
 
         // Generate an i18nable summary for this activity
         var summary = _generateSummary(me, activity, sanitization);
 
         // Generate the primary actor view
-        var primaryActor = _generatePrimaryActor(activity);
+        var primaryActor = _generatePrimaryActor(me, activity);
 
         // Generate the activity preview items
         var activityItems = _generateActivityItems(context, activity);
@@ -119,10 +119,12 @@ var _expose = function(exports) {
     /**
      * A model that holds the necessary data to generate a beautiful tile
      *
+     * @param  {User}               [me]        The currently loggedin user
      * @param  {ActivityEntity}     entity      The entity that should be used to generate the view
      */
-    var ActivityViewItem = function(entity) {
+    var ActivityViewItem = function(me, entity) {
         var that = {
+            'oae:id': entity['oae:id'],
             'id': entity.id,
             'displayName': entity.displayName,
             'profilePath': entity['oae:profilePath'],
@@ -132,14 +134,23 @@ var _expose = function(exports) {
             'visibility': entity['oae:visibility']
         };
 
-        if (entity.image && entity.image.url) {
-            that.thumbnailUrl = entity.image.url;
-        }
-        if (entity['oae:wideImage'] && entity['oae:wideImage'].url) {
-            that.wideImageUrl = entity['oae:wideImage'].url;
-        }
-        if (entity['oae:mimeType']) {
-            that.mime = entity['oae:mimeType'];
+        if (me && me.id === entity['oae:id'] && me.picture) {
+            if (entity['image']) {
+                that['image'] = entity['image'];
+                that['image'].url = me.picture.small || me.picture.medium;
+            } else {
+                that.thumbnailUrl = me.picture.small || me.picture.medium;
+            }
+        } else {
+            if (entity.image && entity.image.url) {
+                that.thumbnailUrl = entity.image.url;
+            }
+            if (entity['oae:wideImage'] && entity['oae:wideImage'].url) {
+                that.wideImageUrl = entity['oae:wideImage'].url;
+            }
+            if (entity['oae:mimeType']) {
+                that.mime = entity['oae:mimeType'];
+            }
         }
 
         return that;
@@ -158,10 +169,11 @@ var _expose = function(exports) {
      *  - comments are processed into an ordered set
      *  - each comment is assigned the level in the comment tree
      *
+     * @param  {User}       me          The currently loggedin user
      * @param  {Activity}   activity    The activity to prepare
      * @api private
      */
-    var _prepareActivity = function(activity) {
+    var _prepareActivity = function(me, activity) {
         // Sort the entity collections based on whether or not they have a thumbnail
         if (activity.actor['oae:collection']) {
             // Reverse the items so the item that was changed last is shown first
@@ -201,10 +213,10 @@ var _expose = function(exports) {
 
             // Prepare each comment
             latestComments.forEach(function(comment) {
-                comment.activityItem = new ActivityViewItem(comment.author);
+                comment.activityItem = new ActivityViewItem(me, comment.author);
             });
             allComments.forEach(function(comment) {
-                comment.activityItem = new ActivityViewItem(comment.author);
+                comment.activityItem = new ActivityViewItem(me, comment.author);
             });
 
             activity.object.objectType = 'comments';
@@ -321,17 +333,18 @@ var _expose = function(exports) {
      * Get the primary view for an activity. This is usually the actor
      * or in case of an aggregated activity, the first in the collection of actors
      *
+     * @param  {User}               me          The currently loggedin user
      * @param  {Activity}           activity    The activity for which to return the primary actor
      * @return {ActivityViewItem}               The object that identifies the primary actor
      * @api private
      */
-    var _generatePrimaryActor = function(activity) {
+    var _generatePrimaryActor = function(me, activity) {
         var actor = activity.actor;
         if (actor['oae:collection']) {
             actor = actor['oae:collection'][0];
         }
 
-        return new ActivityViewItem(actor);
+        return new ActivityViewItem(me, actor);
     };
 
     /**
@@ -368,11 +381,11 @@ var _expose = function(exports) {
 
         var items = [];
         if (previewObj['oae:wideImage']) {
-            items.push(new ActivityViewItem(previewObj));
+            items.push(new ActivityViewItem(null, previewObj));
         } else {
             var previewItems = (previewObj['oae:collection'] || [previewObj]);
             items = previewItems.map(function(previewItem) {
-                return new ActivityViewItem(previewItem);
+                return new ActivityViewItem(null, previewItem);
             });
         }
 
@@ -383,6 +396,41 @@ var _expose = function(exports) {
     ///////////////
     // Summaries //
     ///////////////
+
+    /**
+     * Given a current set of properties, property key and an entity, attach the values for the
+     * entity that can be used to render them in the activity template
+     *
+     * @param  {Object}     properties                              The arbitrary activity summary properties
+     * @param  {String}     propertyKey                             The base key for the property (e.g., actor1, actor2, object1, etc...)
+     * @param  {Object}     entity                                  The entity for which to create the summary properties
+     * @param  {Function}   sanitization.encodeForHTML              Encode a value such that it is safe to be embedded into an HTML tag
+     * @param  {Function}   sanitization.encodeForHTMLAttribute     Encode a value such that it is safe to be embedded into an HTML attribute
+     * @param  {Function}   sanitization.encodeForURL               Encode a value such that it is safe to be used as a URL fragment
+     * @api private
+     */
+    var _setSummaryPropertiesForEntity = function(properties, propertyKey, entity, sanitization) {
+        var displayNameKey = propertyKey;
+        var profilePathKey = propertyKey + 'URL';
+        var displayLinkKey = propertyKey + 'Link';
+        var tenantDisplayNameKey = propertyKey + 'Tenant';
+
+        // This holds the "display name" of the entity
+        properties[displayNameKey] = sanitization.encodeForHTML(entity.displayName);
+        properties[profilePathKey] = entity['oae:profilePath'];
+
+        // If the profile path was set, it indicates that we have access to view the user, therefore
+        // we should display a link. If not specified, we should show plain-text
+        if (properties[profilePathKey]) {
+            properties[displayLinkKey] = '<a href="' + properties[profilePathKey] + '">' + properties[displayNameKey] + '</a>';
+        } else {
+            properties[displayLinkKey] = '<span>' + properties[displayNameKey] + '</span>';
+        }
+
+        if (entity['oae:tenant']) {
+            properties[tenantDisplayNameKey] = sanitization.encodeForHTML(entity['oae:tenant'].displayName);
+        }
+    };
 
     /**
      * Given an activity, generate an approriate summary
@@ -406,17 +454,19 @@ var _expose = function(exports) {
         if (activity.actor['oae:collection']) {
             actor1Obj = activity.actor['oae:collection'][0];
             if (activity.actor['oae:collection'].length > 1) {
+                // Apply the actor count information to the summary properties
                 properties.actorCount = activity.actor['oae:collection'].length;
                 properties.actorCountMinusOne = properties.actorCount - 1;
-                properties.actor2 = sanitization.encodeForHTML(activity.actor['oae:collection'][1].displayName);
-                properties.actor2URL = activity.actor['oae:collection'][1]['oae:profilePath'];
+
+                // Apply additional actor information
+                _setSummaryPropertiesForEntity(properties, 'actor2', activity.actor['oae:collection'][1], sanitization);
             }
         } else {
             actor1Obj = activity.actor;
         }
-        properties.actor1 = sanitization.encodeForHTML(actor1Obj.displayName);
-        properties.actor1URL = actor1Obj['oae:profilePath'];
 
+        // Apply the actor1 information to the summary properties
+        _setSummaryPropertiesForEntity(properties, 'actor1', actor1Obj, sanitization);
 
         // Prepare the object-related variables that will be present in the i18n keys
         var object1Obj = null;
@@ -424,19 +474,19 @@ var _expose = function(exports) {
         if (activity.object['oae:collection']) {
             object1Obj = activity.object['oae:collection'][0];
             if (activity.object['oae:collection'].length > 1) {
+                // Apply the object count information to the summary properties
                 properties.objectCount = activity.object['oae:collection'].length;
                 properties.objectCountMinusOne = properties.objectCount - 1;
-                properties.object2 = sanitization.encodeForHTML(activity.object['oae:collection'][1].displayName);
-                properties.object2URL = activity.object['oae:collection'][1]['oae:profilePath'];
+
+                // Apply additional object information
+                _setSummaryPropertiesForEntity(properties, 'object2', activity.object['oae:collection'][1], sanitization);
             }
         } else {
             object1Obj = activity.object;
         }
-        properties.object1 = sanitization.encodeForHTML(object1Obj.displayName);
-        properties.object1URL = object1Obj['oae:profilePath'];
-        if (object1Obj['oae:tenant']) {
-            properties.object1Tenant = sanitization.encodeForHTML(object1Obj['oae:tenant'].displayName);
-        }
+
+        // Apply the object1 information to the summary properties
+        _setSummaryPropertiesForEntity(properties, 'object1', object1Obj, sanitization);
 
         // Prepare the target-related variables that will be present in the i18n keys
         var target1Obj = null;
@@ -445,16 +495,19 @@ var _expose = function(exports) {
             if (activity.target['oae:collection']) {
                 target1Obj = activity.target['oae:collection'][0];
                 if (activity.target['oae:collection'].length > 1) {
+                    // Apply the target count information to the summary properties
                     properties.targetCount = activity.target['oae:collection'].length;
                     properties.targetCountMinusOne = properties.targetCount - 1;
-                    properties.target2 = sanitization.encodeForHTML(activity.target['oae:collection'][1].displayName);
-                    properties.target2URL = activity.target['oae:collection'][1]['oae:profilePath'];
+
+                    // Apply additional target information
+                    _setSummaryPropertiesForEntity(properties, 'target2', activity.target['oae:collection'][1], sanitization);
                 }
             } else {
                 target1Obj = activity.target;
             }
-            properties.target1 = sanitization.encodeForHTML(target1Obj.displayName);
-            properties.target1URL = target1Obj['oae:profilePath'];
+
+            // Apply the target1 information to the summary properties
+            _setSummaryPropertiesForEntity(properties, 'target1', target1Obj, sanitization);
         }
 
         // Depending on the activity type, we render a different template that is specific to that activity,
