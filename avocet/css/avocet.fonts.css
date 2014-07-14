@@ -54,6 +54,22 @@ body {
     font-size: 1em;
 }
 
+/**************
+ ** Nav tabs **
+ **************/
+
+.oa-nav-tabs {
+    font-size: 18px;
+}
+
+/*************************
+ ** Navigation back bar **
+ *************************/
+
+.oa-back-bar a {
+    font-size: 18px;
+}
+
 /************************
  ** Highlighted panels **
  ************************/
@@ -146,6 +162,14 @@ body {
  **********************/
 
 .oa-publicationinfo p {
+    font-size: 18px;
+}
+
+/*************************
+ ** Publication preview **
+ *************************/
+
+.oa-publication-preview #documentpreview-toolbar {
     font-size: 18px;
 }
 

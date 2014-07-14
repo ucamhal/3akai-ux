@@ -146,7 +146,7 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Insert the ticketform widget
+     * Insert the trackingform widget
      */
     var insertTrackingForm = function() {
         var $formContainer = $('#oa-trackingform-container');

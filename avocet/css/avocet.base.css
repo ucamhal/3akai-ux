@@ -24,7 +24,9 @@ body {
     padding-right: 0;
 }
 
-i {
+[class^="icon-"],
+[class*=" icon-"] {
+    /* This is here to override OAE's icon colour styles to for example '.icon-ok' */
     color: inherit!important;
 }
 
@@ -432,17 +434,8 @@ i {
 }
 
 /* Back bar */
-.oa-back-bar-container {
-    background-color: #114F58;
-}
-
 .oa-back-bar {
     margin: 15px;
-}
-
-.oa-back-bar a {
-    font-size: 18px;
-    color: #FFF;
 }
 
 /**********
@@ -451,42 +444,24 @@ i {
 
 .oa-nav-tabs {
     border: none;
-    font-size: 18px;
 }
 
 .oa-nav-tabs-wrap {
-    border-bottom: 1px solid #e3e3e2;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 
 .oa-nav-tabs li a {
     padding: 12px 49px;
-    color: #575a5d;
-    border-color: #e3e3e2;
     margin: 0 5px;
-}
-
-.oa-nav-tab li a:hover {
-    border-color: #e3e3e2;
-    background-color: #e3e3e2;
 }
 
 .oa-nav-tabs li:first-child a {
     margin-left: 0;
 }
 
-.oa-nav-tabs > li.active > a,
-.oa-nav-tabs > li.active > a:hover,
-.oa-nav-tabs > li.active > a:focus {
-    background: #F9F9F9;
-    color: #575a5d;
-}
-
 .oa-nav-tabs li a:active {
     opacity: 1;
-}
-
-.oa-tab-pane {
-    background: #F9F9F9;
 }
 
 .oa-tab-pane .oa-fileinfo {
@@ -514,11 +489,6 @@ i {
 
 .oa-publication-preview .btn-link {
     color: inherit;
-}
-
-.oa-publication-preview #documentpreview-toolbar {
-    color: #939495;
-    font-size: 18px;
 }
 
 /*****************
