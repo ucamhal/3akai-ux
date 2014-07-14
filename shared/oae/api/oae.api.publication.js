@@ -40,6 +40,31 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
         });
     };
 
+    var updatePublication = exports.updatePublication = function(publicationId, publication, callback) {
+        if (!publicationId) {
+            throw new Error('A valid publication id should be provided');
+        }
+
+        if (!publication) {
+            throw new Error('An object specifying the fields to be updated should be provided');
+        }
+
+        $.ajax({
+            'type': 'POST',
+            'url': '/api/publications/' + publicationId,
+            'contentType': 'application/json',
+            'data': JSON.stringify({
+                'publication': publication
+            }),
+            'success': function (data) {
+                callback(null, data);
+            },
+            'error': function(jqXHR, textStatus) {
+                callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
+            }
+        });
+    };
+
     /**
      * Get the publications uploaded by the current user.
      *

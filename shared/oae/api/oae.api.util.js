@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.validate', 'trimpath', 'jquery.autosuggest', 'tinycon'], function(exports, require, $, _, configAPI) {
+define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.validate', 'trimpath', 'jquery.autosuggest', 'tinycon', 'globalize'], function(exports, require, $, _, configAPI) {
 
     /**
      * Initialize all utility functionality.
@@ -1393,5 +1393,22 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
      */
     var getFormChangeEventNames = exports.getFormChangeEventNames = function() {
         return $('html').hasClass('ie-lt10') ? 'change keyup paste cut' : 'change input';
+    };
+
+    //////////////////////
+    // DATE CONVERSIONS //
+    //////////////////////
+
+    /**
+     * Convert a given UTC date to local time and format to 'dd/mm/yyyy'
+     *
+     * @param  {Date}     [date]         The date to be converted
+     * @return {Date}                    The converted date
+     */
+    var utcDateToLocal = exports.utcDateToLocal = function(date) {
+        // The date is a millisecond timestamp representing the date in UTC. We need obtain the local time equivalent of this time in order to have Globalize.format() format it (as you can't tell Globalize to format the UTC representation)
+        var dateUTC = new Date(date);
+        var dateLocal = new Date(dateUTC.getUTCFullYear(), dateUTC.getUTCMonth(), dateUTC.getUTCDate());
+        return Globalize.format(dateLocal, 'd', 'en-GB');
     };
 });

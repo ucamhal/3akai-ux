@@ -30,29 +30,13 @@ define(['exports', 'jquery', 'underscore', 'oae.api.util'], function(exports, $,
      * @param  {Object}          [callback.err]           Error object containing error code and error message
      * @param  {Ticket}          [callback.ticket]        Ticket object representing the created ticket
      */
-    var createTicket = exports.createTicket = function(displayName, correspondingAuthor, department, institution, journalName, acceptanceDate, funders, contactEmail, useCambridgeAddendum, comments, contentId, callback) {
+    var createTicket = exports.createTicket = function(publication, contentId, callback) {
         // Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
         var data = {
             'contentId': contentId,
-            'publication': {
-                'displayName': displayName,
-                'authors': [correspondingAuthor],
-                'department': department,
-                'institution': institution,
-                'journalName': journalName,
-                'acceptanceDate': acceptanceDate,
-                'funders': funders,
-                'contactEmail': contactEmail,
-                'useCambridgeAddendum': String(useCambridgeAddendum),
-                'comments': comments,
-
-                // Auto-generated values. These are required by the tickets API
-                'date': Date.now(),
-                'publicationType': 'other',
-                'publisher': ' ',
-            },
+            'publication': publication,
             'sourceIds': [_generateUserSourceId()],
         };
 

@@ -177,8 +177,18 @@
     border-bottom-color: #575A5D;
     color: #575A5D;
 }
+
 .oa-site-header .oa-nav-item a {
     color: inherit;
+}
+
+/* Back bar */
+.oa-back-bar-container {
+    background-color: #114F58;
+}
+
+.oa-back-bar a {
+    color: #FFF;
 }
 
 /*****************
@@ -295,6 +305,43 @@
     color: #8E908F;
 }
 
+/*********************
+ ** Navigation tabs **
+ *********************/
+
+.oa-nav-tabs-wrap {
+    border-bottom-color: #e3e3e2;
+}
+
+.oa-nav-tabs li a {
+    color: #575a5d;
+    border-color: #e3e3e2;
+}
+
+.oa-nav-tab li a:hover {
+    border-color: #e3e3e2;
+    background-color: #e3e3e2;
+}
+
+.oa-nav-tabs > li.active > a,
+.oa-nav-tabs > li.active > a:hover,
+.oa-nav-tabs > li.active > a:focus {
+    background: #F9F9F9;
+    color: #575a5d;
+}
+
+.oa-tab-pane {
+    background: #F9F9F9;
+}
+
+/*************************
+ ** Publication preview **
+ *************************/
+
+.oa-publication-preview #documentpreview-toolbar {
+    color: #939495;
+}
+
 /******************
  ** Text colours **
  ******************/
@@ -310,7 +357,8 @@
 /* Normal text */
 .oa-section p,
 .oa-section ul,
-.oa-section ol {
+.oa-section ol,
+.oa-section dl {
     color: #575a5d;
 }
 
