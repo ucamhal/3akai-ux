@@ -503,6 +503,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
         if (globalTrackingId) {
             // Add hostname to allow tracking of accessed tenant
             ga('create', globalTrackingId, window.location.hostname);
+            ga('require', 'linkid', 'linkid.js');
             ga('send', 'pageview');
 
             // Add event handler to track JavaScript errors
@@ -521,11 +522,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
             // If there is no global tracking, the tenant uses primary tracking
             if (!globalTrackingId) {
                 ga('create', tenantTrackingId, 'auto');
+                ga('require', 'linkid', 'linkid.js');
                 ga('send', 'pageview');
             // Otherwise the tenant uses secondary tracking
             // @see https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#multipletrackers
             } else {
                 ga('create', tenantTrackingId, 'auto', {'name': 'tenantTracker'});
+                ga('tenantTracker.require', 'linkid', 'linkid.js');
                 ga('tenantTracker.send', 'pageview');
             }
         }
