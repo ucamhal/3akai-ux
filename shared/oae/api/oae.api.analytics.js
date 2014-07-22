@@ -19,9 +19,21 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
 
 
     /**
+     * A wrapper for callback to fire when a hit has gone out. If the tracker fails
+     * to call the func within delay milliseconds it'll be called automatically.
+     * func is only ever called once.
+     */
+    var whenCalledOrAfter = exports.whenCalledOrAfter = function(delay, func) {
+        var onceFunc = _.once(func);
+        _.delay(onceFunc, delay);
+        return onceFunc;
+    };
+
+    /**
      * Send a Google Analytics hit to each enabled tracker.
      *
      * If a hitCallback is specified, it's called once all enabled trackers have finished sending their hit.
+     * It's recommended to wrap your callbacks in whenCalledOrAfter() if the callback must be called eventually for correct application behaviour. (There's no guarantee that GA will call the hitCallback.)
      *
      * The arguments are the same as those accepted by ga('send', ...). 'send' is implicit, only provide those arguments following send.
      *
