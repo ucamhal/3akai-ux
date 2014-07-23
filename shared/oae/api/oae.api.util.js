@@ -454,6 +454,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
         var widgetColor = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetColor');
         var widgetPosition = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetPosition');
         var excludeWidgetOn = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetExcludedOnPages');
+        var widgetBodyClass = configAPI.getValue('oae-feedbackify', 'feedbackify', 'widgetBodyClass');
 
         if (enabled) {
             window.fby = window.fby || [];
@@ -465,6 +466,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config', 'jquery.
                     'position': widgetPosition,
                     'color': widgetColor
                 }]);
+                $('body').addClass(widgetBodyClass);
             }
 
             exports.feedbackify = {
