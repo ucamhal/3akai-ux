@@ -34,6 +34,7 @@ define([
          * on the client when requested.
          */
         'oae.api.admin',
+        'oae.api.analytics',
         'oae.api.authentication',
         'oae.api.config',
         'oae.api.content',
