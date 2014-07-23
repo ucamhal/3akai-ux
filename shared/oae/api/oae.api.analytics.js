@@ -15,6 +15,12 @@
 
 define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], function(exports, require, $, _, configAPI) {
 
+    var HIT_EVENT = 'event';
+
+    var ACTION_OPEN = 'Opened';
+
+    var CATEOGRY_MODAL = 'Modals';
+
     var GA_SEND = 'send';
 
 
@@ -27,6 +33,15 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         var onceFunc = _.once(func);
         _.delay(onceFunc, delay);
         return onceFunc;
+    };
+
+    /**
+     * Send analytics events to track the opening of a modal.
+     *
+     * @param  {String}             modalName           A unique name for the modal which was opened
+     */
+    exports.trackModalOpen = function(modalName) {
+        gaSendEvent(CATEOGRY_MODAL, ACTION_OPEN, modalName);
     };
 
     /**
@@ -54,6 +69,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         // Call hitCallback if/when all the hitPromises are resolved - e.g. when GA's acknowledged all the hits
         $.when.apply(null, hitPromises).done(hitCallback);
     };
+
+    /**
+     * A convenience function to call gaSend with hit type set to event.
+     *
+     * Arguments match those accepted by ga('send', 'event', ...).
+     */
+    var gaSendEvent = exports.gaSendEvent = _.partial(gaSend, HIT_EVENT);
 
     var _gaSendHit = function(gaFunc, gaArguments, tracker) {
         var deferredHit = $.Deferred();
