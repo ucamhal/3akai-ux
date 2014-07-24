@@ -168,4 +168,6 @@ define(['jquery', 'oae.core'], function($, oae) {
             initPage();
         }
     });
+
+    oae.api.analytics.autoTrackButtonClicks();
 });

@@ -18,8 +18,10 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     var HIT_EVENT = 'event';
 
     var ACTION_OPEN = 'Opened';
+    var ACTION_INTERACT = 'Interacted with';
 
     var CATEOGRY_MODAL = 'Modals';
+    var CATEGORY_BUTTON = 'Buttons';
 
     var GA_SEND = 'send';
 
@@ -42,6 +44,74 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
      */
     exports.trackModalOpen = function(modalName) {
         gaSendEvent(CATEOGRY_MODAL, ACTION_OPEN, modalName);
+    };
+
+    var trackButtonClick = exports.trackButtonClick = function(buttonElement) {
+        var label = getElementIdentifier(buttonElement);
+        gaSendEvent(CATEGORY_BUTTON, ACTION_INTERACT, label);
+    };
+
+    exports.autoTrackButtonClicks = function() {
+        $(document).on('click', 'button', function(ev) {
+            trackButtonClick(ev.currentTarget);
+        });
+    };
+
+    /**
+     * Get the first id found by looking at the element, then parents up to maxLevels up.
+     *
+     * @param  {Element|jQuery}     element     An element to search from
+     * @param  {Number}             maxLevels   The number of parents to search
+     * @return {String}                         The ID value if found, otherwise undefined
+     */
+    var getElementIdentifier = exports.getElementIdentifier = function(element, maxLength) {
+        if (maxLength === undefined) {
+            maxLength = 2;
+        }
+
+        var maxParentCount = maxLength - 1;
+
+        var candidates = $($(element).parents()).filter('[data-ga-label]').toArray();
+        candidates = candidates.splice(Math.max(0, candidates.length - maxParentCount), candidates.length);
+        candidates.push(element);
+
+        return _.map(candidates, _getElementLabel).join(' > ');
+    };
+
+    /**
+     * Get a human readable label for an arbitary HTML element without any
+     * data-ga-label attr defined.
+     */
+    var _getUnlabeledElementLabel = function(element) {
+        var $elem = $(element);
+        var text = $elem.text().trim();
+        var id = $elem.attr('id');
+        var name = $elem.prop('tagName').toLowerCase();
+
+        if (name === 'label') {
+            return '"' + text + '"';
+        }
+
+        if (id) {
+            name += '#' + id;
+        }
+
+        if (text) {
+            name += ':contains("' + text + '")';
+        }
+
+        return name;
+    };
+
+    var _getLabeledElementLabel = function(element) {
+        return '"' + $(element).data('ga-label') + '"';
+    };
+
+    var _getElementLabel = function(element) {
+        if ($(element).data('ga-label')) {
+            return _getLabeledElementLabel(element);
+        }
+        return _getUnlabeledElementLabel(element);
     };
 
     /**
