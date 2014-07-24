@@ -19,9 +19,15 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
 
     var ACTION_OPEN = 'Opened';
     var ACTION_INTERACT = 'Interacted with';
+    var ACTION_TRIGGERED = 'Triggered';
+    var ACTION_INVALIDATED = 'Invalidated';
+    var ACTION_INVALIDATED_BY = 'Invalidated by';
 
     var CATEOGRY_MODAL = 'Modals';
     var CATEGORY_BUTTON = 'Buttons';
+    var CATEGORY_FIELD = 'Form fields';
+    var CATEGORY_VALIDATION_ERROR = 'Validation errors';
+
 
     var GA_SEND = 'send';
 
@@ -50,6 +56,23 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         var label = getElementIdentifier(buttonElement);
         gaSendEvent(CATEGORY_BUTTON, ACTION_INTERACT, label);
     };
+
+    /**
+     * Send analytics events to track a form field having been invalidated by bad user input.
+     *
+     * @param  {Element|jQuery}     The form field's <label> element.
+     * @param  {String}             A brief name identifying the validation error that occurred
+     */
+    var trackValidationError = exports.trackValidationError = function(fieldLabel, errorName) {
+        var fieldIdentifier = getElementIdentifier(fieldLabel);
+
+        // This event allows us to identify the # of validation errors per field
+        gaSendEvent(CATEGORY_FIELD, ACTION_INVALIDATED, fieldIdentifier);
+        // This one gives us the number of individual validation errors
+        gaSendEvent(CATEGORY_VALIDATION_ERROR, ACTION_TRIGGERED, errorName);
+        // This one gives us the number of times a field encounters a specific validation error
+        gaSendEvent(CATEGORY_FIELD, ACTION_INVALIDATED_BY, fieldIdentifier + ' : ' + errorName);
+    }
 
     exports.autoTrackButtonClicks = function() {
         $(document).on('click', 'button', function(ev) {
