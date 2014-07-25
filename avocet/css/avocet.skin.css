@@ -196,7 +196,10 @@
  *****************/
 
 .oa-site-footer,
-.oa-site-footer a {
+.oa-site-footer a,
+.oa-site-footer .oa-link,
+.oa-site-footer .oa-link:hover,
+.oa-site-footer .oa-link:focus {
     color: #F9F9F9;
 }
 
