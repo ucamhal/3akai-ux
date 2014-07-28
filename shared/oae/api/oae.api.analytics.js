@@ -44,6 +44,29 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     };
 
     /**
+     * Send an analytics pageview for the specified path and page title.
+     *
+     * @param  {String}     path    The URL path to record a pageview against
+     * @param  {String}     title   The title of the virtual page
+     */
+    var trackVirtualPageview = exports.trackVirtualPageview = function(path, title) {
+        if (!path) {
+            throw new Error('No path provided: ' + path);
+        }
+
+        if (path[0] === '/') {
+            path = path.substring(1);
+        }
+
+        var url = '/virtual/' + path;
+
+        gaSend('pageview', {
+          'page': url,
+          'title': title
+        });
+    };
+
+    /**
      * Send analytics events to track the opening of a modal.
      *
      * @param  {String}             modalName           A unique name for the modal which was opened
