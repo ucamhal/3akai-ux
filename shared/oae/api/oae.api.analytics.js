@@ -72,12 +72,41 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         gaSendEvent(CATEGORY_VALIDATION_ERROR, ACTION_TRIGGERED, errorName);
         // This one gives us the number of times a field encounters a specific validation error
         gaSendEvent(CATEGORY_FIELD, ACTION_INVALIDATED_BY, fieldIdentifier + ' : ' + errorName);
-    }
+    };
 
     exports.autoTrackButtonClicks = function() {
         $(document).on('click', 'button', function(ev) {
             trackButtonClick(ev.currentTarget);
         });
+    };
+
+    /**
+     * A function which can be provided to the 'invalidHandler' option of jQuery Validate's validate() function.
+     * It will automatically track validation errors which occur using trackValidationError().
+     */
+    exports.jqueryValidateInvalidHandler = function(event, validator) {
+        _.forEach(validator.errorList, function(err) {
+
+            // Fall back to using the form field itself as there's no label
+            var label = _getLabelForField(err.element) || err.element;
+            trackValidationError(label, err.message);
+        });
+    };
+
+    /**
+     * Finds the label element attached to a form field. If the field itself has a data-ga-label attr then it's used directly.
+     *
+     * This implementation uses the id attr of the form and the for=id attr of the label to identify field labels.
+     */
+    var _getLabelForField = function(formField) {
+        var $field = $(formField);
+
+        if ($field.data('ga-label')) {
+            return $field;
+        }
+
+        var id = $field.attr('id');
+        return $('label[for="' + id + '"]')[0];
     };
 
     /**
