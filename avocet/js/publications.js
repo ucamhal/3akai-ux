@@ -106,6 +106,7 @@ define(['jquery', 'oae.core'], function($, oae) {
     var insertWidgets = function() {
         insertPublicationMetadata();
         insertPublicationPreview();
+        insertPublicationFile();
         insertPublicationForm();
         insertTrackingForm();
     };
@@ -114,9 +115,18 @@ define(['jquery', 'oae.core'], function($, oae) {
      * Insert the publication metadata widget
      */
     var insertPublicationMetadata = function() {
-        oae.api.widget.insertWidget('publicationmetadata', null, $('#oa-publication-metadata-container'), null, {
+        oae.api.widget.insertWidget('publicationmetadata', null, $('#oa-publication-metadata-widget-container'), null, {
             'publication': publication,
             'publicationSubmitter': publicationSubmitter
+        });
+    };
+
+    /**
+     * Insert the publicationfile widget
+     */
+    var insertPublicationFile = function() {
+        oae.api.widget.insertWidget('publicationfile', null, $('#oa-publicationfile-widget-container'), null, {
+            'content': publication.linkedContent
         });
     };
 
@@ -124,7 +134,7 @@ define(['jquery', 'oae.core'], function($, oae) {
      * Insert the publicationform widget
      */
     var insertPublicationForm = function() {
-        var $formContainer = $('#oa-publicationform-container');
+        var $formContainer = $('#oa-publicationform-widget-container');
         if ($formContainer.length) {
             oae.api.widget.insertWidget('publicationform', null, $formContainer, null, {
                 'publication': publication,
@@ -138,7 +148,7 @@ define(['jquery', 'oae.core'], function($, oae) {
      */
     var insertPublicationPreview = function() {
         var content = publication.linkedContent;
-        var $previewContainer = $('#oa-publication-preview-container');
+        var $previewContainer = $('#oa-publication-preview-widget-container');
         if ($previewContainer.length && content) {
             var widgetToInsert = content.previews && content.previews.pageCount ? 'documentpreview' : 'filepreview';
             oae.api.widget.insertWidget(widgetToInsert, null, $previewContainer.empty(), null, content);
@@ -149,7 +159,7 @@ define(['jquery', 'oae.core'], function($, oae) {
      * Insert the trackingform widget
      */
     var insertTrackingForm = function() {
-        var $formContainer = $('#oa-trackingform-container');
+        var $formContainer = $('#oa-trackingform-widget-container');
         if ($formContainer.length) {
             oae.api.widget.insertWidget('trackingform', null, $formContainer, null, {
                 'publication': publication

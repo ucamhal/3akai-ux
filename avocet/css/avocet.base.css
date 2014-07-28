@@ -324,22 +324,6 @@ body {
     text-align: left;
 }
 
-/***************
- ** File info **
- ***************/
-
-.oa-fileinfo {
-    border-top-style: solid;
-    border-top-width: 1px;
-    padding: 48px 0;
-}
-
-.oa-fileinfo .container {
-    background: url('/avocet/images/background-myuploads.png') no-repeat left center;
-    min-height: 115px;
-    padding-left: 130px;
-}
-
 /**********************
  ** Publication info **
  **********************/
@@ -476,10 +460,6 @@ body {
 
 .oa-nav-tabs li a:active {
     opacity: 1;
-}
-
-.oa-tab-pane .oa-fileinfo {
-    border-style: none;
 }
 
 .oa-tab-pane .oa-message-under-embargo {
