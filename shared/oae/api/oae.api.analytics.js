@@ -22,11 +22,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     var ACTION_TRIGGERED = 'Triggered';
     var ACTION_INVALIDATED = 'Invalidated';
     var ACTION_INVALIDATED_BY = 'Invalidated by';
+    var ACTION_CLICK = 'Clicked';
 
     var CATEOGRY_MODAL = 'Modals';
     var CATEGORY_BUTTON = 'Buttons';
     var CATEGORY_FIELD = 'Form fields';
     var CATEGORY_VALIDATION_ERROR = 'Validation errors';
+    var CATEGORY_LINK = 'Links';
 
 
     var GA_SEND = 'send';
@@ -97,9 +99,63 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         gaSendEvent(CATEGORY_FIELD, ACTION_INVALIDATED_BY, fieldIdentifier + ' : ' + errorName);
     };
 
-    exports.autoTrackButtonClicks = function() {
+    /**
+     * Send analytics events to track a click on an HTML link.
+     *
+     * @param  {String}     url         The absolute URL of the <a> that was clicked
+     * @param  {Function}   callback    A function to call (with no arguments) if & when the GA hit is acknowledged.
+     */
+    var trackLinkClick = exports.trackLinkClick = function(url, callback) {
+        gaSendEvent(CATEGORY_LINK, ACTION_CLICK, url, { 'hitCallback': callback });
+    };
+
+    var autoTrackButtonClicks = exports.autoTrackButtonClicks = function() {
         $(document).on('click', 'button', function(ev) {
             trackButtonClick(ev.currentTarget);
+        });
+    };
+
+    var _goToUrl = function(url) {
+        window.location = url;
+    };
+
+    /**
+     * Block a click event which is triggering a page transition to a new URL.
+     * Track a click event against the URL and navigate to the URL once the
+     * event has been acknowledged, or after a short delay.
+     */
+    var _interceptAndTrackAnchorClick = function(ev) {
+        var a = ev.currentTarget;
+        var goToUrl = whenCalledOrAfter(50, _.partial(_goToUrl, a.href));
+        trackLinkClick(a.href, goToUrl);
+        ev.preventDefault();
+        ev.stopPropagation();
+    };
+
+    /**
+     * Bind an event handler to watch for and track clicks on links to pages on external websites.
+     */
+    var autoTrackExternalLinkClicks = exports.autoTrackExternalLinkClicks = function() {
+        $(document).on('click', 'a', function(ev) {
+            var a = ev.currentTarget;
+            if (a.hostname !== window.location.hostname) {
+                _interceptAndTrackAnchorClick(ev);
+            }
+        });
+    };
+
+    /**
+     * Bind an event handler to watch for and track clicks on addendum download links.
+     */
+    var autoTrackAddendumDownloads = exports.autoTrackAddendumDownloads = function() {
+        var rawAddendumUrl = configAPI.getValue('oae-publications', 'general', 'addendumUrl');
+        var absAddendumUrl = $('<a>').prop('href', rawAddendumUrl).prop('href');
+
+        $(document).on('click', 'a', function(ev) {
+            var a = ev.currentTarget;
+            if (a.href === absAddendumUrl) {
+                _interceptAndTrackAnchorClick(ev);
+            }
         });
     };
 
