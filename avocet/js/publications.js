@@ -169,5 +169,5 @@ define(['jquery', 'oae.core'], function($, oae) {
         }
     });
 
-    oae.api.analytics.autoTrackButtonClicks();
+    oae.api.analytics.autoTrackAllTheThings();
 });

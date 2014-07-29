@@ -25,5 +25,5 @@ define(['oae.core'], function(oae) {
 
     renderPage();
 
-    oae.api.analytics.autoTrackButtonClicks();
+    oae.api.analytics.autoTrackAllTheThings();
 });

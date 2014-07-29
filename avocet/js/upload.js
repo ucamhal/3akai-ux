@@ -18,5 +18,5 @@ define(['oae.core'], function(oae) {
         oae.api.authentication.loginFirstEnabledStrategy();
     }
 
-    oae.api.analytics.autoTrackButtonClicks();
+    oae.api.analytics.autoTrackAllTheThings();
 });

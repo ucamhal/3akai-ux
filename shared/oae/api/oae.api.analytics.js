@@ -160,6 +160,15 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     };
 
     /**
+     * Activate all the autoTrack* functions.
+     */
+    exports.autoTrackAllTheThings = function() {
+        autoTrackButtonClicks();
+        autoTrackExternalLinkClicks();
+        autoTrackAddendumDownloads();
+    };
+
+    /**
      * A function which can be provided to the 'invalidHandler' option of jQuery Validate's validate() function.
      * It will automatically track validation errors which occur using trackValidationError().
      */

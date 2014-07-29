@@ -34,5 +34,5 @@ define(['oae.core'], function(oae) {
 
     addBinding();
 
-    oae.api.analytics.autoTrackButtonClicks();
+    oae.api.analytics.autoTrackAllTheThings();
 });
