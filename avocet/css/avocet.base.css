@@ -100,8 +100,12 @@ body {
 }
 
 .oa-dl-horizontal dt {
+    clear: left;
+    float: left;
     margin-bottom: 4px;
-    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 220px;
 }
 
@@ -111,7 +115,7 @@ body {
 }
 
 .oa-dl-horizontal dd {
-    margin-bottom: 4px;
+    margin: 0 0 4px 220px;
 }
 
 /****************
