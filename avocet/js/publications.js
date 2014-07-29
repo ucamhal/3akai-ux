@@ -19,6 +19,19 @@ define(['jquery', 'oae.core'], function($, oae) {
     var publicationSubmitter;
 
     /**
+     * Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
+     * The publication id will then be `p:<tenantId>:<publicationId>`. e.g. p:avocet:g1Z-sJMW0n
+     *
+     * @return  {String}    A Publication id
+     */
+    var getPublicationIdFromURL = function() {
+        var url = $.url();
+        var tenantId = url.segment(2);
+        var publicationId = url.segment(3);
+        return tenantId && publicationId ? 'p:' + tenantId + ':' + publicationId : null;
+    };
+
+    /**
      * Fetch a publication by the id supplied in the URL
      *
      * @param  {Function}    callback      The function to be called when the publication has been fetched.
@@ -31,7 +44,12 @@ define(['jquery', 'oae.core'], function($, oae) {
 
         oae.api.publication.getPublication(publicationId, function(err, fetchedPublication) {
             if (err) {
-                oae.api.util.redirect().notfound();
+                if (err.code === 401) {
+                    oae.api.util.redirect().accessdenied();
+                } else {
+                    oae.api.util.redirect().notfound();
+                }
+                return;
             }
 
             publication = fetchedPublication;
@@ -57,29 +75,15 @@ define(['jquery', 'oae.core'], function($, oae) {
     var initPage = function() {
         renderPage();
         insertWidgets();
-        setupPushNotifications();
         addBinding();
     };
 
     /**
-     * Get the publication id from the URL. The expected URL is `/publications/<tenantId>/<publicationId>`.
-     * The publication id will then be `p:<tenantId>:<publicationId>`. e.g. p:avocet:g1Z-sJMW0n
-     *
-     * @return  {String}    A Publication id
-     */
-    var getPublicationIdFromURL = function() {
-        var url = $.url();
-        var tenantId = url.segment(2);
-        var publicationId = url.segment(3);
-        return tenantId && publicationId ? 'p:' + tenantId + ':' + publicationId : null;
-    };
-
-    /**
-     * Render the different sections of the page
+     * Render all the components on the page
      */
     var renderPage = function() {
         renderPublicationTitle();
-        renderTabs();
+        renderBackBar();
     };
 
     /**
@@ -92,12 +96,15 @@ define(['jquery', 'oae.core'], function($, oae) {
     };
 
     /**
-     * Render the tabs content
+     * Render the back navigation bar
      */
-    var renderTabs = function() {
-        oae.api.util.template().render($('#oa-tabs-template'), {
-            'publication': publication
-        }, $('#oa-tabs-container'));
+    var renderBackBar = function() {
+        var $container = $('#oa-publication-back-container');
+        if (oae.data.me.id === publication.createdBy) {
+            oae.api.util.template().render($('#oa-publication-back-template'), null, $container);
+        } else {
+            $container.remove();
+        }
     };
 
     /**
@@ -105,10 +112,8 @@ define(['jquery', 'oae.core'], function($, oae) {
      */
     var insertWidgets = function() {
         insertPublicationMetadata();
-        insertPublicationPreview();
         insertPublicationFile();
         insertPublicationForm();
-        insertTrackingForm();
     };
 
     /**
@@ -134,49 +139,9 @@ define(['jquery', 'oae.core'], function($, oae) {
      * Insert the publicationform widget
      */
     var insertPublicationForm = function() {
-        var $formContainer = $('#oa-publicationform-widget-container');
-        if ($formContainer.length) {
-            oae.api.widget.insertWidget('publicationform', null, $formContainer, null, {
-                'publication': publication,
-                'disabled': !(publication.permissions.isAdmin || publication.permissions.isGlobalAdmin)
-            });
-        }
-    };
-
-    /**
-     * Insert the publication preview widget
-     */
-    var insertPublicationPreview = function() {
-        var content = publication.linkedContent;
-        var $previewContainer = $('#oa-publication-preview-widget-container');
-        if ($previewContainer.length && content) {
-            var widgetToInsert = content.previews && content.previews.pageCount ? 'documentpreview' : 'filepreview';
-            oae.api.widget.insertWidget(widgetToInsert, null, $previewContainer.empty(), null, content);
-        }
-    };
-
-    /**
-     * Insert the trackingform widget
-     */
-    var insertTrackingForm = function() {
-        var $formContainer = $('#oa-trackingform-widget-container');
-        if ($formContainer.length) {
-            oae.api.widget.insertWidget('trackingform', null, $formContainer, null, {
-                'publication': publication
-            });
-        }
-    };
-
-    /**
-     * Subscribe to the 'previews-finished' push notification for the viewed publication
-     */
-    var setupPushNotifications = function() {
-        oae.api.push.subscribe(publication.linkedContentId, 'activity', publication.signature, 'internal', false, function(activity) {
-            if (activity['oae:activityType'] === 'previews-finished') {
-                // Update the linked content profile in the publicationProfile with the one provided in the activity object
-                publication.linkedContent = activity.object;
-                insertPublicationPreview();
-            }
+        oae.api.widget.insertWidget('publicationform', null, $('#oa-publicationform-widget-container'), null, {
+            'publication': publication,
+            'disabled': !(publication.permissions.isAdmin || publication.permissions.isGlobalAdmin)
         });
     };
 

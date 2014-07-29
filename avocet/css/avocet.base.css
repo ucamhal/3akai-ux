@@ -210,15 +210,6 @@ body {
     padding: 44px 0 56px 0;
 }
 
-/* Metadata section */
-.oa-metadata-section {
-    padding: 51px 0 37px 0;
-}
-
-.oa-metadata-section header h3 {
-    margin-bottom: 37px;
-}
-
 /* Form section */
 
 .oa-form-section {
@@ -324,19 +315,6 @@ body {
     text-align: left;
 }
 
-/**********************
- ** Publication info **
- **********************/
-
-.oa-publicationinfo {
-    margin: 0;
-    padding: 23px 0;
-}
-
-.oa-publicationinfo p {
-    margin: 0;
-}
-
 /***********
  ** Modals **
  ***********/
@@ -433,56 +411,19 @@ body {
 
 /* Back bar */
 .oa-back-bar {
-    margin: 15px;
+    padding: 15px;
 }
 
-/**********
- ** Tabs **
- **********/
+/************************
+ ** Publication detail **
+ ************************/
 
-.oa-nav-tabs {
-    border: none;
+.oa-publication-detail {
+    padding-top: 51px;
 }
 
-.oa-nav-tabs-wrap {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-}
-
-.oa-nav-tabs li a {
-    padding: 12px 49px;
-    margin: 0 5px;
-}
-
-.oa-nav-tabs li:first-child a {
-    margin-left: 0;
-}
-
-.oa-nav-tabs li a:active {
-    opacity: 1;
-}
-
-.oa-tab-pane .oa-message-under-embargo {
-    margin: 50px 0;
-    text-align: center;
-}
-
-.oa-tab-pane .oa-message-under-embargo i {
-    display: block;
-    font-size: 4em;
-    margin-bottom: 10px;
-}
-
-#oa-tab-manuscript {
-    padding-top: 20px;
-}
-
-/*************************
- ** Publication preview **
- *************************/
-
-.oa-publication-preview .btn-link {
-    color: inherit;
+.oa-publication-detail header h3 {
+    margin: 0;
 }
 
 /*****************

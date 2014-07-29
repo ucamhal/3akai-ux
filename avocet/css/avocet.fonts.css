@@ -149,22 +149,6 @@ body {
     font-size: 18px;
 }
 
-/**********************
- ** Publication info **
- **********************/
-
-.oa-publicationinfo p {
-    font-size: 18px;
-}
-
-/*************************
- ** Publication preview **
- *************************/
-
-.oa-publication-preview #documentpreview-toolbar {
-    font-size: 18px;
-}
-
 /************
  ** Modals **
  ************/

@@ -12,61 +12,30 @@
         <link rel="stylesheet" href="/avocet/css/avocet.css">
     </head>
     <body>
+        <div id="oa-publication-title-template"><!--
+            <h3 class="oae-threedots">${publication.displayName}</h3>
+        --></div>
+        <div id="oa-publication-back-template"><!--
+            <div class="oa-back-bar-container">
+                <div class="container oa-back-bar">
+                    <a title="__MSG__HOME_PAGE_TITLE__" href="/">
+                        <i class="icon-chevron-left"></i> Back
+                    </a>
+                </div>
+            </div>
+        --></div>
 
         <div class="oa-main-container">
             <!-- HEADER -->
             <div data-widget="avocetheader"><!-- --></div>
+            <div id="oa-publication-back-container"><!-- --></div>
 
-            <div class="container">
-                <section class="oa-section oa-metadata-section">
-                    <div id="oa-publication-title-template"><!--
-                        <h3 class="oae-threedots">${publication.displayName}</h3>
-                    --></div>
-                    <header id="oa-publication-title-container"><!-- --></header>
-                    <div id="oa-publication-metadata-widget-container"><!-- --></div>
-                </section>
+            <div class="oa-publication-detail oa-section">
+                <header class="container" id="oa-publication-title-container"><!-- --></header>
+                <div id="oa-publication-metadata-widget-container"><!-- --></div>
+                <div id="oa-publicationfile-widget-container"><!-- --></div>
+                <div id="oa-publicationform-widget-container"><!-- --></div>
             </div>
-
-            <div id="oa-tabs-container"><!-- --></div>
-
-            <div id="oa-tabs-template"><!--
-                <nav class="oa-nav-tabs-wrap">
-                    <div class="container">
-                        <ul class="nav nav-tabs oa-nav-tabs">
-                            <li class="active"><a href="#oa-tab-manuscript" data-toggle="tab">Manuscript</a></li>
-                            {if publication.permissions.isSubmitter || publication.permissions.isAuthor || publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
-                                <li><a href="#oa-tab-submission-details" data-toggle="tab">Submission details</a></li>
-                            {/if}
-                            {if publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
-                                <li><a href="#oa-tab-tracking" data-toggle="tab">Tracking</a></li>
-                            {/if}
-                        </ul>
-                    </div>
-                </nav>
-
-                <div class="tab-content">
-                    <section class="oa-tab-pane oa-section tab-pane active" id="oa-tab-manuscript">
-                        {if publication.underEmbargo && !(publication.permissions.isAdmin || publication.permissions.isGlobalAdmin || publication.permissions.isAuthor || publication.permissions.isSubmitter)}
-                            <div class="container">
-                                <p class="oa-message-under-embargo"><i class="icon-lock oa-icon-normal"></i> This publication is <button class="btn oa-btn oa-btn-link oa-inline-btn-link oa-link oa-trigger-modalembargo">locked{if publication.embargoDate} until ${oae.api.util.utcDateToLocal(publication.embargoDate)}{/if}</button>.</p>
-                            </div>
-                        {else}
-                            <div class="container oa-publication-preview" id="oa-publication-preview-widget-container"></div>
-                        {/if}
-                    </section>
-                    {if publication.permissions.isSubmitter || publication.permissions.isAuthor || publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
-                        <section class="oa-tab-pane tab-pane" id="oa-tab-submission-details">
-                            <div id="oa-publicationfile-widget-container"></div>
-                            <div id="oa-publicationform-widget-container"></div>
-                        </section>
-                    {/if}
-                    {if publication.permissions.isAdmin || publication.permissions.isGlobalAdmin}
-                        <section class="oa-tab-pane tab-pane" id="oa-tab-tracking">
-                            <div id="oa-trackingform-widget-container"></div>
-                        </section>
-                    {/if}
-                </div>
-            --></div>
 
             <div data-widget="avocetfooter"><!-- --></div>
         </div>
