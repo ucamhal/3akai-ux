@@ -131,7 +131,8 @@ define(['jquery', 'oae.core'], function($, oae) {
      */
     var insertPublicationFile = function() {
         oae.api.widget.insertWidget('publicationfile', null, $('#oa-publicationfile-widget-container'), null, {
-            'content': publication.linkedContent
+            'content': publication.linkedContent,
+            'showActions': true
         });
     };
 
