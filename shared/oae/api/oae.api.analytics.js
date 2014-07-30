@@ -30,6 +30,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     var CATEGORY_VALIDATION_ERROR = 'Validation errors';
     var CATEGORY_LINK = 'Links';
 
+    var DIMENSION_IS_USER_LOGGED_IN = 'dimension1';
 
     var GA_SEND = 'send';
     var GA_SET = 'set';
@@ -161,9 +162,25 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     };
 
     /**
+     * Set user based dimension values.
+     */
+    var autoTrackUserDimensions = exports.autoTrackUserDimensions = function() {
+        // We need to wait until the 'me' data is loaded
+        require(['oae.core'], function(oae) {
+            var isUserLoggedIn = oae.data.me.anon !== true;
+
+            var values = {};
+            values[DIMENSION_IS_USER_LOGGED_IN] = isUserLoggedIn ? 'Logged in' : 'Logged out';
+
+            gaSet(values);
+        });
+    };
+
+    /**
      * Activate all the autoTrack* functions.
      */
     exports.autoTrackAllTheThings = function() {
+        autoTrackUserDimensions();
         autoTrackButtonClicks();
         autoTrackExternalLinkClicks();
         autoTrackAddendumDownloads();
