@@ -32,6 +32,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
 
 
     var GA_SEND = 'send';
+    var GA_SET = 'set';
 
 
     /**
@@ -252,6 +253,43 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
             return _getLabeledElementLabel(element);
         }
         return _getUnlabeledElementLabel(element);
+    };
+
+    /**
+     * A version of the Google Analytics ga() function which mirrors commands
+     * across all enabled trackers.
+     *
+     * Currently the send and set methods are supported.
+     */
+    var ga = exports.ga = function(methodName) {
+        var args = _.toArray(arguments).splice(1);
+
+        switch(methodName) {
+            case GA_SEND:
+                gaSend.apply(args);
+                break;
+            case GA_SET:
+                gaSet.apply(args);
+                break;
+            default:
+                throw new Error('Unsupported ga() method: ' + methodName);
+        }
+    };
+
+    /**
+     * Set a field's value on all enabled trackers.
+     *
+     * Arguments match those accepted by ga('set', ...).
+     */
+    var gaSet = exports.gaSet = function() {
+        var trackers = _getGaEnabledTrackerNames();
+
+        _.forEach(trackers, _.partial(_gaSet, window.ga, _.toArray(arguments)));
+    };
+
+    var _gaSet = function(gaFunc, gaArguments, tracker) {
+        var gaArgs = _gaBuildArgs(tracker, GA_SET, gaArguments);
+        gaFunc.apply(null, gaArgs);
     };
 
     /**
