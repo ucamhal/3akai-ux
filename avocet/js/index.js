@@ -24,4 +24,6 @@ define(['oae.core'], function(oae) {
     };
 
     renderPage();
+
+    oae.api.analytics.autoTrackAll();
 });

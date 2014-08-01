@@ -367,6 +367,7 @@ define(['exports', 'jquery', 'underscore', 'oae.core', 'jquery.properties-parser
                 '/avocet/errors/unavailable.html': null
             },
             'apiJS': {
+                '/shared/oae/api/oae.api.analytics.js': null,
                 '/shared/oae/api/oae.api.authentication.js': null,
                 '/shared/oae/api/oae.api.comment.js': null,
                 '/shared/oae/api/oae.api.config.js': null,

@@ -17,4 +17,6 @@ define(['oae.core'], function(oae) {
     if (oae.data.me.anon) {
         oae.api.authentication.loginFirstEnabledStrategy();
     }
+
+    oae.api.analytics.autoTrackAll();
 });

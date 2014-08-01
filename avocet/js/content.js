@@ -33,4 +33,6 @@ define(['oae.core'], function(oae) {
     };
 
     addBinding();
+
+    oae.api.analytics.autoTrackAll();
 });

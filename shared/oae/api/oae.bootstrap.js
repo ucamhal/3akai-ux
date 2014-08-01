@@ -76,6 +76,7 @@ requirejs.config({
         // OAE API modules
         'oae.api': 'oae/api/oae.api',
         'oae.api.admin': 'oae/api/oae.api.admin',
+        'oae.api.analytics': 'oae/api/oae.api.analytics',
         'oae.api.authentication': 'oae/api/oae.api.authentication',
         'oae.api.config': 'oae/api/oae.api.config',
         'oae.api.content': 'oae/api/oae.api.content',
