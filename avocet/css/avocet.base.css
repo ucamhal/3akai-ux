@@ -100,8 +100,12 @@ body {
 }
 
 .oa-dl-horizontal dt {
+    clear: left;
+    float: left;
     margin-bottom: 4px;
-    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 220px;
 }
 
@@ -111,7 +115,7 @@ body {
 }
 
 .oa-dl-horizontal dd {
-    margin-bottom: 4px;
+    margin: 0 0 4px 220px;
 }
 
 /****************
@@ -208,15 +212,6 @@ body {
 
 .oa-content-section {
     padding: 44px 0 56px 0;
-}
-
-/* Metadata section */
-.oa-metadata-section {
-    padding: 51px 0 37px 0;
-}
-
-.oa-metadata-section header h3 {
-    margin-bottom: 37px;
 }
 
 /* Form section */
@@ -324,35 +319,6 @@ body {
     text-align: left;
 }
 
-/***************
- ** File info **
- ***************/
-
-.oa-fileinfo {
-    border-top-style: solid;
-    border-top-width: 1px;
-    padding: 48px 0;
-}
-
-.oa-fileinfo .container {
-    background: url('/avocet/images/background-myuploads.png') no-repeat left center;
-    min-height: 115px;
-    padding-left: 130px;
-}
-
-/**********************
- ** Publication info **
- **********************/
-
-.oa-publicationinfo {
-    margin: 0;
-    padding: 23px 0;
-}
-
-.oa-publicationinfo p {
-    margin: 0;
-}
-
 /***********
  ** Modals **
  ***********/
@@ -449,60 +415,19 @@ body {
 
 /* Back bar */
 .oa-back-bar {
-    margin: 15px;
+    padding: 15px;
 }
 
-/**********
- ** Tabs **
- **********/
+/************************
+ ** Publication detail **
+ ************************/
 
-.oa-nav-tabs {
-    border: none;
+.oa-publication-detail {
+    padding-top: 51px;
 }
 
-.oa-nav-tabs-wrap {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-}
-
-.oa-nav-tabs li a {
-    padding: 12px 49px;
-    margin: 0 5px;
-}
-
-.oa-nav-tabs li:first-child a {
-    margin-left: 0;
-}
-
-.oa-nav-tabs li a:active {
-    opacity: 1;
-}
-
-.oa-tab-pane .oa-fileinfo {
-    border-style: none;
-}
-
-.oa-tab-pane .oa-message-under-embargo {
-    margin: 50px 0;
-    text-align: center;
-}
-
-.oa-tab-pane .oa-message-under-embargo i {
-    display: block;
-    font-size: 4em;
-    margin-bottom: 10px;
-}
-
-#oa-tab-manuscript {
-    padding-top: 20px;
-}
-
-/*************************
- ** Publication preview **
- *************************/
-
-.oa-publication-preview .btn-link {
-    color: inherit;
+.oa-publication-detail header h3 {
+    margin: 0;
 }
 
 /*****************
