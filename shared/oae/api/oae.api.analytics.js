@@ -179,7 +179,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     /**
      * Activate all the autoTrack* functions.
      */
-    exports.autoTrackAllTheThings = function() {
+    var autoTrackAll = exports.autoTrackAll = function() {
         autoTrackUserDimensions();
         autoTrackButtonClicks();
         autoTrackExternalLinkClicks();
