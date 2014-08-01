@@ -231,7 +231,8 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
 
         var maxParentCount = maxLength - 1;
 
-        var candidates = $($(element).parents()).filter('[data-ga-label]').toArray();
+        // An array is used to guarantee the order of the elements
+        var candidates = $(element).parents('[data-ga-label]').toArray();
         candidates = candidates.splice(Math.max(0, candidates.length - maxParentCount), candidates.length);
         candidates.push(element);
 
