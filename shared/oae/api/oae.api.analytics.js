@@ -403,7 +403,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
 
         var lastIndex = gaArguments.length - 1;
 
-        if(lastIndex === -1 || !_.isObject(gaArguments[lastIndex])) {
+        if (lastIndex === -1 || !_.isObject(gaArguments[lastIndex])) {
             gaArguments.push({});
             lastIndex++;
         }
