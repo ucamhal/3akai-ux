@@ -216,11 +216,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     };
 
     /**
-     * Get the first id found by looking at the element, then parents up to maxLevels up.
+     * Generate an identifier for an HTML Element to be displayed to a human.
      *
-     * @param  {Element|jQuery}     element     An element to search from
-     * @param  {Number}             maxLevels   The number of parents to search
-     * @return {String}                         The ID value if found, otherwise undefined
+     * Depending on maxLength, sutable parents of the element will be included in the identifier.
+     *
+     * @param  {Element|jQuery}     element     An element to identify
+     * @param  {Number}             maxLength   The max number of elements to show in the identifier
+     * @return {String}                         A human readable representation of the element
      */
     var getElementIdentifier = exports.getElementIdentifier = function(element, maxLength) {
         if (maxLength === undefined) {
