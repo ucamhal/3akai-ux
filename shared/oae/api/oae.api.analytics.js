@@ -75,7 +75,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
      *
      * @param  {String}             modalName           A unique name for the modal which was opened
      */
-    exports.trackModalOpen = function(modalName) {
+    var trackModalOpen = exports.trackModalOpen = function(modalName) {
         gaSendEvent(CATEOGRY_MODAL, ACTION_OPEN, modalName);
     };
 
@@ -190,7 +190,7 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
      * A function which can be provided to the 'invalidHandler' option of jQuery Validate's validate() function.
      * It will automatically track validation errors which occur using trackValidationError().
      */
-    exports.jqueryValidateInvalidHandler = function(event, validator) {
+    var jqueryValidateInvalidHandler = exports.jqueryValidateInvalidHandler = function(event, validator) {
         _.forEach(validator.errorList, function(err) {
 
             // Fall back to using the form field itself as there's no label
