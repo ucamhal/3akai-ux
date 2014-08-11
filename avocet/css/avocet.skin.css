@@ -333,6 +333,14 @@
     background: #F9F9F9;
 }
 
+/*******************
+ ** Progress bars **
+ *******************/
+
+.oa-progress-bar {
+    background-color: #70A2A9;
+}
+
 /******************
  ** Text colours **
  ******************/
@@ -457,8 +465,4 @@
 #oa-submitpublication-welcome-container .oa-submitpublication-btn-help:focus,
 #oa-submitpublication-welcome-container .oa-submitpublication-btn-help:hover {
     color: #70A2A9;
-}
-
-#oa-submitpublication-upload-progress-container .oa-progress-bar {
-    background-color: #70A2A9;
 }
