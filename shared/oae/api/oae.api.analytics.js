@@ -50,10 +50,10 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
     /**
      * Send an analytics pageview for the specified path and page title.
      *
-     * @param  {String}     path    The URL path to record a pageview against
-     * @param  {String}     title   The title of the virtual page
+     * @param  {String}     path        The URL path to record a pageview against
+     * @param  {Object}     [options]   Extra ga() options
      */
-    var trackVirtualPageview = exports.trackVirtualPageview = function(path, title) {
+    var trackVirtualPageview = exports.trackVirtualPageview = function(path, options) {
         if (!path) {
             throw new Error('No path provided: ' + path);
         }
@@ -61,13 +61,13 @@ define(['exports', 'require', 'jquery', 'underscore', 'oae.api.config'], functio
         if (path[0] === '/') {
             path = path.substring(1);
         }
-
         var url = '/virtual/' + path;
 
-        gaSend('pageview', {
-          'page': url,
-          'title': title
+        var mergedOptions = _.extend({}, options || {}, {
+          'page': url
         });
+
+        gaSend('pageview', mergedOptions);
     };
 
     /**
